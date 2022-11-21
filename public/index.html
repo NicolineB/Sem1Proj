@@ -1,52 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="scripts/d3.js"></script>
+    <link ref="css/main.css" />
+    <title>Vandstigninger</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <script src="scripts/d3.js"></script>
-  <title>Vandstigninger</title>
-</head>
+  <body>
+    <header>Logo eller andet evt. nav bar</header>
+    <section class="infoslide">
+      <h1 id="main-title">Postgres node.js template med d3.js</h1>
+      <!--figur til at illustere at scroll ned-->
+    </section>
 
-<body>
-  <header></header> Logo eller andet evt. nav bar </header>
-  <h1>Postgres node.js template med d3.js</h1>
-  <section class="infoslide"></section>
+    <section class="water-rise">
+      <h1 id ="water-rise-title">year ....</h1>
+      <!-- evt plus minus antal år her-->
 
-  < class="water-rise">
-  <script>
-  // Denne query kører op imod API'en som findes i 'main.js'.
-  // Denne HTML skal derfor åbnes igennem serveren for at virke.
-  d3.json("/api/helloQuery", {
-    method: "POST", 
-  }).then(function(response) {
-    const data = response.data; // Hent data ud af response
-    console.log("data", data);
+      <!--To col / grid med to - visualisering col1, boks anden-->
+      <div class="col1">
+        <script>
+          // Denne query kører op imod API'en som findes i 'main.js'.
+          // Denne HTML skal derfor åbnes igennem serveren for at virke.
+          d3.json("/api/helloQuery", {
+            method: "POST",
+          }).then(function (response) {
+            const data = response.data; // Hent data ud af response
+            console.log("data", data);
 
-    const w = 500;
-    const h = 350;
+            const w = 500;
+            const h = 350;
 
-    // Lav SVG element
-    const svg = d3.select("body")
-      .append("svg")
-      .attr("width", w)
-      .attr("height", h);
+            // Lav SVG element
+            const svg = d3
+              .select("body")
+              .append("svg")
+              .attr("width", w)
+              .attr("height", h);
 
-    // Indsæt tekst fra postgres query som eksempel
-    svg.selectAll("text")
-      .data(data)
-      .enter()
-      .append("text")
-      .attr("x", 20)
-      .attr("y", 20)
-      .text(function (d) { return "Svar fra databasen: " + d.message; }) 
-      
-    // Lav din egen visualsering med data her!
-  });
-  </script>
-</section>
-<section class="consequences"></section> 
-<section class="marine-life"></section>
-<section class="not-fun-facts"></section>
+            // Indsæt tekst fra postgres query som eksempel
+            svg
+              .selectAll("text")
+              .data(data)
+              .enter()
+              .append("text")
+              .attr("x", 20)
+              .attr("y", 20)
+              .text(function (d) {
+                return "Svar fra databasen: " + d.message;
+              });
 
-</body>
+            // Lav din egen visualsering med data her!
+          });
+        </script>
+      </div>
+      <div class="col2">
+        <div class="col2-container">
+          <button type="button" onclick="best_case">best case</button>
+          <button type="button" onclick="worst_case">worse case</button>
+          <article>
+            <p>Information goes here</p>
+            <!--Evt. variable som referer til data fra året-->
+          </article>
+          <!--figur til at illustere at scroll ned-->
+        </div>
+      </div>
+    </section>
+
+    <section class="consequences">
+      <h1>Det ser ikke ud af meget <bold>men.....</bold></h1>
+    </section>
+    <section class="marine-life">
+      <h1 id="marine-title">Here goes a title</h1>
+      <div>
+        <script>
+          // Denne query kører op imod API'en som findes i 'main.js'.
+          // Denne HTML skal derfor åbnes igennem serveren for at virke.
+          d3.json("/api/helloQuery", {
+            method: "POST",
+          }).then(function (response) {
+            const data = response.data; // Hent data ud af response
+            console.log("data", data);
+
+            const w = 500;
+            const h = 350;
+
+            // Lav SVG element
+            const svg = d3
+              .select("body")
+              .append("svg")
+              .attr("width", w)
+              .attr("height", h);
+
+            // Indsæt tekst fra postgres query som eksempel
+            svg
+              .selectAll("text")
+              .data(data)
+              .enter()
+              .append("text")
+              .attr("x", 20)
+              .attr("y", 20)
+              .text(function (d) {
+                return "Svar fra databasen: " + d.message;
+              });
+
+            // Lav din egen visualsering med data her!
+          });
+        </script>
+      </div>
+    </section>
+    
+    <section class="not-fun-facts">
+      <article class="fact-container">
+        <div class="fact-1">
+          <img src="..." class="fact-1-pic">
+          <p>here something will be</p>
+        </div>
+        <div class ="fact-2">
+          <img src="..." class="fact-2-pic">
+          <p>Here something will be</p>
+        </div>
+        <div class="fact-3">
+          <img src="..." class="fact-2-pic">
+          <p>here something will be</p>
+        </div>
+        </div>
+      </article>
+    </section>
+    
+    
+    
+    <footer>
+    </footer>
+  </body>
 </html>
