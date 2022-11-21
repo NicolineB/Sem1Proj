@@ -12,19 +12,19 @@ const morgan = require("morgan"); // Some nice logging
  * DB_PORT er porten til databasen. Det plejer at være 5432, så den behøver man nok ikke ændre.
  */
 const PORT = process.env.PORT || 8080;
-const DB_USER = process.env.DB_USER || "yxfsjwpr";
-const DB_HOST = process.env.DB_HOST || "ella.db.elephantsql.com";
-const DB_NAME = process.env.DB_NAME || "yxfsjwpr";
-const DB_PW = process.env.DB_PW || "iQZxFQUvezmtoU8GUZeUdHq_luNTtjzU";
+const DB_USER = process.env.DB_USER || "lzdkbzkl";
+const DB_HOST = process.env.DB_HOST || "mouse.db.elephantsql.com";
+const DB_NAME = process.env.DB_NAME || "lzdkbzkl";
+const DB_PW = process.env.DB_PW || "VYWTjVbx3KdcdaNK2H9ExTPxTzmHvlhH";
 const DB_PORT = process.env.DB_PORT || 5432;
 
 /**
  * I stedet for at ændre på DB-værdierne i koden herover, er det bedre at gøre det som
  * en del af den måde man kører programmet på. Hver DB-værdi kan sættes i terminalen
  * inden man kører programmet. Det gør man sådan her:
- * 
+ *
  * $ export DB_NAME="kristians-database"
- * 
+ *
  * Nu er DB_NAME sat til "kristians-database" når programmet kører, uden at man har
  * ændret i JavaScript-koden. Dette skal gøres hver gang du åbner en ny terminal.
  * Det skal helst gøres både for DB_NAME, DB_PW, DB_USER og DB_HOST.
@@ -50,13 +50,13 @@ const client = new Client({
   host: DB_HOST,
   database: DB_NAME,
   password: DB_PW,
-  port: DB_PORT
+  port: DB_PORT,
 });
 client.connect();
 
 app.use(express.text());
-app.use(express.static("public"))
-app.use(morgan("combined")); 
+app.use(express.static("public"));
+app.use(morgan("combined"));
 
 /*
  * Her defineres API'en.
@@ -70,22 +70,24 @@ app.post("/api/helloQuery", async (req, res) => {
     queryData = await client.query(query);
     // Giv svar tilbage til JavaScript
     res.json({
-      "ok": true,
-      "data": queryData.rows,
-    })
+      ok: true,
+      data: queryData.rows,
+    });
   } catch (error) {
     // Hvis query fejler, fanges det her.
     // Send fejlbesked tilbage til JavaScript
     res.json({
-      "ok": false,
-      "message": error.message,
-    })
+      ok: false,
+      message: error.message,
+    });
   }
 });
 
 app.get("/api/hello", async (req, res) => {
-  res.json({ "message": "Hello, World!" });
-})
+  res.json({ message: "Hello, World!" });
+});
 
 // Web-serveren startes.
-app.listen(PORT, () => console.log(`Serveren kører på http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Serveren kører på http://localhost:${PORT}`)
+);
