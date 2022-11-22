@@ -6,7 +6,6 @@
     <link ref="css/main.css" />
     <title>Vandstigninger</title>
   </head>
-
   <body>
     <header>Logo eller andet evt. nav bar</header>
     <section class="infoslide">
@@ -21,7 +20,7 @@
       <!--To col / grid med to - visualisering col1, boks anden-->
       <div class="col1">
         <script>
-          d3.json("/api/helloQuery", {
+          d3.json("/api/years", {
             method: "POST",
           }).then(function (response) {
             const data = response.data; // Hent data ud af response
@@ -45,6 +44,8 @@
               .attr("y", 0)
               .attr("width", 20)
               .attr("height", 100);
+
+            console.log(response.data);
 
             // Lav din egen visualsering med data her!
           });

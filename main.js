@@ -29,7 +29,6 @@ const DB_PORT = process.env.DB_PORT || 5432;
  * ændret i JavaScript-koden. Dette skal gøres hver gang du åbner en ny terminal.
  * Det skal helst gøres både for DB_NAME, DB_PW, DB_USER og DB_HOST.
  * PORT og DB_PORT plejer man ikke at ændre.
- */
 if (!process.env.DB_NAME || !process.env.DB_PW || !process.env.DB_USER) {
   console.warn("Husk at sætte databasenavn, password og user via env vars.");
   console.warn("Eksempel på at sætte databasenavn i terminalen:");
@@ -39,7 +38,7 @@ if (!process.env.DB_NAME || !process.env.DB_PW || !process.env.DB_USER) {
   console.log("Postgres database:", DB_NAME);
   console.log("Postgres user:", DB_USER);
 }
-
+*/
 /*
  * Herunder laves web-serveren. Den indeholder din html (fra public-folderen)
  * og API'en så der er forbindelse videre til databasen fra JavaScript. Det er "to i en".
@@ -64,11 +63,11 @@ app.use(morgan("combined"));
  * querien `SELECT 'Hello, World' as message`.
  */
 
-app.post("/api/helloQuery", async (req, res) => {
+const query1 = `SELECT years FROM climate`;
+
+app.get("/api/years", async (req, res) => {
   try {
-    // Lav query
-    const query = `SELECT 'Hello, World' as message`;
-    queryData = await client.query(query);
+    queryData = await client.query(query1);
     // Giv svar   tilbage til JavaScript
     res.json({
       ok: true,
