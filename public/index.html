@@ -21,7 +21,7 @@
       <div class="col1">
         <script>
           d3.json("/api/years", {
-            method: "post",
+            method: "POST",
           }).then(function (response) {
             const data = response.data; // Hent data ud af response
             console.log("data", data);
