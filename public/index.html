@@ -73,7 +73,7 @@
         <script>
           // Denne query kører op imod API'en som findes i 'main.js'.
           // Denne HTML skal derfor åbnes igennem serveren for at virke.
-          d3.json("/api/tester", {
+          d3.json("/api/hello", {
             method: "POST",
           }).then(function (response) {
             const data = response.data; // Hent data ud af response

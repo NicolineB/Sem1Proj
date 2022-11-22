@@ -87,25 +87,6 @@ app.get("/api/hello", async (req, res) => {
   res.json({ message: "Hello, World!" });
 });
 
-// tester
-const qry2 = `SELECT * FROM observations`;
-
-app.get("/api/tester", async (req, res) => {
-  try {
-    let queryData = await client.query(qry2);
-    res.json({
-      ok: true,
-      observations: queryData.rows,
-    });
-  } catch (error) {
-    res.json({
-      ok: false,
-      message: error.message,
-    });
-  }
-  res.send(observations);
-});
-
 // Web-serveren startes.
 app.listen(PORT, () =>
   console.log(`Serveren kører på http://localhost:${PORT}`)
