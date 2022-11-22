@@ -20,10 +20,10 @@
       <!--To col / grid med to - visualisering col1, boks anden-->
       <div class="col1">
         <script>
-          d3.json(result, {
-            method: "POST",
+          d3.json("/api/years", {
+            method: "post",
           }).then(function (response) {
-            const data = response.result; // Hent data ud af response
+            const data = response.data; // Hent data ud af response
             console.log("data", data);
 
             const w = 500;
