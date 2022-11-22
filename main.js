@@ -82,6 +82,10 @@ app.get("/api/years", async (req, res) => {
   }
 });
 
+app.get("/api/years", async (req, res) => {
+  res.json({ message: data });
+});
+
 app.get("/api/hello", async (req, res) => {
   res.json({ message: "Hello, World!" });
 });
