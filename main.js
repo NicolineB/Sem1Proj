@@ -68,7 +68,7 @@ app.post("/api/helloQuery", async (req, res) => {
     // Lav query
     const query = `SELECT 'Hello, World' as message`;
     queryData = await client.query(query);
-    // Giv svar tilbage til JavaScript
+    // Giv svar   tilbage til JavaScript
     res.json({
       ok: true,
       data: queryData.rows,
@@ -85,6 +85,25 @@ app.post("/api/helloQuery", async (req, res) => {
 
 app.get("/api/hello", async (req, res) => {
   res.json({ message: "Hello, World!" });
+});
+
+// tester
+const qry2 = "SELECT * FROM observations";
+
+app.get("/tester", async (req, res) => {
+  try {
+    let queryData = await klient.query(qry2);
+    res.json({
+      ok: true,
+      observations: queryData.rows,
+    });
+  } catch (error) {
+    res.json({
+      ok: false,
+      message: error.message,
+    });
+  }
+  res.send(observations);
 });
 
 // Web-serveren startes.
