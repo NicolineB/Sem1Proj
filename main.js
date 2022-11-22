@@ -57,11 +57,7 @@ app.use(express.text());
 app.use(express.static("public"));
 app.use(morgan("combined"));
 
-/*
- * Her defineres API'en.
- * Man laver lige så mange endpoints man har lyst til. Jeg har lavet et enkelt til
- * querien `SELECT 'Hello, World' as message`.
- */
+//Her defineres API'en.
 
 app.get("/api/years", async (req, res) => {
   try {
@@ -80,10 +76,6 @@ app.get("/api/years", async (req, res) => {
       message: error.message,
     });
   }
-});
-
-app.get("/api/years", async (req, res) => {
-  res.json({ message: data });
 });
 
 app.get("/api/hello", async (req, res) => {
