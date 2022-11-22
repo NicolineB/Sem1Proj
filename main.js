@@ -63,10 +63,9 @@ app.use(morgan("combined"));
  * querien `SELECT 'Hello, World' as message`.
  */
 
-const query1 = `SELECT years FROM climate`;
-
 app.get("/api/years", async (req, res) => {
   try {
+    const query1 = `SELECT years FROM climate`;
     queryData = await client.query(query1);
     // Giv svar   tilbage til JavaScript
     res.json({

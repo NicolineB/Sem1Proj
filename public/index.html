@@ -45,7 +45,7 @@
               .attr("width", 20)
               .attr("height", 100);
 
-            console.log(response.data);
+            console.log(data);
 
             // Lav din egen visualsering med data her!
           });
@@ -73,8 +73,8 @@
         <script>
           // Denne query kører op imod API'en som findes i 'main.js'.
           // Denne HTML skal derfor åbnes igennem serveren for at virke.
-          d3.json("/api/hello", {
-            method: "GET",
+          d3.json("/api/years", {
+            method: "post",
           }).then(function (response) {
             const data = response.data; // Hent data ud af response
             console.log("data", data);
