@@ -57,9 +57,23 @@ app.use(express.text());
 app.use(express.static("public"));
 app.use(morgan("combined"));
 
+client.connect(function (err) {
+  if (err) {
+    return console.error("could not connect to postgres", err);
+  }
+  client.query("SELECT best_case FROM climate", function (err, result) {
+    if (err) {
+      return console.error("error running query", err);
+    }
+    console.log(result.rows[30].best_case);
+    // >> output: 2018-08-23T14:02:57.117Z
+    client.end();
+  });
+});
+
 //Her defineres API'en.
 
-app.get("/api/years", async (req, res) => {
+/* app.get("/api/years", async (req, res) => {
   try {
     const query1 = `SELECT years FROM climate`;
     queryData = await client.query(query1);
@@ -81,7 +95,7 @@ app.get("/api/years", async (req, res) => {
 app.get("/api/hello", async (req, res) => {
   res.json({ message: "Hello, World!" });
 });
-
+ */
 // Web-serveren startes.
 app.listen(PORT, () =>
   console.log(`Serveren kører på http://localhost:${PORT}`)

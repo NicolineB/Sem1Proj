@@ -20,10 +20,10 @@
       <!--To col / grid med to - visualisering col1, boks anden-->
       <div class="col1">
         <script>
-          d3.json("/api/years", {
+          d3.json(result, {
             method: "POST",
           }).then(function (response) {
-            const data = response.data; // Hent data ud af response
+            const data = response.result; // Hent data ud af response
             console.log("data", data);
 
             const w = 500;
@@ -44,8 +44,6 @@
               .attr("y", 0)
               .attr("width", 20)
               .attr("height", 100);
-
-            console.log(data);
 
             // Lav din egen visualsering med data her!
           });
@@ -73,7 +71,7 @@
         <script>
           // Denne query kører op imod API'en som findes i 'main.js'.
           // Denne HTML skal derfor åbnes igennem serveren for at virke.
-          d3.json("/api/years", {
+          /* d3.json("/api/years", {
             method: "post",
           }).then(function (response) {
             const data = response.data; // Hent data ud af response
@@ -102,7 +100,7 @@
               });
 
             // Lav din egen visualsering med data her!
-          });
+          }); */
         </script>
       </div>
     </section>
@@ -110,15 +108,15 @@
     <section class="not-fun-facts">
       <article class="fact-container">
         <div class="fact-1">
-          <img src="..." class="fact-1-pic" />
+          <img src="//" class="fact-1-pic" />
           <p>here something will be</p>
         </div>
         <div class="fact-2">
-          <img src="..." class="fact-2-pic" />
+          <img src="//" class="fact-2-pic" />
           <p>Here something will be</p>
         </div>
         <div class="fact-3">
-          <img src="..." class="fact-2-pic" />
+          <img src="//" class="fact-2-pic" />
           <p>here something will be</p>
         </div>
       </article>
