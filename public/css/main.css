@@ -12,5 +12,58 @@ body {
 
 #main-title {
   text-align: center;
-  font-family: , serif;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 50%;
+}
+
+.scroll-down.arrows span {
+  position: absolute;
+  display: inline-block;
+  top: 20px;
+  height: 25px;
+  width: 2px;
+  left: calc(50% - 1px);
+  animation: animateArrows 1.25s infinite linear;
+}
+@keyframes animateArrows {
+  0%,
+  40%,
+  100% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+.scroll-down.arrows span:first-child {
+  top: 35px;
+  animation-delay: 0s;
+}
+.scroll-down.arrows span:nth-child(2) {
+  top: 35px;
+  animation-delay: 0.33s;
+}
+.scroll-down.arrows span:last-child {
+  top: 50px;
+  animation-delay: 0.66s;
+}
+.scroll-down.arrows span::before,
+.scroll-down.arrows span::after {
+  position: absolute;
+  content: "";
+  width: 3px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #fff;
+  border-radius: 3px;
+}
+.scroll-down.arrows span::before {
+  transform-origin: bottom;
+  transform: rotate(-45deg);
+}
+.scroll-down.arrows span::after {
+  transform-origin: bottom;
+  margin-left: -1px;
+  transform: rotate(45deg);
 }
