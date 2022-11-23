@@ -44,11 +44,11 @@ app.use(morgan("combined"));
 
 //Her defineres API'en.
 
-app.get("api/years", async (req, res) => {
+app.get("/api/years", async (req, res) => {
+  const query1 = `SELECT years FROM climate`;
   try {
-    const query1 = `SELECT years FROM climate`;
-    queryData = await client.query(query1);
-    // Giv svar   tilbage til JavaScript
+    let queryData = await client.query(query1);
+    // Giv svar tilbage til JavaScript
     res.json({
       ok: true,
       data: queryData.rows,
@@ -61,8 +61,10 @@ app.get("api/years", async (req, res) => {
       message: error.message,
     });
   }
+  res.send(years);
 });
 
+// gamle api
 app.get("/api/hello", async (req, res) => {
   res.json({ message: "Hello, World!" });
 });
