@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script src="/scripts/d3.js"></script>
+    <script src="scripts/d3.js"></script>
     <link ref="css/main.css" />
     <title>Vandstigninger</title>
   </head>
@@ -23,8 +23,8 @@
           d3.json("/api/years", {
             method: "POST",
           }).then(function (response) {
-            const data = response.data; // Hent data ud af response
-            console.log("data", data);
+            const years = response.queryData; // Hent data ud af response
+            console.log("data", years);
 
             const w = 500;
             const h = 350;
