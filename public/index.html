@@ -4,12 +4,15 @@
     <meta charset="UTF-8" />
     <script src="scripts/d3.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+    </style>
     <title>Vandstigninger</title>
   </head>
   <body>
-    <header>Logo eller andet evt. nav bar</header>
+    <!--<header>Logo eller andet evt. nav bar</header> -->
     <section class="infoslide">
-      <h1 id="main-title">Postgres node.js template med d3.js</h1>
+      <h1 id="main-title">Effekten af vandstigninger</h1>
       <!--figur til at illustere at scroll ned-->
       <a class="scroll-down arrow">
         <label>Scroll</label>
@@ -24,7 +27,7 @@
       <!--To col / grid med to - visualisering col1, boks anden-->
       <div class="col1">
         <script>
-          d3.json("/api/years", {
+          d3.json("/api/climate", {
             method: "POST",
           }).then(function (response) {
             const data = response.data; // Hent data ud af response
