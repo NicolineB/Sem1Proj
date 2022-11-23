@@ -64,7 +64,7 @@ svg.selectAll("circle")
       .attr("cy", function(d) {
         return yScale(parseFloat(d.best_case) - bottomPadding); // Anden værdi i indre array (y)
       })
-      .attr("width", w / dataset.length - barPadding)
+      .attr("width", w / data.length - barPadding)
       .attr("height", function (d) { return yScale(d)})
       .attr("r", function(d) {
         return Math.sqrt(parseFloat(d.worst_case) + 100);
@@ -72,7 +72,7 @@ svg.selectAll("circle")
 
         // Udfyld labels
     svg.selectAll("text.label") // "text.label" betyder <text> med class "label"
-      .data(dataset)
+      .data(data)
       .enter()
       .append("text")
       .text(function (d) {
