@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <script src="scripts/d3.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
-    </style>
     <title>Vandstigninger</title>
   </head>
   <body>
@@ -47,7 +44,9 @@
               .data(data)
               .enter()
               .append("rect")
-              .attr("x", 0)
+              .attr("x", function (d, i) {
+                return i * (w / data.length);
+              })
               .attr("y", 0)
               .attr("width", 20)
               .attr("height", 100);
@@ -78,8 +77,8 @@
         <script>
           // Denne query kører op imod API'en som findes i 'main.js'.
           // Denne HTML skal derfor åbnes igennem serveren for at virke.
-          /* d3.json("/api/years", {
-            method: "post",
+          /* d3.json("/api/species", {
+            method: "POST",
           }).then(function (response) {
             const data = response.data; // Hent data ud af respons
             console.log("data", data);

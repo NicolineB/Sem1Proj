@@ -28,22 +28,7 @@ app.use(express.text());
 app.use(express.static("public"));
 app.use(morgan("combined"));
 
-/* client.connect(function (err) {
-  if (err) {
-    return console.error("could not connect to postgres", err);
-  }
-  client.query("SELECT best_case FROM climate", function (err, result) {
-    if (err) {
-      return console.error("error running query", err);
-    }
-    console.log(result.rows[30].best_case);
-    
-    client.end();
-  });
-}); */
-
-//Her defineres API'en.
-
+//Her defineres API'en for tabellen climate
 app.post("/api/climate", async (req, res) => {
   const query1 = `SELECT * FROM climate`;
   try {
@@ -64,9 +49,22 @@ app.post("/api/climate", async (req, res) => {
   res.send(query1);
 });
 
-// gamle api
-app.get("/api/climate", async (req, res) => {
-  res.json({ message: "Hello, World!" });
+// Her defineres API'en for tabellen species
+app.post("/api/species", async (req, res) => {
+  const query2 = `SELECT * FROM species`;
+  try {
+    let queryData = await client.query(query2);
+    res.json({
+      ok: true,
+      data: queryData.rows,
+    });
+  } catch (error) {
+    res.json({
+      ok: false,
+      message: error.message,
+    });
+  }
+  res.send(query2);
 });
 
 // Web-serveren startes.
