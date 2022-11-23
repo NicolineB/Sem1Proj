@@ -33,13 +33,14 @@
             const w = 500;
             const h = 1000;
             const bottomPadding = 20;
+            const sidePadding = 20;
 
             const svg = d3
               .select("body")
               .append("svg")
               .attr("width", w)
               .attr("height", h);
-
+            /*
             svg
               .selectAll("rect")
               .data(data)
@@ -53,7 +54,7 @@
                 data.length * 2 - d;
               })
               .attr("width", 20)
-              .attr("height", 100);
+              .attr("height", 100); */
 
             // Lav en skala for y-aksen
             const yScale = d3
@@ -67,7 +68,7 @@
               .range([0, h - bottomPadding]);
 
             // Lave y-akse med tal
-            const yAxis = d3.axisLeft().scale(yScale).ticks(105);
+            const yAxis = d3.axisLeft().scale(yScale).ticks(11);
             svg
               .append("g")
               .attr("class", "axis")
