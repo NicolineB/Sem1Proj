@@ -20,7 +20,7 @@
       <!--To col / grid med to - visualisering col1, boks anden-->
       <div class="col1">
         <script>
-          d3.json("/api/years", {
+          d3.json("/api/climate", {
             method: "POST",
           }).then(function (response) {
             const years = response.queryData; // Hent data ud af response
