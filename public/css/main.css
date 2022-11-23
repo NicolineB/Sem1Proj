@@ -1,0 +1,14 @@
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+.infoslide {
+  background: red;
+  height: 100%;
+}
+
+#main-title {
+  text-align: center;
+}
