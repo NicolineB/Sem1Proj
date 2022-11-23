@@ -7,8 +7,10 @@ body {
 .infoslide {
   background: red;
   height: 100%;
+  text-align: center;
 }
 
 #main-title {
   text-align: center;
+  font-family: , serif;
 }
