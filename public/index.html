@@ -44,14 +44,86 @@
               .data(data)
               .enter()
               .append("rect")
-              .attr("x", function (d, i) {
-                return i * (w / data.length);
+              // x skal være fikseret
+              .attr("x", 0)
+              // y skal være ca dobbelt så stor som worst_case (og eller 2 m)
+              // + sørge for at den "vokser" nedefra
+              .attr("y", function (d) {
+                data.worst_case.length * 2 - d;
               })
-              .attr("y", 0)
               .attr("width", 20)
               .attr("height", 100);
 
-            // Lav din egen visualsering med data her!
+            //_TESTER_
+
+            <div class="container">
+              <svg
+                class="bars-svg"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 825 500"
+              >
+                <defs>
+                  <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop
+                      offset="0%"
+                      style="stop-color:rgb(0, 47, 87);stop-opacity:1"
+                    />
+                    <stop
+                      offset="100%"
+                      style="stop-color:rgb(88, 148, 251);stop-opacity:1"
+                    />
+                  </linearGradient>
+                </defs>
+                <g class="bars" transform="translate(0,0)">
+                  <linearGradient
+                    id="SVGID_1_"
+                    gradientUnits="userSpaceOnUse"
+                    x1="10"
+                    y1="219"
+                    x2="85"
+                    y2="219"
+                  >
+                    <stop offset="0" style="stop-color:#D3FFC3" />
+                    <stop
+                      offset="1"
+                      style="stop-color:#EAFAE4;stop-opacity:1"
+                    />
+                  </linearGradient>
+                  <text
+                    class="y-axis-title"
+                    x="0"
+                    y="245"
+                    transform="rotate(270,0,210)"
+                  >
+                    Total Cats
+                  </text>
+                  <text class="x-axis-title" x="0" y="480">
+                    Year
+                  </text>
+                  <rect class="x-axis" y="400" x="45" width="1060" height="1" />
+                  <rect class="y-axis" y="40" x="65" width="1" height="380" />
+                  <g class="single-bar bar0" transform="translate(0,0)">
+                    <text class="y-axis-label" y="44" x="40">
+                      20,000
+                    </text>
+                    <g transform="scale(1,-1) translate(0,-500)">
+                      <rect
+                        class="bar-front"
+                        x="20"
+                        y="100"
+                        width="40"
+                        height="0"
+                      />
+                    </g>
+                    <text class="x-axis-label" y="410" x="40">
+                      1998
+                    </text>
+                  </g>
+                </g>
+              </svg>
+            </div>;
+            // _tester_
           });
         </script>
       </div>
