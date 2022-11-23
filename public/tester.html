@@ -66,8 +66,7 @@ svg.selectAll("circle")
       })
       .attr("width", w / data.length - barPadding)
       .attr("height", function (d) { return yScale(d)})
-      .attr("r", function(d) {
-        return Math.sqrt(parseFloat(d.worst_case) + 100);
+      .attr("r", 5);
       });
 
         // Udfyld labels
@@ -102,7 +101,6 @@ svg.selectAll("circle")
       .attr("class", "axis")
       .attr("transform", "translate(" + (bottomPadding) + ",0)")
       .call(yAxis);
-      });
         </script>
   </body>
 </html>
