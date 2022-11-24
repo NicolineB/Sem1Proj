@@ -15,7 +15,9 @@ body {
 #main-title {
   text-align: center;
   font-family: "Raleway", sans-serif;
-  font-size: large;
+  font-size: 4em;
+  line-height: 1.3em;
+  color: black;
 }
 
 .scroll-down.arrow span {
@@ -27,6 +29,7 @@ body {
   left: calc(50% - 1px);
   animation: animateArrow 1.25s infinite linear;
 }
+
 @keyframes animateArrow {
   0%,
   40%,
@@ -61,4 +64,18 @@ body {
   transform-origin: bottom;
   margin-left: -1px;
   transform: rotate(45deg);
+}
+
+.water-rise {
+  background-color: blue;
+}
+
+.col1 {
+  float: left;
+  width: 50%;
+}
+
+.col2 {
+  float: right;
+  width: 50%;
 }
