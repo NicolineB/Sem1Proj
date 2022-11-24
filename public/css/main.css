@@ -7,7 +7,7 @@ body {
 }
 
 .infoslide {
-  background: red;
+  background: pink;
   height: 100%;
   text-align: center;
 }
@@ -64,10 +64,6 @@ body {
   transform-origin: bottom;
   margin-left: -1px;
   transform: rotate(45deg);
-}
-
-.water-rise {
-  background-color: blue;
 }
 
 .container {

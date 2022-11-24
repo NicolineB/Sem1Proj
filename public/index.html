@@ -19,6 +19,19 @@
 
     <section class="water-rise">
       <h1 id="water-rise-title">year ....</h1>
+      <form action="" method="get">
+        <p>Choose a year...</p>
+        Year:
+        <input
+          type="number"
+          placeholder="YYYY"
+          min="1997"
+          max="2100"
+          id="chosenYear"
+        />
+        <input type="submit" value="Submit" id="submit" />
+      </form>
+
       <!-- evt plus minus antal år her-->
 
       <!--To col / grid med to - visualisering col1, boks anden-->
@@ -34,7 +47,7 @@
               const w = 500;
               const h = 500;
               const bottomPadding = 100;
-              const sidePadding = 100;
+              const sidePadding = 80;
               const topPadding = 100;
 
               const svg = d3
@@ -42,21 +55,6 @@
                 .append("svg")
                 .attr("width", w)
                 .attr("height", h);
-              /*
-            svg
-              .selectAll("rect")
-              .data(data)
-              .enter()
-              .append("rect")
-              // x skal være fikseret
-              .attr("x", 0)
-              // y skal være ca dobbelt så stor som worst_case (og eller 2 m)
-              // + sørge for at den "vokser" nedefra
-              .attr("y", function (d) {
-                data.length * 2 - d;
-              })
-              .attr("width", 20)
-              .attr("height", 100); */
 
               // Lav en skala for y-aksen
               const yScale = d3
@@ -76,6 +74,28 @@
                 .attr("class", "axis")
                 .attr("transform", "translate(" + sidePadding + ",0)")
                 .call(yAxis);
+
+              // Knappen vælges via dens id 'klik'
+              d3.selectAll("#chosenYear")
+                // Koden herunder køres kun ved tryk på knappen
+                .on("click", function (e) {
+                  // Find hvilken knap der blev trykket på
+                  const id = e.target.id;
+                  console.log(id);
+
+                  svg
+                    .selectAll("rect")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    // x skal være fikseret
+                    .attr("x", 0)
+                    .attr("y", function (d) {
+                      return -d;
+                    })
+                    .attr("width", w)
+                    .attr("height", 0);
+                });
             });
           </script>
         </div>
@@ -156,3 +176,4 @@
     <footer></footer>
   </body>
 </html>
+})
