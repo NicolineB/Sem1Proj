@@ -62,7 +62,7 @@
               .domain([
                 0,
                 d3.max(data, function (d) {
-                  return parseFloat(d.worst_case[3]);
+                  return parseFloat(d.worst_case);
                 }),
               ])
               .range([0, h - bottomPadding]);
