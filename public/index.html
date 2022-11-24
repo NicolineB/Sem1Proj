@@ -38,13 +38,12 @@
       <div class="container">
         <div class="col1">
           <script>
-            d3.json("/api/climate/2080", {
+            d3.json("/api/climate", {
               method: "POST",
             }).then(function (response) {
-              const data = response.data; // Hent data ud af response
+              const data = response.data; //hent data ud af response
               console.log("data", data);
             
-              
               const w = 500;
               const h = 500;
               const bottomPadding = 52;
@@ -77,11 +76,11 @@
                 .attr("class", "axis")
                 .attr("transform", "translate(" + sidePadding + ",0)")
                 .call(yAxis);
-
+              });
               //lav "bølge"
               svg
                 .selectAll("rect")
-                .data(data)
+                .data(waterlevel(2022))
                 .enter()
                 .append("rect")
                 .attr("x", function (d, i) {
@@ -95,24 +94,6 @@
                   return yScale(parseFloat(d.worst_case));
                 })
                 .attr("fill", "blue");
-            });
-              //lav "bølge"
-           /*    svg
-                .selectAll("rect")
-                .data()
-                .enter()
-                .append("rect")
-                .attr("x", function (d, i) {
-                  return xScale(i);
-                })
-                .attr("y", function (d) {
-                  return yScale(parseFloat(d.worst_case));
-                })
-                .attr("width", w)
-                .attr("height", function (d, i) {
-                  return yScale(parseFloat(d.worst_case));
-                })
-                .attr("fill", "blue"); */
                 
 
             let newData;
