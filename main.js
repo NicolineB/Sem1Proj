@@ -33,7 +33,7 @@ app.post("/api/climate/:years", async (req, res) => {
   const years = req.params.years;
   console.log(years);
   console.log("hejsa");
-  const query1 = `SELECT * FROM climate WHERE years == ${years}`;
+  const query1 = `SELECT * FROM climate WHERE years = ${years}`;
   try {
     let queryData = await client.query(query1);
     // Giv svar tilbage til JavaScript

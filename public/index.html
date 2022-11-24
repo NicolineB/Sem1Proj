@@ -38,7 +38,7 @@
       <div class="container">
         <div class="col1">
           <script>
-            d3.json("/api/climate/2022", {
+            d3.json("/api/climate/2080", {
               method: "POST",
             }).then(function (response) {
               const data = response.data; // Hent data ud af response
@@ -46,7 +46,7 @@
 
               const w = 500;
               const h = 500;
-              const bottomPadding = 100;
+              const bottomPadding = 52;
               const sidePadding = 80;
               const topPadding = 100;
 
@@ -70,40 +70,44 @@
                 .attr("transform", "translate(" + sidePadding + ",0)")
                 .call(yAxis);
 
+              //lav "bølge"
               svg
                 .selectAll("rect")
                 .data(data)
                 .enter()
                 .append("rect")
                 // x skal være fikseret
-                .attr("x", 0)
+                .attr("x", sidePadding)
                 .attr("y", function (d) {
-                  return -d;
+                  return yScale(parseFloat(d.worst_case));
                 })
                 .attr("width", w)
-                .attr("height", 0);
+                .attr("height", function (d) {
+                  return yScale(parseFloat(d.worst_case)) + bottomPadding;
+                })
+                .attr("fill", "blue");
             });
 
             // Knappen vælges via dens id 'klik'
-            d3.selectAll("#chosenYear")
+            d3.selectAll("#submit")
               // Koden herunder køres kun ved tryk på knappen
               .on("click", function (e) {
                 // Find hvilken knap der blev trykket på
                 const id = e.target.id;
                 // where year = ID
                 console.log(id);
+              });
 
-                svg
-                  .selectAll("rect")
-                  .data(data)
-                  .transition()
-                  .duration(500)
-                  .attr("y", function (d) {
-                    return parseInt(d.best_case);
-                  })
-                  .attr("height", function (d) {
-                    return parseInt(d.best_case);
-                  });
+            svg
+              .selectAll("rect")
+              .data(data)
+              .transition()
+              .duration(500)
+              .attr("y", function (d) {
+                return yScale(parseFloat(d.worst_case));
+              })
+              .attr("height", function (d) {
+                return yScale(parseFloat(d.worst_case)) + bottomPadding;
               });
           </script>
         </div>
@@ -158,12 +162,10 @@
                 return "Svar fra databasen: " + d.message;
               });
 
-            // Lav din egen visualsering med data her!
-          }); */
+            // Lav din egen visualsering med data her!*/
         </script>
       </div>
     </section>
-
     <section class="not-fun-facts">
       <article class="fact-container">
         <div class="fact-1">
@@ -180,8 +182,6 @@
         </div>
       </article>
     </section>
-
     <footer></footer>
   </body>
 </html>
-})
