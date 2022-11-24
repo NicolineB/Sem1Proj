@@ -38,7 +38,7 @@
       <div class="container">
         <div class="col1">
           <script>
-            d3.json("/api/climate", {
+            d3.json("/api/climate/", {
               method: "POST",
             }).then(function (response) {
               const data = response.data; // Hent data ud af response
@@ -59,12 +59,7 @@
               // Lav en skala for y-aksen
               const yScale = d3
                 .scaleLinear()
-                .domain([
-                  d3.max(data, function (d) {
-                    return parseFloat(d.worst_case * 2);
-                  }),
-                  0,
-                ])
+                .domain([2, 0])
                 .range([0, h - bottomPadding]);
 
               // Lave y-akse med tal
@@ -75,28 +70,42 @@
                 .attr("transform", "translate(" + sidePadding + ",0)")
                 .call(yAxis);
 
-              // Knappen vælges via dens id 'klik'
-              d3.selectAll("#chosenYear")
-                // Koden herunder køres kun ved tryk på knappen
-                .on("click", function (e) {
-                  // Find hvilken knap der blev trykket på
-                  const id = e.target.id;
-                  console.log(id);
-
-                  svg
-                    .selectAll("rect")
-                    .data(data)
-                    .enter()
-                    .append("rect")
-                    // x skal være fikseret
-                    .attr("x", 0)
-                    .attr("y", function (d) {
-                      return -d;
-                    })
-                    .attr("width", w)
-                    .attr("height", 0);
-                });
+              svg
+                .selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                // x skal være fikseret
+                .attr("x", 0)
+                .attr("y", function (d) {
+                  return -d;
+                })
+                .attr("width", w)
+                .attr("height", 0);
             });
+
+            // Knappen vælges via dens id 'klik'
+            d3.selectAll("#chosenYear")
+              // Koden herunder køres kun ved tryk på knappen
+              .on("click", function (e) {
+                // Find hvilken knap der blev trykket på
+                const id = e.target.id;
+                // where year = ID
+
+                console.log(id);
+
+                svg
+                  .selectAll("rect")
+                  .data(data)
+                  .transition()
+                  .duration(500)
+                  .attr("y", function (d) {
+                    return parseInt(d.best_case);
+                  })
+                  .attr("height", function (d) {
+                    return parseInt(d.best_case);
+                  });
+              });
           </script>
         </div>
         <div class="col2">

@@ -29,8 +29,11 @@ app.use(express.static("public"));
 app.use(morgan("combined"));
 
 //Her defineres API'en for tabellen climate
-app.post("/api/climate", async (req, res) => {
-  const query1 = `SELECT * FROM climate`;
+app.post("/api/climate/:years", async (req, res) => {
+  const years = req.params.years;
+  console.log(years);
+  console.log("hejsa");
+  const query1 = `SELECT * FROM climate WHERE years == ${years}`;
   try {
     let queryData = await client.query(query1);
     // Giv svar tilbage til JavaScript
