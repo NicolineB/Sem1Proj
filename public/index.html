@@ -22,26 +22,27 @@
       <!-- evt plus minus antal år her-->
 
       <!--To col / grid med to - visualisering col1, boks anden-->
-      <div class="col1">
-        <script>
-          d3.json("/api/climate", {
-            method: "POST",
-          }).then(function (response) {
-            const data = response.data; // Hent data ud af response
-            console.log("data", data);
+      <div class="container">
+        <div class="col1">
+          <script>
+            d3.json("/api/climate", {
+              method: "POST",
+            }).then(function (response) {
+              const data = response.data; // Hent data ud af response
+              console.log("data", data);
 
-            const w = 500;
-            const h = 1000;
-            const bottomPadding = 100;
-            const sidePadding = 100;
-            const topPadding = 100;
+              const w = 500;
+              const h = 500;
+              const bottomPadding = 100;
+              const sidePadding = 100;
+              const topPadding = 100;
 
-            const svg = d3
-              .select("body")
-              .append("svg")
-              .attr("width", w)
-              .attr("height", h);
-            /*
+              const svg = d3
+                .select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+              /*
             svg
               .selectAll("rect")
               .data(data)
@@ -57,36 +58,37 @@
               .attr("width", 20)
               .attr("height", 100); */
 
-            // Lav en skala for y-aksen
-            const yScale = d3
-              .scaleLinear()
-              .domain([
-                0,
-                d3.max(data, function (d) {
-                  return parseFloat(d.worst_case);
-                }),
-              ])
-              .range([0, h - bottomPadding]);
+              // Lav en skala for y-aksen
+              const yScale = d3
+                .scaleLinear()
+                .domain([
+                  d3.max(data, function (d) {
+                    return parseFloat(d.worst_case * 2);
+                  }),
+                  0,
+                ])
+                .range([0, h - bottomPadding]);
 
-            // Lave y-akse med tal
-            const yAxis = d3.axisLeft().scale(yScale).ticks(8);
-            svg
-              .append("g")
-              .attr("class", "axis")
-              .attr("transform", "translate(" + sidePadding + ",0)")
-              .call(yAxis);
-          });
-        </script>
-      </div>
-      <div class="col2">
-        <div class="col2-container">
-          <button type="button" onclick="best_case">best case</button>
-          <button type="button" onclick="worst_case">worse case</button>
-          <article>
-            <p>Information goes here</p>
-            <!--Evt. variable som referer til data fra året-->
-          </article>
-          <!--figur til at illustere at scroll ned-->
+              // Lave y-akse med tal
+              const yAxis = d3.axisLeft().scale(yScale).ticks(8);
+              svg
+                .append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(" + sidePadding + ",0)")
+                .call(yAxis);
+            });
+          </script>
+        </div>
+        <div class="col2">
+          <div class="col2-container">
+            <button type="button" onclick="best_case">best case</button>
+            <button type="button" onclick="worst_case">worse case</button>
+            <article>
+              <p>Information goes here</p>
+              <!--Evt. variable som referer til data fra året-->
+            </article>
+            <!--figur til at illustere at scroll ned-->
+          </div>
         </div>
       </div>
     </section>
