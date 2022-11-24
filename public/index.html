@@ -62,13 +62,13 @@
               .domain([
                 0,
                 d3.max(data, function (d) {
-                  return parseFloat(d.worst_case);
+                  return parseFloat(d.worst_case[3]);
                 }),
               ])
               .range([0, h - bottomPadding]);
 
             // Lave y-akse med tal
-            const yAxis = d3.axisLeft().scale(yScale).ticks(11);
+            const yAxis = d3.axisLeft().scale(yScale).ticks(10);
             svg
               .append("g")
               .attr("class", "axis")
