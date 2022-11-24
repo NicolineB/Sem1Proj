@@ -38,7 +38,7 @@
       <div class="container">
         <div class="col1">
           <script>
-            d3.json("/api/climate/", {
+            d3.json("/api/climate/2001", {
               method: "POST",
             }).then(function (response) {
               const data = response.data; // Hent data ud af response
