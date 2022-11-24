@@ -38,11 +38,10 @@
       <div class="container">
         <div class="col1">
           <script>
-            d3.json("/api/climate/2080", {
-              method: "POST",
-            }).then(function (response) {
-              const data = response.data; // Hent data ud af response
-              console.log("data", data);
+            function waterlevel(years) {
+              let output = d3.json(`/api/climate/${years}`);
+              return output;
+            };
 
               const w = 500;
               const h = 500;
@@ -63,11 +62,11 @@
                 .range([0, h - bottomPadding]);
 
               // Lav en skala for x-aksen
-              const xScale = d3
+              /* const xScale = d3
                 .scaleBand()
                 .domain(d3.range(data.length))
                 .range([0, w - bottomPadding])
-                .paddingInner(0.35);
+                .paddingInner(0.35); */
 
               // Lave y-akse med tal
               const yAxis = d3.axisLeft().scale(yScale).ticks(8);
@@ -80,7 +79,7 @@
               //lav "bølge"
               svg
                 .selectAll("rect")
-                .data(data)
+                .data(waterlevel(2022))
                 .enter()
                 .append("rect")
                 .attr("x", function (d, i) {
@@ -94,8 +93,9 @@
                   return yScale(parseFloat(d.worst_case));
                 })
                 .attr("fill", "blue");
-            });
 
+
+            let newData;
             // Knappen vælges via dens id 'klik'
             d3.selectAll("#submit")
               // Koden herunder køres kun ved tryk på knappen
@@ -104,11 +104,12 @@
                 const id = e.target.id;
                 // where year = ID
                 console.log(id);
+                newData = chosenYear;
               });
 
-            /* svg
+            svg
               .selectAll("rect")
-              .data(data)
+              .data(newData)
               .transition()
               .duration(500)
               .attr("y", function (d) {
@@ -116,7 +117,8 @@
               })
               .attr("height", function (d) {
                 return yScale(parseFloat(d.worst_case)) + bottomPadding;
-              }); */
+              });
+
           </script>
         </div>
         <div class="col2">
