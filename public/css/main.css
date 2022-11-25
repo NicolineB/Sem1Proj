@@ -1,23 +1,38 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Raleway:wght@300&display=swap');
 
 html,
 body {
   margin: 0px;
   height: 100%;
+  background: white;
+  position: relative;
+  line-height: 1.6;
 }
 
+
 .infoslide {
-  background: pink;
   height: 100%;
   text-align: center;
+  position: relative;
+  height: 50vw;
+  min-height: 400px;
+  max-height: 550px;
+  min-width: 300px;
+  color: #eee;
 }
 
 #main-title {
   text-align: center;
-  font-family: "Raleway", sans-serif;
-  font-size: 4em;
-  line-height: 1.3em;
-  color: black;
+  font-family: 'Lilita One', bold;
+  font-size: 200px;
+  line-height: 250px;
+  background: -webkit-linear-gradient(rgb(82,204,192), rgb(2, 100, 212) 100%);
+  background-clip: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .scroll-down.arrow span {
@@ -53,7 +68,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  background: #fff;
+  background: rgb(81, 79, 79);
   border-radius: 3px;
 }
 .scroll-down.arrow span::before {
@@ -69,15 +84,44 @@ body {
 .container {
   display: flex;
   background-color: aquamarine;
+  
+}
+
+.container .col2 {
+  background-color: white;
+  padding: 3rem;
+  align-items: center;
+  text-align: center; 
+}
+
+.button {
+  background-color: black;
+  transition-duration: 0.4s;
+  color: white;
+}
+
+.button:hover {
+  background-color: green;
+  color: black;
 }
 
 .col1 {
   flex: 50%;
-  padding: 50px;
-  height: 300px;
+ padding: 50px;
+ height: 300px; 
 }
+
 .col2 {
   flex: 50%;
   padding: 50px;
+  background-color: #eee;
   height: 300px;
 }
+
+#submit {
+    background-color: black;
+    color: white;
+}
+
+
+
