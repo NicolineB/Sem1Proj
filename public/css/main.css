@@ -8,6 +8,7 @@ body {
   background: white;
   position: relative;
   line-height: 1.6;
+  font-family: "Raleway", sans-serif; /* ændrer i skriftypen for HELE bodyen */
 }
 
 .infoslide {
@@ -34,7 +35,6 @@ body {
 }
 
 .infoslide h3 {
-  font-family: "alvetica neue", sans-serif;
   position: relative;
   font-size: 35px;
   font-weight: 100;
@@ -45,7 +45,6 @@ body {
 }
 
 .infoslide h4 {
-  font-family: "alvetica neue", sans-serif;
   position: relative;
   top: 10%;
   font-size: 20px;
@@ -221,4 +220,25 @@ body {
   100% {
     background-position-x: -1000px;
   }
+}
+
+/* ændrer skriftypen på aksen */
+.axis {
+  font-family: "Raleway", sans-serif !important;
+}
+
+.c-container {
+  display: flex;
+}
+
+.c-col1 {
+  width: 50%;
+  overflow: hidden;
+  background: aquamarine;
+}
+
+.c-col2 {
+  width: 50%;
+  padding: 50px;
+  text-align: center;
 }

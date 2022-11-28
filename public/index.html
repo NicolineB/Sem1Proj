@@ -6,13 +6,13 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <title>Vandstigninger</title>
     <script>
-      const w = 500;
-      const h = 500;
-      const bottomPadding = 4;
-      const sidePadding = 30;
-      const topPadding = 4;
+      const w = 2000;
+      const h = 700;
+      const bottomPadding = 7;
+      const sidePadding = 40;
+      const topPadding = 20;
 
-      waterlevels(2023, "w");
+      waterlevels(2040, "w");
 
       d3.select("#submit").on("click", function () {
         let input = d3.select("#chosenYear").property("value");
@@ -56,7 +56,8 @@
           .append("g")
           .attr("class", "axis")
           .attr("transform", "translate(" + sidePadding + ",0)")
-          .call(yAxis);
+          .call(yAxis)
+          .style("font-size", "20px");
 
         //lav "bølge" til best_case
         if (a == "b") {
@@ -82,17 +83,16 @@
             .data(data)
             .enter()
             .append("rect")
-            .attr("x", function (d, i) {
-              return xScale(i);
-            })
+            .attr("x", 41)
             .attr("y", function (d) {
+              console.log(yScale(d.worst_case), d.worst_case);
               return yScale(d.worst_case);
             })
             .attr("width", w)
             .attr("height", function (d) {
-              return yScale(d.worst_case);
+              return h - bottomPadding - yScale(d.worst_case);
             })
-            .attr("fill", "purple");
+            .attr("fill", "blue");
         } else if (a == "o") {
           svg
             .selectAll("rect")
@@ -109,7 +109,7 @@
             .attr("height", function (d) {
               return yScale(d.observations);
             })
-            .attr("fill", "blue");
+            .attr("fill", "purple");
         }
       }
 
@@ -153,7 +153,7 @@
           .call(yAxis);
 
           console.log(data[0].best_case);
-      
+
           //lav "bølge" til best_case
         svg
           .selectAll("rect")
@@ -184,7 +184,8 @@
         }); */
 
       // Knappen vælges via dens id 'klik'
-      d3.selectAll("#submit")
+      const submitClick = d3
+        .selectAll("#submit")
         // Koden herunder køres kun ved tryk på knappen
         .on("click", function (e) {
           // Find hvilken knap der blev trykket på
@@ -248,7 +249,7 @@
         Og det har indflydelse på dyrene, planterne,
         <span class="color-emphasis-1">dig og mig</span>
       </h3>
-      <h4>Scroll videre for at høre mere</h4>
+      <h4 class="scrollVidere">Scroll videre for at høre mere</h4>
       <div class="wave wave1"></div>
       <div class="wave wave2"></div>
       <div class="wave wave3"></div>
@@ -275,11 +276,11 @@
 
       <!-- evt plus minus antal år her-->
       <!--To col / grid med to - visualisering col1, boks anden-->
-      <div class="container">
-        <div class="col1">
+      <div class="c-container">
+        <div class="c-col1">
           <div id="svg1" class="svg1"></div>
         </div>
-        <div class="col2">
+        <div class="c-col2">
           <div class="col2-container">
             <h2>Here will a title be</h2>
             <button class="button" type="button" onclick="observations">
