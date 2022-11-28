@@ -3,18 +3,251 @@
   <head>
     <meta charset="UTF-8" />
     <script src="scripts/d3.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
     <title>Vandstigninger</title>
+    <script>
+      const w = 500;
+      const h = 500;
+      const bottomPadding = 4;
+      const sidePadding = 30;
+      const topPadding = 4;
+
+      waterlevels(2023, "w");
+
+      d3.select("#submit").on("click", function () {
+        let input = d3.select("#chosenYear").property("value");
+        console.log(input);
+        waterlevels(input, "b");
+      });
+
+      function waterlevels(years, a) {
+        d3.json(`/api/climate/${years}`, {
+          method: "POST",
+        }).then(function (response) {
+          let data = response.data;
+          console.log(data);
+          draw(data, a);
+        });
+      }
+
+      function draw(data, a) {
+        let svg = d3
+          .select(".svg1")
+          .append("svg")
+          .attr("width", w)
+          .attr("height", h);
+
+        // Lav en skala for y-aksen
+        const yScale = d3
+          .scaleLinear()
+          .domain([2, 0])
+          .range([topPadding, h - bottomPadding]);
+
+        // Lav en skala for x-aksen
+        const xScale = d3
+          .scaleBand()
+          .domain(d3.range(data.length))
+          .range([0, w - bottomPadding])
+          .paddingInner(0.36);
+
+        // Lave y-akse med tal
+        const yAxis = d3.axisLeft().scale(yScale).ticks(8);
+        svg
+          .append("g")
+          .attr("class", "axis")
+          .attr("transform", "translate(" + sidePadding + ",0)")
+          .call(yAxis);
+
+        //lav "bølge" til best_case
+        if (a == "b") {
+          svg
+            .selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", function (d, i) {
+              return xScale(i);
+            })
+            .attr("y", function (d) {
+              return yScale(d.best_case);
+            })
+            .attr("width", w)
+            .attr("height", function (d) {
+              return yScale(d.best_case);
+            })
+            .attr("fill", "green");
+        } else if (a == "w") {
+          svg
+            .selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", function (d, i) {
+              return xScale(i);
+            })
+            .attr("y", function (d) {
+              return yScale(d.worst_case);
+            })
+            .attr("width", w)
+            .attr("height", function (d) {
+              return yScale(d.worst_case);
+            })
+            .attr("fill", "purple");
+        } else if (a == "o") {
+          svg
+            .selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", function (d, i) {
+              return xScale(i);
+            })
+            .attr("y", function (d) {
+              return yScale(d.observations);
+            })
+            .attr("width", w)
+            .attr("height", function (d) {
+              return yScale(d.observations);
+            })
+            .attr("fill", "blue");
+        }
+      }
+
+      /* d3.json(`/api/climate/2080`, {
+        method: "POST",
+      }).then(function (response) {
+        const data = response.data; // Hent data ud af response
+        console.log("data", data);
+
+        const w = 500;
+        const h = 500;
+        const bottomPadding = 52;
+        const sidePadding = 80;
+        const topPadding = 100;
+
+        const svg = d3
+          .select("body")
+          .append("svg")
+          .attr("width", w)
+          .attr("height", h);
+
+        // Lav en skala for y-aksen
+        const yScale = d3
+          .scaleLinear()
+          .domain([2, 0])
+          .range([0, h - bottomPadding]);
+
+        // Lav en skala for x-aksen
+        const xScale = d3
+          .scaleBand()
+          .domain(d3.range(data.length))
+          .range([0, w - bottomPadding])
+          .paddingInner(0.36);
+
+        // Lave y-akse med tal
+        const yAxis = d3.axisLeft().scale(yScale).ticks(8);
+        svg
+          .append("g")
+          .attr("class", "axis")
+          .attr("transform", "translate(" + sidePadding + ",0)")
+          .call(yAxis);
+
+          console.log(data[0].best_case);
+      
+          //lav "bølge" til best_case
+        svg
+          .selectAll("rect")
+          .data(data)
+          .enter()
+          .append("rect")
+          .attr("x", function (d, i) {
+            return xScale(i);
+          })
+          .attr("y", yScale(data[0].best_case))
+          .attr("width", w)
+          .attr("height", yScale(data[0].best_case))
+          .attr("fill", "green");
+
+         //lav "bølge" til worst_case
+        svg
+          .selectAll("rect")
+          .data(data)
+          .enter()
+          .append("rect")
+          .attr("x", function (d, i) {
+            return xScale(i);
+          })
+          .attr("y", yScale(data[0].worst_case))
+          .attr("width", w)
+          .attr("height", yScale(data[0].worst_case))
+          .attr("fill", "blue");
+        }); */
+
+      // Knappen vælges via dens id 'klik'
+      d3.selectAll("#submit")
+        // Koden herunder køres kun ved tryk på knappen
+        .on("click", function (e) {
+          // Find hvilken knap der blev trykket på
+          const id = e.target.id;
+          // where year = ID
+          console.log(id);
+
+          /*                 svg
+            .selectAll("rect")
+            .data(data)
+            .transition()
+            .duration(500)
+            .attr("y", function (d) {
+              return yScale(parseFloat(d.worst_case));
+            })
+            .attr("height", function (d) {
+              return yScale(parseFloat(d.worst_case)) + bottomPadding;
+            }); */
+        });
+    </script>
+    <script>
+      // Denne query kører op imod API'en som findes i 'main.js'.
+      // Denne HTML skal derfor åbnes igennem serveren for at virke.
+      /* d3.json("/api/species", {
+        method: "POST",
+      }).then(function (response) {
+        const data = response.data; // Hent data ud af respons
+        console.log("data", data);
+
+        const w = 500;
+        const h = 350;
+
+        // Lav SVG element
+        const svg = d3
+          .select("body")
+          .append("svg")
+          .attr("width", w)
+          .attr("height", h);
+
+        // Indsæt tekst fra postgres query som eksempel
+        svg
+          .selectAll("text")
+          .data(data)
+          .enter()
+          .append("text")
+          .attr("x", 20)
+          .attr("y", 20)
+          .text(function (d) {
+            return "Svar fra databasen: " + d.message;
+          });
+
+        // Lav din egen visualsering med data her!*/
+    </script>
   </head>
   <body>
-    <header>
-      <span>
-        <h1>...</h1>
-      </span>
-    </header>
     <section class="infoslide">
-      <h1 id="main-title">Som tiden går, <span class="color-emphasis-1">stiger vandene</span></h1>
-      <h3>Og det har indflydelse på dyrene, planterne, <span class="color-emphasis-1">dig og mig</span></h3>
+      <h1 id="main-title">
+        Som tiden går, <span class="color-emphasis-1">stiger vandene</span>
+      </h1>
+      <h3>
+        Og det har indflydelse på dyrene, planterne,
+        <span class="color-emphasis-1">dig og mig</span>
+      </h3>
       <h4>Scroll videre for at høre mere</h4>
       <div class="wave wave1"></div>
       <div class="wave wave2"></div>
@@ -22,248 +255,42 @@
       <div class="wave wave4"></div>
       <!--figur til at illustere at scroll ned-->
       <a class="scroll-down arrow">
-        <label>Scroll</label>
+        <label></label>
         <span></span>
       </a>
     </section>
 
     <section class="water-rise">
       <h1 id="water-rise-title">year ....</h1>
-     <!-- <form action="" method="get"> -->
-        <p>Choose a year...</p>
-        Year:
-        <input
-          type="number"
-          placeholder="YYYY"
-          min="1997"
-          max="2100"
-          id="chosenYear"
-        />
-        <input type="submit" value="Submit" id="submit" />
-      </form>
+      <p>Choose a year...</p>
+      Year:
+      <input
+        type="number"
+        placeholder="YYYY"
+        min="1997"
+        max="2100"
+        id="chosenYear"
+      />
+      <input type="submit" value="Submit" id="submit" />
 
       <!-- evt plus minus antal år her-->
       <!--To col / grid med to - visualisering col1, boks anden-->
       <div class="container">
         <div class="col1">
-          <!--Svg -->
-        <span class="svg1">
-          <script>
-            const w = 500;
-            const h = 500;
-            const bottomPadding = 52;
-            const sidePadding = 80;
-            const topPadding = 100;
-
-            
-                
-            waterlevels(2023,"w");
-            
-
-            d3.select("#submit").on('click', function() {
-            let input = d3.select("#chosenYear").property('value');
-            console.log(input);
-            waterlevels(input,"b");
-            });
-
-            function waterlevels(years,a) {
-              d3.json(`/api/climate/${years}`, {
-                method: "POST",
-              }).then(function (response) {
-                let data = response.data;
-                console.log(data);
-                draw(data,a);
-              });
-            }  
-             
-
-            function draw(data,a) {
-              let svg = d3
-                .select("body")
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h)
-
-              // Lav en skala for y-aksen
-              const yScale = d3
-                .scaleLinear()
-                .domain([2, 0])
-                .range([0, h - bottomPadding]);
-
-              // Lav en skala for x-aksen
-              const xScale = d3
-                .scaleBand()
-                .domain(d3.range(data.length))
-                .range([0, w - bottomPadding])
-                .paddingInner(0.36);
-
-              // Lave y-akse med tal
-              const yAxis = d3.axisLeft().scale(yScale).ticks(8);
-              svg
-                .append("g")
-                .attr("class", "axis")
-                .attr("transform", "translate(" + sidePadding + ",0)")
-                .call(yAxis);
-            
-                //lav "bølge" til best_case
-              if (a == "b") {
-                svg
-                .selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("x", function (d, i) {
-                  return xScale(i);
-                })
-                .attr("y", function(d) {
-                  return yScale(d.best_case)
-                })
-                .attr("width", w)
-                .attr("height", function(d) {
-                  return yScale(d.best_case)
-                })
-                .attr("fill", "green");
-              } else if (a == "w") {
-                svg
-                .selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("x", function (d, i) {
-                  return xScale(i);
-                })
-                .attr("y", function(d) {
-                  return yScale(d.worst_case)
-                })
-                .attr("width", w)
-                .attr("height", function(d) {
-                  return yScale(d.worst_case)
-                })
-                .attr("fill", "purple");
-              } else if (a == "o") {
-                svg
-                .selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("x", function (d, i) {
-                  return xScale(i);
-                })
-                .attr("y", function(d) {
-                  return yScale(d.observations)
-                })
-                .attr("width", w)
-                .attr("height", function(d) {
-                  return yScale(d.observations)
-                })
-                .attr("fill", "blue");
-              }
-              
-            }
-
-
-            /* d3.json(`/api/climate/2080`, {
-              method: "POST",
-            }).then(function (response) {
-              const data = response.data; // Hent data ud af response
-              console.log("data", data);
-
-              const w = 500;
-              const h = 500;
-              const bottomPadding = 52;
-              const sidePadding = 80;
-              const topPadding = 100;
-
-              const svg = d3
-                .select("body")
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h);
-
-              // Lav en skala for y-aksen
-              const yScale = d3
-                .scaleLinear()
-                .domain([2, 0])
-                .range([0, h - bottomPadding]);
-
-              // Lav en skala for x-aksen
-              const xScale = d3
-                .scaleBand()
-                .domain(d3.range(data.length))
-                .range([0, w - bottomPadding])
-                .paddingInner(0.36);
-
-              // Lave y-akse med tal
-              const yAxis = d3.axisLeft().scale(yScale).ticks(8);
-              svg
-                .append("g")
-                .attr("class", "axis")
-                .attr("transform", "translate(" + sidePadding + ",0)")
-                .call(yAxis);
-
-                console.log(data[0].best_case);
-            
-                //lav "bølge" til best_case
-              svg
-                .selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("x", function (d, i) {
-                  return xScale(i);
-                })
-                .attr("y", yScale(data[0].best_case))
-                .attr("width", w)
-                .attr("height", yScale(data[0].best_case))
-                .attr("fill", "green");
-
-               //lav "bølge" til worst_case
-              svg
-                .selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("x", function (d, i) {
-                  return xScale(i);
-                })
-                .attr("y", yScale(data[0].worst_case))
-                .attr("width", w)
-                .attr("height", yScale(data[0].worst_case))
-                .attr("fill", "blue");
-              }); */
-              
-
-            // Knappen vælges via dens id 'klik'-
-            d3.selectAll("#submit")
-              // Koden herunder køres kun ved tryk på knappen
-              .on("click", function (e) {
-                // Find hvilken knap der blev trykket på
-                const id = e.target.id;
-                // where year = ID
-                console.log(id);
-                
-/*                 svg
-                  .selectAll("rect")
-                  .data(data)
-                  .transition()
-                  .duration(500)
-                  .attr("y", function (d) {
-                    return yScale(parseFloat(d.worst_case));
-                  })
-                  .attr("height", function (d) {
-                    return yScale(parseFloat(d.worst_case)) + bottomPadding;
-                  }); */
-                });
-
-          </script>
-          </span>
+          <div id="svg1" class="svg1"></div>
         </div>
         <div class="col2">
           <div class="col2-container">
-            <h2> Here will a title be </h2>
-            <button class="button" type="button" onclick="observations">Observations</button>
-            <button class="button" type="button" onclick="best_case">best case</button>
-            <button class="button" type="button" onclick="worst_case">worse case</button>
+            <h2>Here will a title be</h2>
+            <button class="button" type="button" onclick="observations">
+              Observations
+            </button>
+            <button class="button" type="button" onclick="best_case">
+              best case
+            </button>
+            <button class="button" type="button" onclick="worst_case">
+              worse case
+            </button>
             <article>
               <p>Information goes here</p>
               <!--Evt. variable som referer til data fra året-->
@@ -277,44 +304,11 @@
     <section class="consequences">
       <h1>Det ser ikke ud af meget <bold>men.....</bold></h1>
     </section>
+
     <section class="marine-life">
       <h1 id="marine-title">Here goes a title</h1>
-      <div>
-        <script>
-          // Denne query kører op imod API'en som findes i 'main.js'.
-          // Denne HTML skal derfor åbnes igennem serveren for at virke.
-          /* d3.json("/api/species", {
-            method: "POST",
-          }).then(function (response) {
-            const data = response.data; // Hent data ud af respons
-            console.log("data", data);
-
-            const w = 500;
-            const h = 350;
-
-            // Lav SVG element
-            const svg = d3
-              .select("body")
-              .append("svg")
-              .attr("width", w)
-              .attr("height", h);
-
-            // Indsæt tekst fra postgres query som eksempel
-            svg
-              .selectAll("text")
-              .data(data)
-              .enter()
-              .append("text")
-              .attr("x", 20)
-              .attr("y", 20)
-              .text(function (d) {
-                return "Svar fra databasen: " + d.message;
-              });
-
-            // Lav din egen visualsering med data her!*/
-        </script>
-      </div>
     </section>
+
     <section class="not-fun-facts">
       <article class="fact-container">
         <div class="fact-1">
@@ -330,6 +324,8 @@
           <p>here something will be</p>
         </div>
       </article>
+    </section>
+
     <footer></footer>
   </body>
 </html>
