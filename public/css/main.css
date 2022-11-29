@@ -74,7 +74,7 @@ body {
   }
 }
 .scroll-down.arrow span {
-  top: 35px;
+  top: 75%;
   animation-delay: 0s;
 }
 
