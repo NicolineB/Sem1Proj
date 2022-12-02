@@ -9,6 +9,7 @@ body {
   position: relative;
   line-height: 1.6;
   font-family: "Raleway", sans-serif; /* ændrer i skriftypen for HELE bodyen */
+  scroll-behavior: smooth;
 }
 
 .infoslide {
@@ -108,12 +109,6 @@ body {
 .button:hover {
   background-color: green;
   color: black;
-}
-
-#submit {
-  background-color: black;
-  transition-duration: 0.4s;
-  color: white;
 }
 
 /* bølger */
@@ -269,4 +264,3 @@ body {
   color: white;
   margin: 1000;
 }
-

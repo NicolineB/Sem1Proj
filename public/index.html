@@ -12,26 +12,33 @@
       const sidePadding = 40;
       const topPadding = 20;
 
-      waterlevels(2080, "w");
+      waterlevels(2015);
 
-      d3.select("#submit").on("click", function () {
-        let input = d3.select("#chosenYear").property("value");
-        console.log(input);
-        waterlevels(input, "b");
-      });
+      // Funktion finder valuen fra id'et chosenYear (input felt med år),
+      // og gemmer det i variablen inputVal.
+      function getInputValue() {
+        let years = document.getElementById("chosenYear").value;
+        console.log(years);
+      }
 
-      function waterlevels(years, a) {
+      // d3.select("#submit").on("click", function (event) {
+      //let input = d3.select("#submit").property("value");
+      // console.log(input);
+      // waterlevels(input, "b");
+      // });
+
+      function waterlevels(years) {
         d3.json(`/api/climate/${years}`, {
           method: "POST",
         }).then(function (response) {
           let data = response.data;
-          console.log(data);
-          draw(data, a);
+          console.log(data[0]);
+          draw(data[0]);
         });
       }
-      /* */
-      function draw(data, a) {
-        let svg = d3
+
+      function draw(data) {
+        const svg = d3
           .select(".svg1")
           .append("svg")
           .attr("width", w)
@@ -59,8 +66,43 @@
           .call(yAxis)
           .style("font-size", "20px");
 
+        if (data.years < 2022) {
+          svg
+            .selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", 41)
+            .attr("y", function (d) {
+              return h - yScale(d.observations);
+            })
+            .attr("width", w)
+            .attr("height", function (d) {
+              return yScale(d.observations);
+            })
+            .attr("fill", "green");
+        } else {
+          svg
+            .selectAll("rect")
+            .data([data.best_case, data.worst_case], function (d) {
+              return d[0];
+            })
+            .enter()
+            .append("rect")
+            .attr("x", function (d, i) {
+              return xScale(i);
+            })
+            .attr("y", function (d) {
+              return h - yScale(d[1]);
+            })
+            .attr("width", w / 2)
+            .attr("height", function (d) {
+              return yScale(d[1]);
+            })
+            .attr("fill", "blue");
+        }
         //lav "bølge" til best_case
-        if (a == "b") {
+        /* if (a == "b") {
           svg
             .selectAll("rect")
             .data(data)
@@ -109,8 +151,7 @@
             .attr("height", function (d) {
               return yScale(d.observations);
             })
-            .attr("fill", "purple");
-        }
+            .attr("fill", "purple"); */
       }
 
       /* d3.json(`/api/climate/2080`, {
@@ -207,8 +248,6 @@
         });
     </script>
     <script>
-      // Denne query kører op imod API'en som findes i 'main.js'.
-      // Denne HTML skal derfor åbnes igennem serveren for at virke.
       /* d3.json("/api/species", {
         method: "POST",
       }).then(function (response) {
@@ -218,26 +257,30 @@
         const w = 500;
         const h = 350;
 
+        const yScale = d3.scaleLinear()
+        .domain([0, d3.max(data)])
+        .range([0, h]);
+
         // Lav SVG element
-        const svg = d3
+        const svg2 = d3
           .select("body")
           .append("svg")
           .attr("width", w)
           .attr("height", h);
 
-        // Indsæt tekst fra postgres query som eksempel
-        svg
-          .selectAll("text")
-          .data(data)
-          .enter()
-          .append("text")
-          .attr("x", 20)
-          .attr("y", 20)
-          .text(function (d) {
-            return "Svar fra databasen: " + d.message;
-          });
-
-        // Lav din egen visualsering med data her!*/
+        // Lav bars til barchart
+        svg.selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            // x værdi er længden af species datasættet
+            .attr("x", function(d, i) { return i * (w / data.length) - 15;
+            })
+            .attr("y", function(d) { return h - yScale(d)})
+            .attr("width", w / data.length - barPadding)
+            .attr("height", function(d) { return yScale(d);})
+            .attr("fill", "red");
+            */
     </script>
   </head>
   <body>
@@ -250,7 +293,6 @@
         <span class="color-emphasis-1">dig og mig</span>
       </h3>
       <h4 class="scrollVidere">Scroll videre for at høre mere</h4>
-      <!--bølger på forsiden animeret i css-->
       <div class="wave wave1"></div>
       <div class="wave wave2"></div>
       <div class="wave wave3"></div>
@@ -263,17 +305,21 @@
     </section>
 
     <section class="water-rise">
-      <h1 id="water-rise-title">Year XXXX</h1>
+      <h1 id="water-rise-title">year ....</h1>
+      <p>Choose a year...</p>
       Year:
-      <input
-        type="number"
-        placeholder="YYYY"
-        min="1997"
-        max="2100"
-        id="chosenYear"
-      />
-      <input type="submit" value="Submit" id="submit" />
 
+      <form>
+        <input
+          type="number"
+          placeholder="YYYY"
+          min="1997"
+          max="2100"
+          id="chosenYear"
+        />
+        <!--Når button trykkes kører getInputValue funktionen-->
+        <button type="button" onclick="getInputValue();">Submit</button>
+      </form>
       <!-- evt plus minus antal år her-->
       <!--To col / grid med to - visualisering col1, boks anden-->
       <div class="container">
