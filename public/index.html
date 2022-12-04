@@ -6,13 +6,13 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <title>Vandstigninger</title>
     <script>
-      const w = 2000;
+      const w = 700;
       const h = 400;
       const bottomPadding = 7;
       const sidePadding = 40;
       const topPadding = 20;
 
-      waterlevels(2015);
+      waterlevels(2023);
 
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
@@ -34,14 +34,16 @@
           method: "POST",
         }).then(function (response) {
           let data = response.data;
-          console.log(data[0]);
-          draw(data[0]);
+          console.log(data);
+          draw(data);
         });
       }
 
       function draw(data) {
+        console.log(data[0].years);
+        console.log(data.length);
         const svg = d3
-          .select(".svg1")
+          .select("#svg1")
           .append("svg")
           .attr("width", w)
           .attr("height", h);
@@ -56,8 +58,8 @@
         const xScale = d3
           .scaleBand()
           .domain(d3.range(data.length))
-          .range([0, w - bottomPadding])
-          .paddingInner(0.36);
+          .range([0, w-50]);
+          
 
         // Lave y-akse med tal
         const yAxis = d3.axisLeft().scale(yScale).ticks(8);
@@ -68,7 +70,7 @@
           .call(yAxis)
           .style("font-size", "20px");
 
-        if (data.years < 2022) {
+        if (data[0].years < 2022) {
           svg
             .selectAll("rect")
             .data(data)
@@ -76,32 +78,37 @@
             .append("rect")
             .attr("x", 41)
             .attr("y", function (d) {
-              return h - yScale(d.observations);
+              return yScale(d.observations);
             })
             .attr("width", w)
             .attr("height", function (d) {
-              return yScale(d.observations);
+              return h - yScale(d.observations);
             })
-            .attr("fill", "green");
-        } else {
+            .attr("fill", "green")
+            .attr("opacity", 0.5);
+        } else if (data[0].years >= 2022) {
+          let newData = [data[0].best_case, data[0].worst_case];
+          const xScaleNew = d3.scaleBand()
+            .domain(d3.range(newData.length))
+            .range([0,w-50]);
+
           svg
             .selectAll("rect")
-            .data([data.best_case, data.worst_case], function (d) {
-              return d[0];
-            })
+            .data(newData)
             .enter()
             .append("rect")
             .attr("x", function (d, i) {
-              return xScale(i);
+              return xScaleNew(i) + 41;
             })
             .attr("y", function (d) {
-              return h - yScale(d[1]);
+              return yScale(d);
             })
-            .attr("width", w / 2)
+            .attr("width", xScaleNew.bandwidth())
             .attr("height", function (d) {
-              return yScale(d[1]);
+              return h - yScale(d) - bottomPadding;
             })
-            .attr("fill", "blue");
+            .attr("fill", "blue")
+            .attr("opacity", 0.5);
         }
         //lav "bølge" til best_case
         /* if (a == "b") {
