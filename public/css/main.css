@@ -12,6 +12,10 @@ body {
   scroll-behavior: smooth;
 }
 
+.section {
+  scroll-snap-align: center;
+}
+
 .infoslide {
   position: center;
   width: 100%;
@@ -232,7 +236,6 @@ body {
   font-family: "Raleway", sans-serif;
   position: relative;
   font-size: 4vw;
-  line-height: 200px;
   color: rgb(82, 157, 220);
   margin: 1000;
 }
@@ -263,4 +266,19 @@ body {
   line-height: 200px;
   color: white;
   margin: 1000;
+}
+
+/* Scroll behaviour */
+@media (min-height: 30em) {
+  main {
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+}
+
+@media (min-height: 30em) {
+  .section {
+    height: 100vh;
+  }
 }
