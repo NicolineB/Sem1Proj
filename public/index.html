@@ -19,6 +19,7 @@
       function getInputValue() {
         let years = document.getElementById("chosenYear").value;
         document.getElementById("water-rise-title").innerHTML = "Year " + years;
+        update(years);
       }
 
       // d3.select("#submit").on("click", function (event) {
@@ -134,8 +135,8 @@
           .attr("fill", "blue")
           .attr("opacity", 0.5);
       }
-        //lav "bølge" til best_case
-        /* if (a == "b") {
+      //lav "bølge" til best_case
+      /* if (a == "b") {
           svg
             .selectAll("rect")
             .data(data)
@@ -185,7 +186,6 @@
               return yScale(d.observations);
             })
             .attr("fill", "purple"); */
-      }
 
       /* d3.json(`/api/climate/2080`, {
         method: "POST",
@@ -339,18 +339,19 @@
 
     <section class="water-rise" id="waterRise">
       <h1 id="water-rise-title"></h1>
-      <form> 
-        <p>Choose a year...
-        <input
-          type="number"
-          placeholder="YYYY"
-          min="1997"
-          max="2100"
-          id="chosenYear"
-        />
-        <!--Når button trykkes kører getInputValue funktionen-->
-        <button type="button" onclick="getInputValue();">Submit</button>
-      </p>
+      <form>
+        <p>
+          Choose a year...
+          <input
+            type="number"
+            placeholder="YYYY"
+            min="1997"
+            max="2100"
+            id="chosenYear"
+          />
+          <!--Når button trykkes kører getInputValue funktionen-->
+          <button type="button" onclick="getInputValue();">Submit</button>
+        </p>
       </form>
       <!-- evt plus minus antal år her-->
       <!--To col / grid med to - visualisering col1, boks anden-->
