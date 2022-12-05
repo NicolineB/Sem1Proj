@@ -28,34 +28,42 @@
       // waterlevels(input, "b");
       // });
 
+      //function til opdatering af svg - bliver kaldt af submit knappen
+      //tager variabel 'years' og poster den som property til api/climate
       function update(years) {
         d3.json(`/api/climate/${years}`, {
           method: "POST",
         }).then(function (response) {
+          //gemmer dataen for det valgte år i 'data'
           let data = response.data;
           console.log(data);
           let newData;
           const svg = d3.select("#svg1");
 
+          //gemmer best_case og worst_case for år efter 2021
+          //og gemmer observations for tidligere år
+          //gemmer det i 'newData' som bliver brugt som data herfra
           if (data[0].years >= 2022) {
             newData = [data[0].best_case, data[0].worst_case];
           } else if (data[0].years < 2022) {
             newData = [data[0].observations, data[0].observations];
           }
+          //laver y-skala udfra højde og paddings
           const yScale = d3
             .scaleLinear()
             .domain([2, 0])
             .range([topPadding, h - bottomPadding]);
 
+          //laver x-skala udfra hvor mange elementer vi har i dataen (som er 2)
           const xScale = d3
             .scaleBand()
             .domain(d3.range(newData.length))
             .range([0, w - 50]);
 
+          //opretter updateSelection og tilkobler dataen
           const updateSelection = svg.selectAll("rect").data(newData);
 
-          updateSelection.exit().remove();
-
+          //bruger updateSelection til at opdatere vores svg
           updateSelection
             .transition()
             .duration(2000)
@@ -71,16 +79,20 @@
             });
         });
       }
+
+      //waterlevels bliver brugt til at kalde vores api med en years parameter
       function waterlevels(years) {
         d3.json(`/api/climate/${years}`, {
           method: "POST",
         }).then(function (response) {
           let data = response.data;
           console.log(data);
+          //kalder draw(data) for at lave svg udfra api data
           draw(data);
         });
       }
 
+      //tegner vores svg og bliver kaldt af waterlevels
       function draw(data) {
         console.log(data[0].years);
         console.log(data.length);
@@ -91,13 +103,13 @@
           .attr("width", w)
           .attr("height", h);
 
-        // Lav en skala for y-aksen
+        // laver skala for y-akse
         const yScale = d3
           .scaleLinear()
           .domain([2, 0])
           .range([topPadding, h - bottomPadding]);
 
-        // Lave y-akse med tal
+        // tegner en y-akse med tal
         const yAxis = d3.axisLeft().scale(yScale).ticks(8);
         svg
           .append("g")
@@ -106,17 +118,20 @@
           .call(yAxis)
           .style("font-size", "20px");
 
+        //gemmer den relevante data i newData an på om det er før eller efter 2022
         if (data[0].years < 2022) {
           newData = [data[0].observations, data[0].observations];
         } else if (data[0].years >= 2022) {
           newData = [data[0].best_case, data[0].worst_case];
         }
 
+        //laver x-akse udfra newData
         const xScale = d3
           .scaleBand()
           .domain(d3.range(newData.length))
           .range([0, w - 50]);
 
+        //tegner vores svg
         svg
           .selectAll("rect")
           .data(newData)
@@ -135,128 +150,6 @@
           .attr("fill", "blue")
           .attr("opacity", 0.5);
       }
-      //lav "bølge" til best_case
-      /* if (a == "b") {
-          svg
-            .selectAll("rect")
-            .data(data)
-            .enter()
-            .append("rect")
-            .attr("x", function (d, i) {
-              return xScale(i);
-            })
-            .attr("y", function (d) {
-              return yScale(d.best_case);
-            })
-            .attr("width", w)
-            .attr("height", function (d) {
-              return yScale(d.best_case);
-            })
-            .attr("fill", "green");
-        } else if (a == "w") {
-          svg
-            .selectAll("rect")
-            .data(data)
-            .enter()
-            .append("rect")
-            .attr("x", 41)
-            .attr("y", function (d) {
-              console.log(yScale(d.worst_case), d.worst_case);
-              return yScale(d.worst_case);
-            })
-            .attr("width", w)
-            .attr("height", function (d) {
-              return h - bottomPadding - yScale(d.worst_case);
-            })
-            .attr("fill", "blue");
-        } else if (a == "o") {
-          svg
-            .selectAll("rect")
-            .data(data)
-            .enter()
-            .append("rect")
-            .attr("x", function (d, i) {
-              return xScale(i);
-            })
-            .attr("y", function (d) {
-              return yScale(d.observations);
-            })
-            .attr("width", w)
-            .attr("height", function (d) {
-              return yScale(d.observations);
-            })
-            .attr("fill", "purple");
-          } */ 
-
-      /* d3.json(`/api/climate/2080`, {
-        method: "POST",
-      }).then(function (response) {
-        const data = response.data; // Hent data ud af response
-        console.log("data", data);
-
-        const w = 500;
-        const h = 500;
-        const bottomPadding = 52;
-        const sidePadding = 80;
-        const topPadding = 100;
-
-        const svg = d3
-          .select("body")
-          .append("svg")
-          .attr("width", w)
-          .attr("height", h);
-
-        // Lav en skala for y-aksen
-        const yScale = d3
-          .scaleLinear()
-          .domain([2, 0])
-          .range([0, h - bottomPadding]);
-
-        // Lav en skala for x-aksen
-        const xScale = d3
-          .scaleBand()
-          .domain(d3.range(data.length))
-          .range([0, w - bottomPadding])
-          .paddingInner(0.36);
-
-        // Lave y-akse med tal
-        const yAxis = d3.axisLeft().scale(yScale).ticks(8);
-        svg
-          .append("g")
-          .attr("class", "axis")
-          .attr("transform", "translate(" + sidePadding + ",0)")
-          .call(yAxis);
-
-          console.log(data[0].best_case);
-
-          //lav "bølge" til best_case
-        svg
-          .selectAll("rect")
-          .data(data)
-          .enter()
-          .append("rect")
-          .attr("x", function (d, i) {
-            return xScale(i);
-          })
-          .attr("y", yScale(data[0].best_case))
-          .attr("width", w)
-          .attr("height", yScale(data[0].best_case))
-          .attr("fill", "green");
-
-         //lav "bølge" til worst_case
-        svg
-          .selectAll("rect")
-          .data(data)
-          .enter()
-          .append("rect")
-          .attr("x", function (d, i) {
-            return xScale(i);
-          })
-          .attr("y", yScale(data[0].worst_case))
-          .attr("width", w)
-          .attr("height", yScale(data[0].worst_case))
-          .attr("fill", "blue");
-        }); */
 
       // Knappen vælges via dens id 'klik'
       const submitClick = d3
@@ -267,18 +160,6 @@
           const id = e.target.id;
           // where year = ID
           console.log(id);
-
-          /*                 svg
-            .selectAll("rect")
-            .data(data)
-            .transition()
-            .duration(500)
-            .attr("y", function (d) {
-              return yScale(parseFloat(d.worst_case));
-            })
-            .attr("height", function (d) {
-              return yScale(parseFloat(d.worst_case)) + bottomPadding;
-            }); */
         });
     </script>
     <script>
@@ -340,18 +221,19 @@
 
     <section class="water-rise" id="waterRise">
       <h1 id="water-rise-title"></h1>
-      <form> 
-        <p>Choose a year...
-        <input
-          type="number"
-          placeholder="YYYY"
-          min="1997"
-          max="2100"
-          id="chosenYear"
-        />
-        <!--Når button trykkes kører getInputValue funktionen-->
-        <button type="button" onclick="getInputValue();">Submit</button>
-      </p>
+      <form>
+        <p>
+          Choose a year...
+          <input
+            type="number"
+            placeholder="YYYY"
+            min="1997"
+            max="2100"
+            id="chosenYear"
+          />
+          <!--Når button trykkes kører getInputValue funktionen-->
+          <button type="button" onclick="getInputValue();">Submit</button>
+        </p>
       </form>
       <!-- evt plus minus antal år her-->
       <!--To col / grid med to - visualisering col1, boks anden-->
