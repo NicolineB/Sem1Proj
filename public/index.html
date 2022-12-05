@@ -18,7 +18,7 @@
       // og gemmer det i variablen inputVal.
       function getInputValue() {
         let years = document.getElementById("chosenYear").value;
-        document.getElementById("water-rise-title").innerHTML = "Year " + years;
+        document.getElementById("water-rise-title").innerHTML = "År " + years;
         update(years);
       }
 
@@ -339,9 +339,9 @@
     </section>
 
     <section class="water-rise" id="waterRise">
-      <h1 id="water-rise-title"></h1>
+      <h1 id="water-rise-title">År (indsæt årstal)</h1>
       <form> 
-        <p>Choose a year...
+        <p>Vælg et år imellem 1997, og 2100.
         <input
           type="number"
           placeholder="YYYY"
