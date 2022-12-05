@@ -70,6 +70,13 @@ app.post("/api/species", async (req, res) => {
   res.send(query2);
 });
 
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+
 // Web-serveren startes.
 app.listen(PORT, () =>
   console.log(`Serveren kører på http://localhost:${PORT}`)

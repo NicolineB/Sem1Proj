@@ -12,16 +12,14 @@
       const sidePadding = 40;
       const topPadding = 20;
 
-      waterlevels(2023);
+      waterlevels(2100);
 
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
       function getInputValue() {
         let years = document.getElementById("chosenYear").value;
-        console.log(years);
+        document.getElementById("water-rise-title").innerHTML = "Year " + years;
       }
-
-
 
       // d3.select("#submit").on("click", function (event) {
       //let input = d3.select("#submit").property("value");
@@ -58,8 +56,7 @@
         const xScale = d3
           .scaleBand()
           .domain(d3.range(data.length))
-          .range([0, w-50]);
-          
+          .range([0, w - 50]);
 
         // Lave y-akse med tal
         const yAxis = d3.axisLeft().scale(yScale).ticks(8);
@@ -88,9 +85,10 @@
             .attr("opacity", 0.5);
         } else if (data[0].years >= 2022) {
           let newData = [data[0].best_case, data[0].worst_case];
-          const xScaleNew = d3.scaleBand()
+          const xScaleNew = d3
+            .scaleBand()
             .domain(d3.range(newData.length))
-            .range([0,w-50]);
+            .range([0, w - 50]);
 
           svg
             .selectAll("rect")
@@ -338,15 +336,6 @@
         <div class="col2">
           <div class="col2-container">
             <h2>Here will a title be</h2>
-            <button class="button" type="button" onclick="observations">
-              Observations
-            </button>
-            <button class="button" type="button" onclick="best_case">
-              best case
-            </button>
-            <button class="button" type="button" onclick="worst_case">
-              worse case
-            </button>
             <article>
               <p>Information goes here</p>
               <!--Evt. variable som referer til data fra året-->
@@ -367,7 +356,8 @@
 
     <section class="not-fun-facts" id="notFunFacts">
       <article class="fact-container">
-        <div class="fact-1">
+        <div id="fact-1">
+          <div id="fact-text">Tester</div>
           <img src="//" class="fact-1-pic" />
           <p>here something will be</p>
         </div>
