@@ -244,6 +244,15 @@ body {
   color: rgb(82, 157, 220);
   margin: 1000;
 }
+#water-rise-under-title {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  font-size: 2vw;
+  color: rgb(82, 157, 220);
+  margin: 1000;
+}
+
 
 .consequences {
   position: center;
