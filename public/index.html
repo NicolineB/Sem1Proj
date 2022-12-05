@@ -18,7 +18,8 @@
       // og gemmer det i variablen inputVal.
       function getInputValue() {
         let years = document.getElementById("chosenYear").value;
-        document.getElementById("water-rise-title").innerHTML = "År " + years;
+        document.getElementById("water-rise-title").innerHTML = "Year " + years;
+        update(years);
       }
 
       // d3.select("#submit").on("click", function (event) {
@@ -134,8 +135,8 @@
           .attr("fill", "blue")
           .attr("opacity", 0.5);
       }
-        //lav "bølge" til best_case
-        /* if (a == "b") {
+      //lav "bølge" til best_case
+      /* if (a == "b") {
           svg
             .selectAll("rect")
             .data(data)
@@ -184,9 +185,8 @@
             .attr("height", function (d) {
               return yScale(d.observations);
             })
-            .attr("fill", "purple"); 
+            .attr("fill", "purple"); */
       }
-      */
 
       /* d3.json(`/api/climate/2080`, {
         method: "POST",
@@ -339,7 +339,7 @@
     </section>
 
     <section class="water-rise" id="waterRise">
-      <h1 id="water-rise-title">År </h1>
+      <h1 id="water-rise-title"></h1>
       <form> 
         <p>Choose a year...
         <input
