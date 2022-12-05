@@ -235,7 +235,7 @@ body {
   overflow: hidden;
 }
 
-#water-rise-title {
+#water-rise-title  {
   text-align: center;
   top: 5%;
   font-family: "Raleway", sans-serif;
@@ -271,6 +271,9 @@ body {
   line-height: 200px;
   color: white;
   margin: 1000;
+}
+p {
+  text-align: center;
 }
 
 /* Scroll behaviour */
