@@ -27,6 +27,49 @@
       // waterlevels(input, "b");
       // });
 
+      function update(years) {
+        d3.json(`/api/climate/${years}`, {
+          method: "POST",
+        }).then(function (response) {
+          let data = response.data;
+          console.log(data);
+          let newData;
+          const svg = d3.select("#svg1");
+
+          if (data[0].years >= 2022) {
+            newData = [data[0].best_case, data[0].worst_case];
+          } else if (data[0].years < 2022) {
+            newData = [data[0].observations, data[0].observations];
+          }
+          const yScale = d3
+            .scaleLinear()
+            .domain([2, 0])
+            .range([topPadding, h - bottomPadding]);
+
+          const xScale = d3
+            .scaleBand()
+            .domain(d3.range(newData.length))
+            .range([0, w - 50]);
+
+          const updateSelection = svg.selectAll("rect").data(newData);
+
+          updateSelection.exit().remove();
+
+          updateSelection
+            .transition()
+            .duration(2000)
+            .attr("x", function (d, i) {
+              return xScale(i) + 41;
+            })
+            .attr("y", function (d) {
+              return yScale(d);
+            })
+            .attr("width", xScale.bandwidth())
+            .attr("height", function (d) {
+              return h - yScale(d) - bottomPadding;
+            });
+        });
+      }
       function waterlevels(years) {
         d3.json(`/api/climate/${years}`, {
           method: "POST",
@@ -40,6 +83,7 @@
       function draw(data) {
         console.log(data[0].years);
         console.log(data.length);
+        let newData;
         const svg = d3
           .select("#svg1")
           .append("svg")
@@ -52,12 +96,6 @@
           .domain([2, 0])
           .range([topPadding, h - bottomPadding]);
 
-        // Lav en skala for x-aksen
-        const xScale = d3
-          .scaleBand()
-          .domain(d3.range(data.length))
-          .range([0, w - 50]);
-
         // Lave y-akse med tal
         const yAxis = d3.axisLeft().scale(yScale).ticks(8);
         svg
@@ -68,46 +106,34 @@
           .style("font-size", "20px");
 
         if (data[0].years < 2022) {
-          svg
-            .selectAll("rect")
-            .data(data)
-            .enter()
-            .append("rect")
-            .attr("x", 41)
-            .attr("y", function (d) {
-              return yScale(d.observations);
-            })
-            .attr("width", w)
-            .attr("height", function (d) {
-              return h - yScale(d.observations);
-            })
-            .attr("fill", "green")
-            .attr("opacity", 0.5);
+          newData = [data[0].observations, data[0].observations];
         } else if (data[0].years >= 2022) {
-          let newData = [data[0].best_case, data[0].worst_case];
-          const xScaleNew = d3
-            .scaleBand()
-            .domain(d3.range(newData.length))
-            .range([0, w - 50]);
-
-          svg
-            .selectAll("rect")
-            .data(newData)
-            .enter()
-            .append("rect")
-            .attr("x", function (d, i) {
-              return xScaleNew(i) + 41;
-            })
-            .attr("y", function (d) {
-              return yScale(d);
-            })
-            .attr("width", xScaleNew.bandwidth())
-            .attr("height", function (d) {
-              return h - yScale(d) - bottomPadding;
-            })
-            .attr("fill", "blue")
-            .attr("opacity", 0.5);
+          newData = [data[0].best_case, data[0].worst_case];
         }
+
+        const xScale = d3
+          .scaleBand()
+          .domain(d3.range(newData.length))
+          .range([0, w - 50]);
+
+        svg
+          .selectAll("rect")
+          .data(newData)
+          .enter()
+          .append("rect")
+          .attr("x", function (d, i) {
+            return xScale(i) + 41;
+          })
+          .attr("y", function (d) {
+            return yScale(d);
+          })
+          .attr("width", xScale.bandwidth())
+          .attr("height", function (d) {
+            return h - yScale(d) - bottomPadding;
+          })
+          .attr("fill", "blue")
+          .attr("opacity", 0.5);
+      }
         //lav "bølge" til best_case
         /* if (a == "b") {
           svg
