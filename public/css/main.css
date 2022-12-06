@@ -273,7 +273,7 @@ body {
   max-height: fit-content;
   width: 50vw;
   text-align: center;
-  background: rgb(228, 238, 253);
+  background-image: linear-gradient(white, rgb(82, 157, 220));
 }
 
 .not-fun-facts {
