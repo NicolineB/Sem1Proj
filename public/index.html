@@ -21,11 +21,11 @@
         let years = document.getElementById("chosenYear").value;
         if (years > 1996 && years < 2101) {
           document.getElementById("water-rise-title").innerHTML = "År " + years;
+          update(years);
         } else {
           document.getElementById("water-rise-title").innerHTML =
             "Årstal ugyldigt";
         }
-        update(years);
       }
 
       // d3.select("#submit").on("click", function (event) {
