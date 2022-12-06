@@ -53,8 +53,8 @@ app.post("/api/climate/:years", async (req, res) => {
 });
 
 // Her defineres API'en for tabellen species
-app.post("/api/species", async (req, res) => {
-  const query2 = `SELECT * FROM species`;
+app.post("/api/animal", async (req, res) => {
+  const query2 = `SELECT * FROM animal`;
   try {
     let queryData = await client.query(query2);
     res.json({
