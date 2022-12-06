@@ -226,6 +226,28 @@ body {
   background: rgb(228, 238, 253);
 }
 
+.container2 {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(white, rgb(82, 157, 220));
+  padding: 0px 55px 0px 195px;
+  /* text-align: center;
+  top: 10%;
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  font-size: 3vw;
+  line-height: 200px;
+  color: orange;
+  margin: 1000; */
+}
+
+.consequences {
+  max-height: 400;
+  width: fit-content;
+  text-align: center;
+}
+
 /* year overskrifter */
 .water-rise {
   position: center;
@@ -251,30 +273,6 @@ body {
   font-size: 2vw;
   color: rgb(82, 157, 220);
   margin: 1000;
-}
-
-.container2 {
-  display: flex;
-  position: center;
-  width: 100%;
-  height: 110vh;
-  background-image: linear-gradient(white, rgb(82, 157, 220));
-  padding: 0px 55px 0px 195px;
-  /* text-align: center;
-  top: 10%;
-  font-family: "Raleway", sans-serif;
-  position: relative;
-  font-size: 3vw;
-  line-height: 200px;
-  color: orange;
-  margin: 1000; */
-}
-
-.consequences {
-  max-height: 400;
-  width: fit-content;
-  text-align: center;
-  background: rgb(228, 238, 253);
 }
 
 .not-fun-facts {
