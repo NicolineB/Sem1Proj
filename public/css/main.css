@@ -275,6 +275,15 @@ body {
   margin: 1000;
 }
 
+#animalTitle {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  font-size: 4vw;
+  color: rgb(82, 157, 220);
+  margin: 1000;
+}
+
 .not-fun-facts {
   position: center;
   width: 100%;
