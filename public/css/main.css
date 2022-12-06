@@ -244,7 +244,7 @@ body {
 
 .consequences {
   max-height: 400;
-  width: fit-content;
+  width: 70vw;
   text-align: center;
 }
 
