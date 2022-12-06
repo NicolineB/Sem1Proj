@@ -275,7 +275,7 @@
 
         const xScale = d3
           .scaleBand()
-          .domain(d3.range(data.length))
+          .domain(d3.range(data.length) + 50)
           .range([0, w]);
 
         //tegner vores svg
