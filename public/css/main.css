@@ -271,9 +271,9 @@ body {
 
 .consequences {
   max-height: fit-content;
-  width: 50vw;
+  width: 60vw;
   text-align: center;
-  background-image: linear-gradient(white, rgb(82, 157, 220));
+  background: rgb(228, 238, 253);
 }
 
 .not-fun-facts {

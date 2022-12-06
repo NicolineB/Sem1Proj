@@ -285,7 +285,7 @@
           .enter()
           .append("rect")
           .attr("x", function (d, i) {
-            return xScale(i);
+            return xScale(i) + 44;
           })
           .attr("y", function (d) {
             return yScale(d.percent_at_risk);
@@ -357,7 +357,7 @@
     </section>
 
     <div class="container2">
-        <div class="consequences"></div>
+      <div class="consequences">
         <div id="svg2" class="svg2"></div>
       </div>
       <h1>Det ser ikke ud af meget <bold>men.....</bold></h1>
