@@ -211,12 +211,6 @@ body {
   border: 10px black;
 }
 
-/* .consequences {
-  display: flex;
-  width: 100%;
-
-}
-*/
 .col1 {
   height: 407.26px;
   width: fit-content;
@@ -259,7 +253,7 @@ body {
   margin: 1000;
 }
 
-.consequences {
+.container2 {
   display: flex;
   position: center;
   width: 100%;
@@ -273,6 +267,13 @@ body {
   line-height: 200px;
   color: orange;
   margin: 1000;
+}
+
+.consequences {
+  max-height: fit-content;
+  width: 30vw;
+  text-align: center;
+  background: rgb(228, 238, 253);
 }
 
 .not-fun-facts {
