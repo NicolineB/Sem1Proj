@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <title>Vandstigninger</title>
     <script>
-      const w = 700;
+      /*const w = 700;
       const h = 400;
       const bottomPadding = 7;
       const sidePadding = 40;
@@ -235,7 +235,7 @@
                 return y(d.temp_rise);
               })
           );
-      });
+      }); */
     </script>
 
     <script>
@@ -246,7 +246,7 @@
         let data = response.data;
         console.log(data);
 
-        const w = 700;
+        const w = 1000;
         const h = 400;
         const bottomPadding = 7;
         const sidePadding = 40;
@@ -276,7 +276,7 @@
         const xScale = d3
           .scaleBand()
           .domain(d3.range(data.length))
-          .range([0, w]);
+          .range([0, w - 44]);
 
         //tegner vores svg
         svg
@@ -360,6 +360,12 @@
       <div class="container2">
         <div class="consequences">
           <div id="svg2" class="svg2"></div>
+        </div>
+        <div class="consequences2">
+          <h2>eventuel info?</h2>
+          <article>
+            <p>eventuel info?</p>
+          </article>
         </div>
       </div>
     </section>
