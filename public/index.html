@@ -12,16 +12,18 @@
       const sidePadding = 40;
       const topPadding = 20;
 
+      //kalder waterlevels for at oprette den første svg
       waterlevels(2100);
 
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
       function getInputValue() {
         let years = document.getElementById("chosenYear").value;
-        if ( years > 1996 && years < 2101) {
+        if (years > 1996 && years < 2101) {
           document.getElementById("water-rise-title").innerHTML = "År " + years;
-        } else{
-          document.getElementById("water-rise-title").innerHTML = "Årstal ugyldigt";
+        } else {
+          document.getElementById("water-rise-title").innerHTML =
+            "Årstal ugyldigt";
         }
         update(years);
       }
@@ -225,7 +227,7 @@
 
     <section class="water-rise" id="waterRise">
       <h1 id="water-rise-title">Hvor meget vil vandet stige?</h1>
-      <h2 id="water-rise-under-title">Man startede med at aflæse vandstigniner i 1997. Vælg venlist et årstal mellem 1997, og 2100.</h2>
+      <h2 id="water-rise-under-title">Vælg venlist årstal mellem 1997, og 2100.</h2>
       <form>
         <p>
           <input
