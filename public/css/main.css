@@ -271,7 +271,7 @@ body {
 
 .consequences {
   max-height: fit-content;
-  width: 30vw;
+  width: 50vw;
   text-align: center;
   background: rgb(228, 238, 253);
 }
