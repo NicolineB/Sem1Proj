@@ -245,6 +245,12 @@
       }).then(function (response) {
         let data = response.data;
         console.log(data);
+        data.sort((a, b) =>
+          d3.descending(
+            parseFloat(a.percent_at_risk),
+            parseFloat(b.percent_at_risk)
+          )
+        );
 
         const w = 1000;
         const h = 400;
