@@ -71,20 +71,20 @@
         update(years);
 
         // Opsætter en case: 
-          switch (years) {
-            case (years <=  1997 && years >= 2022): 
-              const waterlvl_obs = newData.observations[0];
-              document.getElementById('waterLevel_Observation').innerHTML = "Observation: " + waterlvl_obs; 
-              console.log(waterlvl_obs);
-              break; 
-            case (years <= 2022 && years >= 2100): 
-              const waterlvl_bestCase = newData.best_case[0];
-              const waterlvl_worstCase = newData.worst_case[0];
-              document.getElementById('best-case').innerHTML = "best case: " + waterlvl_bestCase;
-              document.getElementById('worst-case').innerHTML = "worst case: " + waterlvl_worstCase;
-              console.log(waterlvl_bestCase, waterlvl_worstCase)
-              break;
-          }
+         // switch (years) {
+           // case (years <=  1997 && years >= 2022): 
+             // const waterlvl_obs = newData.observations[0];
+              // document.getElementById('waterLevel_Observation').innerHTML = "Observation: " + waterlvl_obs; 
+              //onsole.log(waterlvl_obs);
+             // break; 
+            //case (years <= 2022 && years >= 2100): 
+              //const waterlvl_bestCase = newData.best_case[0];
+              //const waterlvl_worstCase = newData.worst_case[0];
+              //document.getElementById('best-case').innerHTML = "best case: " + waterlvl_bestCase;
+              //document.getElementById('worst-case').innerHTML = "worst case: " + waterlvl_worstCase;
+              //console.log(waterlvl_bestCase, waterlvl_worstCase)
+              //break;
+          //}
       }
           //laver y-skala udfra højde og paddings
           const yScale = d3
@@ -357,10 +357,10 @@
     <section class="water-rise" id="waterRise">
       <h1 id="water-rise-title">Hvor meget vil vandet stige?</h1>
       <h2 id="water-rise-under-title">
-        Vælg venlist årstal mellem 1997 og 2100.
+        Vælg venligst årstal mellem 1997 og 2100.
       </h2>
       <form>
-        <p class="inputButton">
+        <p>
           <input
             type="number"
             placeholder="YYYY"
