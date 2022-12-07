@@ -69,6 +69,8 @@
         document.getElementById("year").innerHTML = "Året: " + years;
         update(years);
         
+        console.log([data.climate.observations[0]],[data.climate.best_case[0]],[data.climate.worst_case[0]]);
+
         let waterlvl_obs = [newData.observations[0]];
         let waterlvl_bestCase = [newData.best_case[0]];
         let waterlvl_worstCase = [newData.worst_case[0]];
