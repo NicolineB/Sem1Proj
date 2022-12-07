@@ -54,8 +54,7 @@
            newData = [data[0].best_case, data[0].worst_case];
           } else if (data[0].years < 2022) {
            newData = [data[0].observations, data[0].observations];
-          }
-;
+          };
           // Funktion finder valuen fra id'et chosenYear (input felt med år),
           // og gemmer det i variablen year.
       
@@ -360,7 +359,7 @@
         Vælg venligst årstal mellem 1997 og 2100.
       </h2>
       <form>
-        <p>
+        <p id="inputButton">
           <input
             type="number"
             placeholder="YYYY"
