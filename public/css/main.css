@@ -108,11 +108,7 @@ body {
   background-color: black;
   transition-duration: 0.4s;
   color: white;
-}
-
-.button:hover {
-  background-color: green;
-  color: black;
+  text-align: center;
 }
 
 /* bølger */

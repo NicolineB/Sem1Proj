@@ -134,10 +134,22 @@
 
           // Observation har vi kun fra før 2022
           // Når 2022 ændres den til best_case, og worst_case 
-          d3.selectAll("observation_nr").each(function(d,i){
+          d3.selectAll("observation_nr").each(function(d){
             var obs_ = data[0].observations;
             console.log(obs_);
           });
+
+          // 
+          function update(Waterlvl_observation) {
+
+            // adjust the text on the range slider
+            d3.select("#observation_nr").text(nRadius);
+            d3.select("#nRadius").property("value", nRadius);
+
+            // update the circle radius
+            holder.selectAll("circle") 
+              .attr("r", nRadius);
+}
 
 
 
@@ -333,7 +345,7 @@
     <section class="water-rise" id="waterRise">
       <h1 id="water-rise-title">Hvor meget vil vandet stige?</h1>
       <h2 id="water-rise-under-title">
-        Vælg venlist årstal mellem 1997, og 2100.
+        Vælg venlist årstal mellem 1997 og 2100.
       </h2>
       <form>
         <p>
@@ -360,7 +372,11 @@
             <article>
               <p id="year">År : </p>
               <!--Evt. variable som referer til data fra året-->
-              <p id="observations_nr">Observations: </p>
+              <p>
+                <label for="Wawterlvl_obs"
+                 
+              
+              </p>
             </article>
             <!--figur til at illustere at scroll ned-->
           </div>
@@ -382,7 +398,7 @@
       </div>
     </section>
     <section class="not-fun-facts">
-      <h1><b>Not-So-Fun Facts</b></h1>
+      <h1><b>Andre ikke-så-sjove fakta om konsekvenserne ved vandstigning</b></h1>
       <h3>Træk musen henover billederne for at se mere</h3>
       
       <div class="flip-card">
@@ -401,7 +417,7 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="css/2.png" style="width:100%;height:300px;">
-              <div class="title"><b>Øget CO2 udledning</b></div>
+              <div class="title"><b>Øget CO₂ udledning</b></div>
             </div>
             <div class="flip-card-back">
               <p>Strandengene har en vigtig funktion i form af nærings- og CO₂ optagelse, og tabet af strandenge vil derfor føre til en væsentlig øget næringsbelastning af de kystnære farvande og øget CO₂ udledning.</p> 
@@ -436,6 +452,9 @@
           </div>
         </div>
       </br>
+      </section>
+      <section class="end">
+        <h1><b>Uanset hvad vi gør vil vandene stige, men...</b></h1>
       </section>
     <footer></footer>
   </body>
