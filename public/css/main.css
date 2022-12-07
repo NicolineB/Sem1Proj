@@ -367,7 +367,7 @@ body {
 }
 
 .flip-card-front .title {
-  color: purple;
+  color: rgb(160, 53, 160);
   line-height: 60px;
   position: absolute;
   top: 50%;
@@ -388,7 +388,7 @@ body {
 }
 
 .flip-card-back a {
-  color: purple;
+  color: rgb(160, 53, 160);
   line-height: 40px;
   text-align: left;
 }
