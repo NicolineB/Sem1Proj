@@ -132,25 +132,7 @@
           newData = [data[0].best_case, data[0].worst_case];
         }
 
-          // Observation har vi kun fra før 2022
-          // Når 2022 ændres den til best_case, og worst_case 
-          d3.selectAll("observation_nr").each(function(d){
-            var obs_ = data[0].observations;
-            console.log(obs_);
-          });
-
-          // 
-          function update(Waterlvl_observation) {
-
-            // adjust the text on the range slider
-            d3.select("#observation_nr").text(nRadius);
-            d3.select("#nRadius").property("value", nRadius);
-
-            // update the circle radius
-            holder.selectAll("circle") 
-              .attr("r", nRadius);
-}
-
+      
 
 
         //laver x-akse udfra newData
@@ -189,6 +171,31 @@
           // where year = ID
           console.log(id);
         });
+
+      // Funktion finder valuen fra id'et chosenYear (input felt med år),
+      // og gemmer det i variablen inputVal.
+      function getInputValue() {
+            let years = document.getElementById("chosenYear").value; 
+            if (years > 1996 && years < 2101) {
+              document.getElementById("water-rise-title").innerHTML = "År " + years;
+            } else {
+              document.getElementById("water-rise-title").innerHTML =
+                "Årstal ugyldigt";
+            }
+        document.getElementById("year").innerHTML = "Året: " + years;
+        update(years);
+
+        if (years <= 1997 && years >= 2022) {
+          let waterlvl_obs = [newData[0]];
+          document.getElementById('waterLevel_Observation').innerHTML = waterlvl_obs; 
+        } else if (years >= 2100) {
+          let waterlvl_bestCase = [newData[0].best_case];
+          let waterlvl_worstCase = [newData[0].worst_case];
+          document.getElementById('best-case').innerHTML = waterlvl_bestCase;
+          document.getElementById('worst-case').innerHTML = waterlvl_worstCase;
+        }
+      }
+
 
       d3.json("/api/climate", {
         method: "POST",
@@ -372,10 +379,14 @@
             <article>
               <p id="year">År : </p>
               <!--Evt. variable som referer til data fra året-->
-              <p>
-                <label for="Wawterlvl_obs"
-                 
-              
+              <p class="waterlvl_observations">
+                <label id="waterLevel_Observation"> Observation</label>
+                
+                <p class="best-worse-case">
+                <label id="best-case"> Best Case: </label>
+                <label id="worst-case">Worst Case: </label>
+                </p>
+
               </p>
             </article>
             <!--figur til at illustere at scroll ned-->
@@ -398,7 +409,7 @@
       </div>
     </section>
     <section class="not-fun-facts">
-      <h1><b>Andre ikke-så-sjove fakta om konsekvenserne ved vandstigning</b></h1>
+      <h1><b>Not-So-Fun Facts</b></h1>
       <h3>Træk musen henover billederne for at se mere</h3>
       
       <div class="flip-card">
@@ -407,7 +418,8 @@
             <img src="css/1.png" style="width:100%;height:300px;">
             <div class="title"><b>Fugle bliver hjemløse</b></div>
           </div>
-          <div class="flip-card-back"><p>Over halvdelen af strandengene vil forsvinde I løbet af de næste år.Det er først og fremmest de dyr, der er tilknyttet strandengene, der kommer til at forsvinde. Det er vadefugle som engryle, brushane, stor kobbersneppe, rødben og så videre. En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.<p>
+          <div class="flip-card-back"><p>Over halvdelen af strandengene vil forsvinde I løbet af de næste år.</p>
+            <p>Det er især de dyr, der er tilknyttet strandengene, der kommer til at forsvinde. Det er vadefugle som engryle, brushaner, stor kobbersnepper, rødben osv. En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.<p>
             <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
           </div>
         </div>
@@ -417,11 +429,12 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="css/2.png" style="width:100%;height:300px;">
-              <div class="title"><b>Øget CO₂ udledning</b></div>
+              <div class="title"><b>Kystens plantesamfund drukner</b></div>
             </div>
             <div class="flip-card-back">
-              <p>Strandengene har en vigtig funktion i form af nærings- og CO₂ optagelse, og tabet af strandenge vil derfor føre til en væsentlig øget næringsbelastning af de kystnære farvande og øget CO₂ udledning.</p> 
-              <a href=https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet>COWI.dk</a>
+              <p>Plantesamfundene langs kysterne hører til de mest udsatte for klimaændringerne.</p>
+                <p> Stigende vandspejl og hyppigere oversvømmelser øger risikoen for at de "drukner". Det kan ramme strandenge og de smalle bælter med for eksempel kveller og strand-annelgræs, der findes langs kysterne. Kyster med lille tidevandsforskel forventes at blive mest berørte af stigningerne.</p> 
+              <a href="https://www.klimatilpasning.dk/sektorer/natur/kystnatur/">klimatilpasning.dk</a>
             </div>
           </div>
         </div>
@@ -433,7 +446,8 @@
               <div class="title"><b>Skildpadder sulter</b></div>
             </div>
             <div class="flip-card-back">
-              <p>Skildpadder der bor I Oceanien og Nordamerika står overfor de største trusler. Når vandene stiger, stiger saltindholdet og det kan deres kroppe ikke behandle. Så de stopper helt med at spise og drikke indtil saltindholdet falder igen. I og med at vandene ikke falder igen efter nok vandstigning, og saltindholdet dermed ikke falder, så bliver skildpadderne ved med at sulte dem selv. </p> 
+              <p>Skildpadder der bor I Oceanien og Nordamerika står overfor de største trusler.</p>
+                <p>Når vandene stiger, stiger saltindholdet og det kan deres kroppe ikke behandle. Så de stopper helt med at spise og drikke indtil saltindholdet falder igen. I og med at vandene ikke falder igen efter nok vandstigning, og saltindholdet dermed ikke falder, så bliver skildpadderne ved med at sulte dem selv. </p> 
               <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
             </div>
           </div>
@@ -446,15 +460,14 @@
               <div class="title"><b>Flere stormfloder, større oversvømmelser</b></div>
             </div>
             <div class="flip-card-back">
-              <p>Ændringerne I vandstanden sammen med ændrende vindmønstre fører til øgede stormflodshøjder, især I Vadehavet. Dvs. at over halvdelen af både Frederiksværk på Nordsjælland og Randers i Østjylland vil oversvømmes i 2115.</p> 
+              <p>Ændringerne I vandstanden sammen med ændrende vindmønstre fører til øgede stormflodshøjder.</p>
+              <p>Dvs. at over halvdelen af eksempelvis Randers og Frederiksværk vil oversvømmes i 2115. Derudover er salt giftigt for langt de fleste organismer. Derfor vil gentagne oversvømmelser være en reel fare for flora og fauna i de ferske naturområder</p> 
               <a href="https://realdania.dk/publikationer/faglige-publikationer/tilpasning-til-havvandsstigninger-rapport">Realdania.dk</a>
+              <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
             </div>
           </div>
         </div>
       </br>
-      </section>
-      <section class="end">
-        <h1><b>Uanset hvad vi gør vil vandene stige, men...</b></h1>
       </section>
     <footer></footer>
   </body>
