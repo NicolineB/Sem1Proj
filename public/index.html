@@ -56,7 +56,7 @@
             newData = [data[0].observations, data[0].observations];
           }
 
-          console.log([data.climate.observations[0]],[data.climate.best_case[0]],[data.climate.worst_case[0]]);
+          console.log([data.observations[0]],[data.best_case[0]],[data.worst_case[0]]);
           // Funktion finder valuen fra id'et chosenYear (input felt med år),
           // og gemmer det i variablen year.
       function getInputValue() {
@@ -90,8 +90,6 @@
               break;
           }
       }
-
-
           //laver y-skala udfra højde og paddings
           const yScale = d3
             .scaleLinear()
@@ -168,9 +166,6 @@
         } else if (data[0].years >= 2022) {
           newData = [data[0].best_case, data[0].worst_case];
         }
-
-      
-
 
         //laver x-akse udfra newData
         const xScale = d3
