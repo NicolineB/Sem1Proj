@@ -7,7 +7,7 @@
     <title>Vandstigninger</title>
     <script>
       const w = 700;
-      const h = 700;
+      const h = 400;
       const bottomPadding = 7;
       const sidePadding = 40;
       const topPadding = 20;
@@ -245,6 +245,7 @@
       }).then(function (response) {
         let data = response.data;
         console.log(data);
+        data.sort((a, b) => d3.descending(parseFloat(a.percent_at_risk), parseFloat(b.percent_at_risk)));
 
         const w = 1000;
         const h = 400;
@@ -262,7 +263,7 @@
         const yScale = d3
           .scaleLinear()
           .domain([100, 0])
-          .range([topPadding, h - bottomPadding]);
+          .range([topPadding, 700 - bottomPadding]);
 
         // tegner en y-akse med tal
         const yAxis = d3.axisLeft().scale(yScale).ticks(10);
@@ -374,23 +375,65 @@
       <h1 id="marine-title">Here goes a title</h1>
     </section>
 
-    <section class="not-fun-facts" id="notFunFacts">
-      <article class="fact-container">
-        <div id="fact-1">
-          <div id="fact-text">Tester</div>
-          <img src="//" class="fact-1-pic" />
-          <p>here something will be</p>
+    <section class="not-fun-facts">
+      <h1>Not-So-Fun Facts</h1>
+      <h3>Træk musen henover billederne for at høre mere</h3>
+      
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="css/1.png" style="width:100%;height:300px;">
+            <div class="title">Kystnaturen og dens fugle påvirkes alvorligt</div>
+          </div>
+          <p class="flip-card-back">
+            <br><b><u>Over halvdelen af strandengene vil forsvinde I løbet af de næste år.</u></b>
+            Det er først og fremmest de dyr, der er tilknyttet strandengene, der kommer til at forsvinde.
+            Det er vadefugle som engryle, brushane, stor kobbersneppe, rødben og så videre.
+            En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.</br> 
+            <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
+          </p>
+          </div>
         </div>
-        <div class="fact-2">
-          <img src="//" class="fact-2-pic" />
-          <p>Here something will be</p>
+      </div>
+      </br>
+      <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="css/2.png" style="width:100%;height:300px;">
+            </div>
+            <div class="flip-card-back">
+              <h1>Kystens plantesamfund drukner:</h1> 
+              <p>Plantesamfundene langs kysterne hører til de mest udsatte for klimaændringerne. Stigende vandspejl og hyppigere oversvømmelser øger risikoen for at de "drukner". Det kan ramme strandenge og de smalle bælter med for eksempel kveller og strand-annelgræs, der findes langs kysterne. Kyster med lille tidevandsforskel forventes at blive mest berørte af stigningerne.</p> 
+              <a href="https://www.klimatilpasning.dk/sektorer/natur/kystnatur/">Klimatilpasning.dk</a>
+            </div>
+          </div>
         </div>
-        <div class="fact-3">
-          <img src="//" class="fact-2-pic" />
-          <p>here something will be</p>
+      </br>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="css/3.png" style="width:100%;height:300px;">
+            </div>
+            <div class="flip-card-back">
+              <p>“Over halvdelen af strandengene vil forsvinde I løbet af de næste år. De dyr og planter der kommer til at forsvinde, det er først og fremmest dem, der er tilknyttet strandengene. Det er vadefugle som engryle, brushane, stor kobbersneppe, rødben og så videre. En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.”</p> 
+              <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
+            </div>
+          </div>
         </div>
-      </article>
-    </section>
+      </br>
+      <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="css/4.png" style="width:100%;height:300px;">
+            </div>
+            <div class="flip-card-back">
+              <p>“Over halvdelen af strandengene vil forsvinde I løbet af de næste år. De dyr og planter der kommer til at forsvinde, det er først og fremmest dem, der er tilknyttet strandengene. Det er vadefugle som engryle, brushane, stor kobbersneppe, rødben og så videre. En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.”</p> 
+              <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
+            </div>
+          </div>
+        </div>
+      </br>
+      </section>
 
     <footer></footer>
   </body>

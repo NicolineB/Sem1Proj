@@ -293,22 +293,6 @@ body {
   margin: 1000;
 }
 
-.not-fun-facts {
-  position: center;
-  width: 100%;
-  background: rgb(82, 157, 220);
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  position: relative;
-  font-size: 3vw;
-  line-height: 200px;
-  color: white;
-  margin: 1000;
-}
-p {
-  text-align: center;
-}
-
 /* Scroll behaviour */
 @media (min-height: 30em) {
   main {
@@ -324,26 +308,87 @@ p {
   }
 }
 
-#fact-1 {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
+.not-fun-facts {
+  position: center;
+  width: 100%;
+  background: rgb(82, 157, 220);
 }
 
-#fact-text {
+.not-fun-facts h1 {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 4vw;
+  line-height: 100px;
+  color: white;
+  font-weight: bold;
+}
+
+.not-fun-facts h3 {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.2vw;
+  line-height: 50px;
+  color: white;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 500px;
+  height: 300px;
+  perspective: 6000px;
+  margin: auto;
+  width: 50%;
+  padding: 0px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front .title {
+  color: purple;
+  line-height: 60px;
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 50px;
-  color: white;
   transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  font-family: "Raleway", sans-serif;
+  font-size: 2vw;
+  font-weight: bold;
+}
+
+.flip-card-back {
+  background-color: white;
+  color: black;
+  transform: rotateY(180deg);
+  border-radius: 30px;
+  line-height: 40px;
+  font-size: 1.2vw;
+}
+
+.flip-card-back a {
+  color: red;
+  line-height: 40px;
+  text-align: left;
 }
