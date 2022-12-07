@@ -263,7 +263,7 @@
         const yScale = d3
           .scaleLinear()
           .domain([100, 0])
-          .range([topPadding, 700 - bottomPadding]);
+          .range([topPadding, h - bottomPadding]);
 
         // tegner en y-akse med tal
         const yAxis = d3.axisLeft().scale(yScale).ticks(10);
