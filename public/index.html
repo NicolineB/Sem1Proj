@@ -55,6 +55,32 @@
           } else if (data[0].years < 2022) {
             newData = [data[0].observations, data[0].observations];
           }
+
+          // Funktion finder valuen fra id'et chosenYear (input felt med år),
+      // og gemmer det i variablen year.
+      function getInputValue() {
+            let years = document.getElementById("chosenYear").value; 
+            if (years > 1996 && years < 2101) {
+              document.getElementById("water-rise-title").innerHTML = "År " + years;
+            } else {
+              document.getElementById("water-rise-title").innerHTML =
+                "Årstal ugyldigt";
+            }
+        document.getElementById("year").innerHTML = "Året: " + years;
+        update(years);
+
+          if (years >= 2022) {
+            let waterlvl_obs = [newData.observations[0]];
+            document.getElementById('waterLevel_Observation').innerHTML = "Observation: " + waterlvl_obs; 
+           } else if (years >= 2022) {
+            let waterlvl_bestCase = [newData.best_case[0]];
+            let waterlvl_worstCase = [newData.worst_case[0]];
+            document.getElementById('best-case').innerHTML = "best case: " + waterlvl_bestCase;
+            document.getElementById('worst-case').innerHTML = "worst case: " + waterlvl_worstCase;
+           }
+          }
+
+
           //laver y-skala udfra højde og paddings
           const yScale = d3
             .scaleLinear()
@@ -172,29 +198,7 @@
           console.log(id);
         });
 
-      // Funktion finder valuen fra id'et chosenYear (input felt med år),
-      // og gemmer det i variablen year.
-      function getInputValue() {
-            let years = document.getElementById("chosenYear").value; 
-            if (years > 1996 && years < 2101) {
-              document.getElementById("water-rise-title").innerHTML = "År " + years;
-            } else {
-              document.getElementById("water-rise-title").innerHTML =
-                "Årstal ugyldigt";
-            }
-        document.getElementById("year").innerHTML = "Året: " + years;
-        update(years);
-
-        if (years >= 2022) {
-          let waterlvl_obs = [data.climate.observations[0]];
-          document.getElementById('waterLevel_Observation').innerHTML = "Observation: " + waterlvl_obs; 
-        } else if (years >= 2022) {
-          let waterlvl_bestCase = [data.climate.best_case[0]];
-          let waterlvl_worstCase = [data.climate.worst_case[0]];
-          document.getElementById('best-case').innerHTML = "best case: " + waterlvl_bestCase;
-          document.getElementById('worst-case').innerHTML = "worst case: " + waterlvl_worstCase;
-        }
-      }
+      
 
       d3.json("/api/climate", {
         method: "POST",
