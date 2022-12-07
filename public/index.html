@@ -185,7 +185,7 @@
         document.getElementById("year").innerHTML = "Året: " + years;
         update(years);
 
-        if (years <= 1997 && years >= 2022) {
+        if ( years >= 2022) {
           let waterlvl_obs = [newData[0]];
           document.getElementById('waterLevel_Observation').innerHTML = waterlvl_obs; 
         } else if (years >= 2100) {
