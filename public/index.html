@@ -25,7 +25,6 @@
           document.getElementById("water-rise-title").innerHTML =
             "Årstal ugyldigt";
         }
-        document.getElementById("year").innerHTML = "Året: " + years;
         update(years);
       }
 
@@ -131,15 +130,6 @@
         } else if (data[0].years >= 2022) {
           newData = [data[0].best_case, data[0].worst_case];
         }
-
-        
-          // Observation har vi kun fra før 2022
-          // Når 2022 ændres den til best_case, og worst_case 
-          d3.selectAll("observation_nr").each(function(d, i){
-            var obs_ = d3.index(newData[0], data[0].observations);
-            console.log(data[1].observations);
-          });
-
 
         //laver x-akse udfra newData
         const xScale = d3
@@ -358,9 +348,8 @@
           <div class="col2-container">
             <h2>Here will a title be</h2>
             <article>
-              <p id="year">År : </p>
+              <p>Information goes here</p>
               <!--Evt. variable som referer til data fra året-->
-              <p id="observations_nr">Observations: </p>
             </article>
             <!--figur til at illustere at scroll ned-->
           </div>
@@ -387,14 +376,14 @@
     </section>
 
     <section class="not-fun-facts">
-      <h1>Not-So-Fun Facts</h1>
-      <h3>Træk musen henover billederne for at høre mere</h3>
+      <h1><b>Not-So-Fun Facts</b></h1>
+      <h3>Træk musen henover billederne for at se mere</h3>
       
       <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front">
             <img src="css/1.png" style="width:100%;height:300px;">
-            <div class="title">Kystnaturen og dens fugle påvirkes alvorligt</div>
+            <div class="title"><b>Fugle bliver hjemløse</b></div>
           </div>
           <p class="flip-card-back">
             <br><b><u>Over halvdelen af strandengene vil forsvinde I løbet af de næste år.</u></b>
@@ -411,11 +400,11 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="css/2.png" style="width:100%;height:300px;">
+              <div class="title"><b>Øget CO2 udledning</b></div>
             </div>
             <div class="flip-card-back">
-              <h1>Kystens plantesamfund drukner:</h1> 
-              <p>Plantesamfundene langs kysterne hører til de mest udsatte for klimaændringerne. Stigende vandspejl og hyppigere oversvømmelser øger risikoen for at de "drukner". Det kan ramme strandenge og de smalle bælter med for eksempel kveller og strand-annelgræs, der findes langs kysterne. Kyster med lille tidevandsforskel forventes at blive mest berørte af stigningerne.</p> 
-              <a href="https://www.klimatilpasning.dk/sektorer/natur/kystnatur/">Klimatilpasning.dk</a>
+              <p>Strandengene har en vigtig funktion i form af nærings- og CO₂ optagelse, og tabet af strandenge vil derfor føre til en væsentlig øget næringsbelastning af de kystnære farvande og øget CO₂ udledning.</p> 
+              <a href=https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet>COWI.dk</a>
             </div>
           </div>
         </div>
@@ -424,9 +413,10 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="css/3.png" style="width:100%;height:300px;">
+              <div class="title"><b>Skildpadder sulter</b></div>
             </div>
             <div class="flip-card-back">
-              <p>“Over halvdelen af strandengene vil forsvinde I løbet af de næste år. De dyr og planter der kommer til at forsvinde, det er først og fremmest dem, der er tilknyttet strandengene. Det er vadefugle som engryle, brushane, stor kobbersneppe, rødben og så videre. En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.”</p> 
+              <p>Skildpadder der bor I Oceanien og Nordamerika står overfor de største trusler. Når vandene stiger, stiger saltindholdet og det kan deres kroppe ikke behandle. Så de stopper helt med at spise og drikke indtil saltindholdet falder igen. I og med at vandene ikke falder igen efter nok vandstigning, og dermed salthindholdet ikke falder, så bliver skildpadderne ved med at sulte dem selv. </p> 
               <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
             </div>
           </div>
@@ -436,6 +426,7 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="css/4.png" style="width:100%;height:300px;">
+              <div class="title"><b>Flere stormfloder, større oversvømmelser</b></div>
             </div>
             <div class="flip-card-back">
               <p>“Over halvdelen af strandengene vil forsvinde I løbet af de næste år. De dyr og planter der kommer til at forsvinde, det er først og fremmest dem, der er tilknyttet strandengene. Det er vadefugle som engryle, brushane, stor kobbersneppe, rødben og så videre. En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.”</p> 
@@ -445,7 +436,6 @@
         </div>
       </br>
       </section>
-
     <footer></footer>
   </body>
 </html>
