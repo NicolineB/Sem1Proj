@@ -25,6 +25,7 @@
           document.getElementById("water-rise-title").innerHTML =
             "Årstal ugyldigt";
         }
+        document.getElementById("year").innerHTML = "Året: " + years;
         update(years);
       }
 
@@ -130,6 +131,15 @@
         } else if (data[0].years >= 2022) {
           newData = [data[0].best_case, data[0].worst_case];
         }
+
+        
+          // Observation har vi kun fra før 2022
+          // Når 2022 ændres den til best_case, og worst_case 
+          d3.selectAll("observation_nr").each(function(d, i){
+            var obs_ = d3.index(newData[0], data[0].observations);
+            console.log(data[1]);
+          });
+
 
         //laver x-akse udfra newData
         const xScale = d3
@@ -348,8 +358,9 @@
           <div class="col2-container">
             <h2>Here will a title be</h2>
             <article>
-              <p>Information goes here</p>
+              <p id="year">År : </p>
               <!--Evt. variable som referer til data fra året-->
+              <p id="observations_nr">Observations: </p>
             </article>
             <!--figur til at illustere at scroll ned-->
           </div>
