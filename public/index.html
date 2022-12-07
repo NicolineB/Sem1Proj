@@ -76,13 +76,15 @@
         // Opsætter en case: 
           switch (years) {
             case (years <=  1997 && years >= 2022): 
-              let waterlvl_obs = [newData.observations[0]];
-              document.getElementById("#waterLevel_Observation").innerHTML = "Observation: " + waterlvl_obs; 
+              const waterlvl_obs = [newData.observations[0]];
+              document.getElementById("waterLevel_Observation").innerHTML = "Observation: " + waterlvl_obs; 
               console.log(waterlvl_obs);
               break; 
             case (years <= 2022 && years >= 2100): 
-              document.getElementById("#best-case").innerHTML = "best case: " + waterlvl_bestCase;
-              document.getElementById("#worst-case").innerHTML = "worst case: " + waterlvl_worstCase;
+              const waterlvl_bestCase = [newData.best_case[0]];
+              const waterlvl_worstCase = [newData.worst_case[0]];
+              document.getElementById("best-case").innerHTML = "best case: " + waterlvl_bestCase;
+              document.getElementById("worst-case").innerHTML = "worst case: " + waterlvl_worstCase;
               console.log(waterlvl_bestCase, waterlvl_worstCase)
               break;
           }
@@ -419,16 +421,20 @@
         </div>
       </div>
     </section>
+    <!-- Ikke så sjove fakta sektion -->
     <section class="not-fun-facts">
       <h1><b>Not-So-Fun Facts</b></h1>
       <h3>Træk musen henover billederne for at se mere</h3>
-      
+      <!-- vi laver kort der flipper -->
       <div class="flip-card">
+        <!-- på flip card inner, laves en animation i css: hover over kortet og skift mellem forsiden og bagsiden -->
         <div class="flip-card-inner">
+          <!-- forsiden af kortet -->
           <div class="flip-card-front">
             <img src="css/1.png" style="width:100%;height:300px;">
             <div class="title"><b>Fugle bliver hjemløse</b></div>
           </div>
+          <!-- bagsiden af kortet -->
           <div class="flip-card-back"><p>Over halvdelen af strandengene vil forsvinde I løbet af de næste år.</p>
             <p>Det er især de dyr, der er tilknyttet strandengene, der kommer til at forsvinde. Det er vadefugle som engryle, brushaner, stor kobbersnepper, rødben osv. En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.<p>
             <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
@@ -436,6 +442,7 @@
         </div>
       </div>
       </br>
+      <!-- dette gentages tre yderligere gange -->
       <div class="flip-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
