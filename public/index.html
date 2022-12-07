@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <title>Vandstigninger</title>
     <script>
-      /*const w = 700;
-      const h = 400;
+      const w = 700;
+      const h = 700;
       const bottomPadding = 7;
       const sidePadding = 40;
       const topPadding = 20;
@@ -47,7 +47,7 @@
           const svg = d3.select("#svg1");
 
           //gemmer best_case og worst_case for år efter 2021
-          //og gemmer observations for tidligere år
+          //og gemmer observations for tidligere år...
           //gemmer det i 'newData' som bliver brugt som data herfra
           if (data[0].years >= 2022) {
             newData = [data[0].best_case, data[0].worst_case];
@@ -235,7 +235,7 @@
                 return y(d.temp_rise);
               })
           );
-      }); */
+      });
     </script>
 
     <script>
@@ -245,12 +245,6 @@
       }).then(function (response) {
         let data = response.data;
         console.log(data);
-        data.sort((a, b) =>
-          d3.descending(
-            parseFloat(a.percent_at_risk),
-            parseFloat(b.percent_at_risk)
-          )
-        );
 
         const w = 1000;
         const h = 400;
