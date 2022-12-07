@@ -134,8 +134,9 @@
 
           // Observation har vi kun fra før 2022
           // Når 2022 ændres den til best_case, og worst_case 
-          d3.selectAll("observation_nr").each(function(d, i){
+          d3.selectAll("observation_nr").each(function(d){
             var obs_ = d3.index(data[0].observations);
+            return obs_;
             console.log(data[0].observations);
           });
 
