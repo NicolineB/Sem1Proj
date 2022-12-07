@@ -135,9 +135,8 @@
           // Observation har vi kun fra før 2022
           // Når 2022 ændres den til best_case, og worst_case 
           d3.selectAll("observation_nr").each(function(d){
-            var obs_ = d3.index(data[0].observations);
-            return obs_;
-            console.log(data[0].observations);
+            var obs_ = data[0].observations;
+            console.log(obs_);
           });
 
 
@@ -392,9 +391,7 @@
             <img src="css/1.png" style="width:100%;height:300px;">
             <div class="title"><b>Fugle bliver hjemløse</b></div>
           </div>
-          <p class="flip-card-back">
-            <br><b><u>Over halvdelen af strandengene vil forsvinde I løbet af de næste år.</u></b>
-            Det er først og fremmest de dyr, der er tilknyttet strandengene, der kommer til at forsvinde.
+          <div class="flip-card-back"><p>Over halvdelen af strandengene vil forsvinde I løbet af de næste år.Det er først og fremmest de dyr, der er tilknyttet strandengene, der kommer til at forsvinde.
             Det er vadefugle som engryle, brushane, stor kobbersneppe, rødben og så videre.
             En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.</br> 
             <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
