@@ -173,7 +173,7 @@
         });
 
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
-      // og gemmer det i variablen inputVal.
+      // og gemmer det i variablen year.
       function getInputValue() {
             let years = document.getElementById("chosenYear").value; 
             if (years > 1996 && years < 2101) {
@@ -185,17 +185,16 @@
         document.getElementById("year").innerHTML = "Året: " + years;
         update(years);
 
-        if ( years >= 2022) {
-          let waterlvl_obs = [newData[0]];
-          document.getElementById('waterLevel_Observation').innerHTML = waterlvl_obs; 
-        } else if (years >= 2100) {
-          let waterlvl_bestCase = [newData[0].best_case];
-          let waterlvl_worstCase = [newData[0].worst_case];
-          document.getElementById('best-case').innerHTML = waterlvl_bestCase;
-          document.getElementById('worst-case').innerHTML = waterlvl_worstCase;
+        if (years >= 2022) {
+          let waterlvl_obs = [newData.observations[0]];
+          document.getElementById('waterLevel_Observation').innerHTML = "Observation: " + waterlvl_obs; 
+        } else if (years >= 2022) {
+          let waterlvl_bestCase = [newData.best_case[0]];
+          let waterlvl_worstCase = [newData.worst_case[0]];
+          document.getElementById('best-case').innerHTML = "best case: " + waterlvl_bestCase;
+          document.getElementById('worst-case').innerHTML = "worst case: " + waterlvl_worstCase;
         }
       }
-
 
       d3.json("/api/climate", {
         method: "POST",
@@ -457,7 +456,8 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="css/4.png" style="width:100%;height:300px;">
-              <div class="title"><b>Flere stormfloder, større oversvømmelser</b></div>
+              <div class="title"><p>Flere stormfloder</p>
+                <p>større oversvømmelser</p></div>
             </div>
             <div class="flip-card-back">
               <p>Ændringerne I vandstanden sammen med ændrende vindmønstre fører til øgede stormflodshøjder.</p>
