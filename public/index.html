@@ -51,9 +51,9 @@
           //og gemmer observations for tidligere år...
           //gemmer det i 'newData' som bliver brugt som data herfra
           if (data[0].years >= 2022) {
-           let newData = [data[0].best_case, data[0].worst_case];
+           newData = [data[0].best_case, data[0].worst_case];
           } else if (data[0].years < 2022) {
-           let newData = [data[0].observations, data[0].observations];
+           newData = [data[0].observations, data[0].observations];
           }
 ;
           // Funktion finder valuen fra id'et chosenYear (input felt med år),
