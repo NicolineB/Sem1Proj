@@ -131,6 +131,15 @@
           newData = [data[0].best_case, data[0].worst_case];
         }
 
+          // Observation har vi kun fra før 2022
+          // Når 2022 ændres den til best_case, og worst_case 
+          d3.selectAll("observation_nr").each(function(d, i){
+            var obs_ = d3.index(data[0].observations);
+            console.log(data[0].observations);
+          });
+
+
+
         //laver x-akse udfra newData
         const xScale = d3
           .scaleBand()
@@ -370,11 +379,6 @@
         </div>
       </div>
     </section>
-
-    <section class="marine-life" id="marineLife">
-      <h1 id="marine-title">Here goes a title</h1>
-    </section>
-
     <section class="not-fun-facts">
       <h1><b>Not-So-Fun Facts</b></h1>
       <h3>Træk musen henover billederne for at se mere</h3>
@@ -416,7 +420,7 @@
               <div class="title"><b>Skildpadder sulter</b></div>
             </div>
             <div class="flip-card-back">
-              <p>Skildpadder der bor I Oceanien og Nordamerika står overfor de største trusler. Når vandene stiger, stiger saltindholdet og det kan deres kroppe ikke behandle. Så de stopper helt med at spise og drikke indtil saltindholdet falder igen. I og med at vandene ikke falder igen efter nok vandstigning, og dermed salthindholdet ikke falder, så bliver skildpadderne ved med at sulte dem selv. </p> 
+              <p>Skildpadder der bor I Oceanien og Nordamerika står overfor de største trusler. Når vandene stiger, stiger saltindholdet og det kan deres kroppe ikke behandle. Så de stopper helt med at spise og drikke indtil saltindholdet falder igen. I og med at vandene ikke falder igen efter nok vandstigning, og saltindholdet dermed ikke falder, så bliver skildpadderne ved med at sulte dem selv. </p> 
               <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
             </div>
           </div>
@@ -429,8 +433,8 @@
               <div class="title"><b>Flere stormfloder, større oversvømmelser</b></div>
             </div>
             <div class="flip-card-back">
-              <p>Ændringerne I vandstanden sammen med ændrende vindmønstre fører til øgede stormflodshøjder, især I Vadehavet. Dvs. at både </p> 
-              <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
+              <p>Ændringerne I vandstanden sammen med ændrende vindmønstre fører til øgede stormflodshøjder, især I Vadehavet. Dvs. at over halvdelen af både Frederiksværk på Nordsjælland og Randers i Østjylland vil oversvømmes i 2115.</p> 
+              <a href="https://realdania.dk/publikationer/faglige-publikationer/tilpasning-til-havvandsstigninger-rapport">Realdania.dk</a>
             </div>
           </div>
         </div>
