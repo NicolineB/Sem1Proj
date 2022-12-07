@@ -104,7 +104,7 @@ body {
   transform: rotate(45deg);
 }
 
-.input.button {
+.inputButton {
   background-color: rgb(254, 0, 0);
   transition-duration: 0.4s;
   color: white;

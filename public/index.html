@@ -51,14 +51,15 @@
           //og gemmer observations for tidligere år...
           //gemmer det i 'newData' som bliver brugt som data herfra
           if (data[0].years >= 2022) {
-            newData = [data[0].best_case, data[0].worst_case];
+           let newData = [data[0].best_case, data[0].worst_case];
           } else if (data[0].years < 2022) {
-            newData = [data[0].observations, data[0].observations];
+           let newData = [data[0].observations, data[0].observations];
           }
 ;
           // Funktion finder valuen fra id'et chosenYear (input felt med år),
           // og gemmer det i variablen year.
-      function getInputValue() {
+      
+          function getInputValue() {
             let years = document.getElementById("chosenYear").value; 
             if (years > 1996 && years < 2101) {
               document.getElementById("water-rise-title").innerHTML = "År " + years;
@@ -72,13 +73,13 @@
         // Opsætter en case: 
           switch (years) {
             case (years <=  1997 && years >= 2022): 
-              const waterlvl_obs = data.observations[0];
+              const waterlvl_obs = newData.observations[0];
               document.getElementById('waterLevel_Observation').innerHTML = "Observation: " + waterlvl_obs; 
               console.log(waterlvl_obs);
               break; 
             case (years <= 2022 && years >= 2100): 
-              const waterlvl_bestCase = data.best_case[0];
-              const waterlvl_worstCase = data.worst_case[0];
+              const waterlvl_bestCase = newData.best_case[0];
+              const waterlvl_worstCase = newData.worst_case[0];
               document.getElementById('best-case').innerHTML = "best case: " + waterlvl_bestCase;
               document.getElementById('worst-case').innerHTML = "worst case: " + waterlvl_worstCase;
               console.log(waterlvl_bestCase, waterlvl_worstCase)
@@ -359,7 +360,7 @@
         Vælg venlist årstal mellem 1997 og 2100.
       </h2>
       <form>
-        <p>
+        <p class="inputButton">
           <input
             type="number"
             placeholder="YYYY"
