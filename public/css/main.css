@@ -11,7 +11,7 @@ body {
   font-family: "Raleway", sans-serif; /* ændrer i skriftypen for HELE bodyen */
 }
 
-/*
+/* SCROLL 
 @media (min-height: 30em) {
   main {
     scroll-snap-type: y mandatory;

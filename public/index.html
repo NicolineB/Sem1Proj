@@ -51,10 +51,10 @@
           //og gemmer observations for tidligere år...
           //gemmer det i 'newData' som bliver brugt som data herfra
           if (data[0].years >= 2022) {
-           newData = [data[0].best_case, data[0].worst_case];
+            newData = [data[0].best_case, data[0].worst_case];
           } else if (data[0].years < 2022) {
-           newData = [data[0].observations, data[0].observations];
-          };
+            newData = [data[0].observations, data[0].observations];
+          }
           // Funktion finder valuen fra id'et chosenYear (input felt med år),
           // og gemmer det i variablen year.
 
@@ -90,8 +90,6 @@
         });
       }
 
-
-
       //waterlevels bliver brugt til at kalde vores api med en years parameter
       function waterlevels(years) {
         d3.json(`/api/climate/${years}`, {
@@ -102,7 +100,6 @@
           //kalder draw(data) for at lave svg udfra api data
           draw(data);
         });
-
       }
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
@@ -177,8 +174,6 @@
           console.log(id);
         });
 
-
-
       d3.json("/api/climate", {
         method: "POST",
       }).then(function (response) {
@@ -202,7 +197,7 @@
             "translate(" + margin.left + "," + margin.top + ")"
           );
 
-         Add X axis it is a date format
+        //Add X axis it is a date format
         var x = d3
           .scaleTime()
           .domain(
