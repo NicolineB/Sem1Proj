@@ -5,7 +5,7 @@
     <script src="scripts/d3.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <title>Vandstigninger</title>
-    <script>
+    <!-- <script>
       const w = 700;
       const h = 400;
       const bottomPadding = 7;
@@ -269,7 +269,7 @@
               })
           );
       });
-    </script>
+    </script> -->
 
     <script>
       //animal data
@@ -290,7 +290,7 @@
           .select("#svg2")
           .append("svg")
           .attr("width", w)
-          .attr("height", h);
+          .attr("height", h+100);
 
         // laver skala for y-akse
         const yScale = d3
@@ -302,16 +302,25 @@
         const yAxis = d3.axisLeft().scale(yScale).ticks(10);
         svg
           .append("g")
-          .attr("class", "axis")
-          .attr("transform", "translate(" + sidePadding + ",0)")
+          .attr("class", "yAxis")
+          .attr("transform", `translate(${sidePadding}, 0)`)
           .call(yAxis)
           .style("font-size", "20px");
 
         const xScale = d3
           .scaleBand()
           .domain(d3.range(data.length))
-          .range([0, w - 44]);
+          .range([0, w - 44])
+          .paddingInner(0.05);
 
+        const xAxis = d3.axisBottom().scale(xScale).ticks(d3.range(data.length)).tickSize(0);
+        svg
+          .append("g")
+          .attr("class", "xAxis")
+          .attr("transform", `translate(${sidePadding}, ${h})`)
+          .call(xAxis)
+          .style("font-size", "20px");
+          
         //tegner vores svg
         svg
           .selectAll("rect")
@@ -322,13 +331,34 @@
             return xScale(i) + 44;
           })
           .attr("y", function (d) {
-            return yScale(d.percent_at_risk);
+            return yScale(100);
           })
           .attr("width", xScale.bandwidth())
           .attr("height", function (d) {
-            return h - yScale(d.percent_at_risk) - bottomPadding;
+            return h - yScale(100) - bottomPadding;
           })
           .attr("fill", "green");
+
+        svg.select(".xAxis").selectAll("text").remove();
+        svg.select(".xAxis").selectAll(".tick")
+          .data(data)
+          .append("svg:image")
+          
+          .attr("width", 50)
+          .attr("height", 50)
+          .attr("x", -120)
+          .attr("y", -50)
+          .attr("xlink:href", `css/Arthropod.png`);
+
+        svg.selectAll("image")
+          .data(data)
+          .enter()
+          .append("svg:image")
+          .attr("width", 50)
+          .attr("height", 50)
+          .attr("x", 80)
+          .attr("y", 100)
+          .attr("xlink:href", "css/Cnidaria.png");
       });
     </script>
   </head>
@@ -398,7 +428,7 @@
         </div>
       </div>
     </section>
-    <section>
+    <section class="animalRisk">
       <h1 id="animalTitle">Animals at risk</h1>
       <div class="container2">
         <div class="consequences">
@@ -408,6 +438,7 @@
           <h2>eventuel info?</h2>
           <article>
             <p>eventuel info?</p>
+            <button type="button" onclick="animalUpdate();">KILL</button>
           </article>
         </div>
       </div>
