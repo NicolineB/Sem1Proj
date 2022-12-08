@@ -128,7 +128,7 @@ section {
 
 /* ændrer skriftypen på aksen */
 .yAxis {
-  font-family: "Raleway", sans-serif !important;
+  font-size: medium;
 }
 
 .container {
@@ -306,15 +306,10 @@ section {
   background-color: white;
   color: black;
   transform: rotateY(180deg);
+  font-family: "Times New Roman", Times, serif;
   border-radius: 30px;
   line-height: 40px;
   font-size: 1.2vw;
-}
-
-.flip-card-back a {
-  color: #7f7fff;
-  line-height: 40px;
-  text-align: left;
 }
 
 a {
