@@ -243,6 +243,7 @@
           );
       });
     </script>
+
     <script>
       //animal data
       d3.json(`/api/animal`, {
@@ -320,29 +321,44 @@
           })
           .attr("fill", "green");
 
+        //tilføjer billeder til x-akse
         svg.select(".xAxis").selectAll("text").remove();
         svg
           .select(".xAxis")
           .selectAll(".tick")
           .data(data)
           .append("svg:image")
-
           .attr("width", 50)
           .attr("height", 50)
-          .attr("x", -120)
-          .attr("y", -50)
-          .attr("xlink:href", `css/Arthropod.png`);
+          .attr("x", -20)
+          .attr("y", 0)
+          .attr("href", function (d) {
+            return d.img;
+          });
 
-        svg
-          .selectAll("image")
-          .data(data)
-          .enter()
-          .append("svg:image")
-          .attr("width", 50)
-          .attr("height", 50)
-          .attr("x", 80)
-          .attr("y", 100)
-          .attr("xlink:href", "css/Cnidaria.png");
+        function animalUpdate() {
+          //opretter updateSelection og tilkobler dataen
+          const updateSelection = svg.selectAll("rect").data(data);
+
+          //bruger updateSelection til at opdatere vores svg
+          updateSelection
+            .transition()
+            .duration(2000)
+            .attr("x", function (d, i) {
+              return xScale(i) + 41;
+            })
+            .attr("y", function (d) {
+              return yScale(d.percent_remaining);
+            })
+            .attr("width", xScale.bandwidth())
+            .attr("height", function (d) {
+              return h - yScale(d.percent_remaining) - bottomPadding;
+        })
+      }
+      d3.select('#animalButton')
+        .html('<input name="updateAnimal" type="button" value="Update" />')
+        .on('click', function() { animalUpdate(); });
+
       });
     </script>
   </head>
@@ -438,7 +454,8 @@
           <h2>eventuel info?</h2>
           <article>
             <p>eventuel info?</p>
-            <button type="button" onclick="animalUpdate();">KILL</button>
+            <div id="animalButton">
+            </div>
           </article>
         </div>
       </div>
