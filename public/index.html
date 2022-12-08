@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/waves.css" />
     <title>Vandstigninger</title>
-    <!-- <script>
+    <script>
       const w = 700;
       const h = 400;
       const bottomPadding = 7;
@@ -14,8 +14,8 @@
       const topPadding = 20;
 
       //kalder waterlevels for at oprette den første svg
-      waterlevels(2100);
-      
+      waterlevels(1997);
+
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
       function getInputValue() {
@@ -28,7 +28,7 @@
         }
         update(years);
       }
-    
+
       // d3.select("#submit").on("click", function (event) {
       //let input = d3.select("#submit").property("value");
       // console.log(input);
@@ -51,13 +51,13 @@
           //og gemmer observations for tidligere år...
           //gemmer det i 'newData' som bliver brugt som data herfra
           if (data[0].years >= 2022) {
-           newData = [data[0].best_case, data[0].worst_case];
+            newData = [data[0].best_case, data[0].worst_case];
           } else if (data[0].years < 2022) {
-           newData = [data[0].observations, data[0].observations];
-          };
+            newData = [data[0].observations, data[0].observations];
+          }
           // Funktion finder valuen fra id'et chosenYear (input felt med år),
           // og gemmer det i variablen year.
-        
+
           //laver y-skala udfra højde og paddings
           const yScale = d3
             .scaleLinear()
@@ -90,8 +90,6 @@
         });
       }
 
-
-
       //waterlevels bliver brugt til at kalde vores api med en years parameter
       function waterlevels(years) {
         d3.json(`/api/climate/${years}`, {
@@ -102,7 +100,6 @@
           //kalder draw(data) for at lave svg udfra api data
           draw(data);
         });
-
       }
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
@@ -128,7 +125,7 @@
         const yAxis = d3.axisLeft().scale(yScale).ticks(8);
         svg
           .append("g")
-          .attr("class", "axis")
+          .attr("class", "yAxis")
           .attr("transform", "translate(" + sidePadding + ",0)")
           .call(yAxis)
           .style("font-size", "20px");
@@ -176,8 +173,6 @@
           // where year = ID
           console.log(id);
         });
-      
-      
 
       d3.json("/api/climate", {
         method: "POST",
@@ -202,7 +197,7 @@
             "translate(" + margin.left + "," + margin.top + ")"
           );
 
-         Add X axis it is a date format
+        //Add X axis it is a date format
         var x = d3
           .scaleTime()
           .domain(
@@ -246,9 +241,8 @@
                 return y(d.temp_rise);
               })
           );
-      }); 
-    </script> -->
-
+      });
+    </script>
     <script>
       //animal data
       d3.json(`/api/animal`, {
@@ -355,28 +349,29 @@
   <body>
     <section class="infoslide" id="infoSlide">
       <h1 id="main-title">
-        Som tiden går, <span class="color-emphasis-1">stiger vandene</span>
+        Som tiden går, <span span style="color: white">stiger vandene</span>
       </h1>
       <h3>
         I 1997 begyndte forskere at måle vandstanden og siden da er det kun
         steget.
-        <span class="color-emphasis-1"
-          >Hvilke konsekvenser tror du, at det har?</span
-        >
+        <br />
+        <span span style="color: white">
+          Hvilke konsekvenser tror du, at det har?
+        </span>
       </h3>
       <h4 class="scrollVidere">Scroll videre for at høre mere</h4>
-      <div class="wave wave1"></div>
-      <div class="wave wave2"></div>
-      <div class="wave wave3"></div>
-      <div class="wave wave4"></div>
       <!--figur til at illustere at scroll ned-->
       <a class="scroll-down arrow">
         <label></label>
         <span></span>
       </a>
+      <div class="wave wave1"></div>
+      <div class="wave wave2"></div>
+      <div class="wave wave3"></div>
+      <div class="wave wave4"></div>
     </section>
     <section class="water-rise" id="waterRise">
-      <h1 id="water-rise-title">Hvor meget vil vandet stige?</h1>
+      <h1 id="water-rise-title">Hvor meget vil vandene stige?</h1>
       <h2 id="water-rise-under-title">
         Vælg venligst årstal mellem 1997 og 2100.
       </h2>
@@ -402,20 +397,22 @@
         <div class="col2">
           <div class="col2-container">
             <h2>Hvorfor stiger vandene?</h2>
-            <p class="waterlvl_information">
-              Siden 1950 er jordens klima blevet markant varmere, bl.a. pga.
-              menneskets omfattende udledning af drivhusgasser. Som
-              temperaturene stiger, smelter gletsjere og indlandsis som dermed
-              bevæger sig ud i havet. Dette ses som den største enkeltårsag til
-              stigninger i havniveauet.
-            </p>
-            <p>
-              Fra 1997 til 2021 har forskere målt hvor meget havene stiger pr.
-              år. De har derefter gjort udregninger om fremtiden, i form af et
-              "best case" scenarie og et "worst case" scenarie. Prøv dig frem og
-              se hvor stor forskellen på de to scenarier er, jo længere frem i
-              tiden du kommer.
-            </p>
+            <div class="waterlvl_information">
+              <p>
+                Siden 1950 er jordens klima blevet markant varmere, bl.a. pga.
+                menneskets omfattende udledning af drivhusgasser. Som
+                temperaturene stiger, smelter gletsjere og indlandsis som dermed
+                bevæger sig ud i havet. Dette ses som den største enkeltårsag
+                til stigninger i havniveauet.
+              </p>
+              <p>
+                Fra 1997 til 2021 har forskere målt hvor meget havene stiger pr.
+                år. De har derefter gjort udregninger om fremtiden, i form af et
+                "best case" scenarie og et "worst case" scenarie. Prøv dig frem
+                og se hvor stor forskellen på de to scenarier er, jo længere
+                frem i tiden du kommer.
+              </p>
+            </div>
             <a href="https://ipcc-browser.ipcc-data.org/browser/dataset?id=3764"
               >IPCC (Intergovernmental Panel on Climate Change)</a
             >
@@ -462,9 +459,9 @@
           <!-- bagsiden af kortet -->
           <div class="flip-card-back">
             <p>
-              <b
-                >Over halvdelen af strandengene vil forsvinde I løbet af de
-                næste år.
+              <b>
+                Over halvdelen af strandengene vil forsvinde I løbet af de næste
+                år.
               </b>
             </p>
             <p>
@@ -477,12 +474,13 @@
             <p>
               <a
                 href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet"
-                >COWI.dk</a
-              >
+                >COWI.dk
+              </a>
             </p>
           </div>
         </div>
       </div>
+      <br />
       <!-- dette gentages tre yderligere gange -->
       <div class="flip-card">
         <div class="flip-card-inner">
@@ -510,6 +508,7 @@
           </div>
         </div>
       </div>
+      <br />
       <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front">
@@ -539,12 +538,13 @@
           </div>
         </div>
       </div>
+      <br />
       <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front">
             <img src="css/4.png" style="width: 100%; height: 300px" />
             <div class="title" style="color: #93d7f7">
-              <br />Flere stormfloder,større oversvømmelser
+              <p>Flere stormfloder,<br />større oversvømmelser</p>
             </div>
           </div>
           <div class="flip-card-back">
@@ -558,7 +558,7 @@
               Dvs. at over halvdelen af eksempelvis Randers og Frederiksværk vil
               oversvømmes i 2115. Derudover er salt giftigt for langt de fleste
               organismer. Derfor vil gentagne oversvømmelser være en reel fare
-              for flora og fauna i de ferske naturområder
+              for flora og fauna i de ferske naturområder.
             </p>
             <a
               href="https://realdania.dk/publikationer/faglige-publikationer/tilpasning-til-havvandsstigninger-rapport"

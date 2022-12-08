@@ -11,6 +11,26 @@ body {
   font-family: "Raleway", sans-serif; /* ændrer i skriftypen for HELE bodyen */
 }
 
+/* SCROLL 
+@media (min-height: 30em) {
+  main {
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+}
+
+@media (min-height: 30em) {
+  section {
+    height: 100vh;
+  }
+}
+
+section {
+  scroll-snap-align: center;
+} */
+
 .infoslide {
   position: center;
   width: 100%;
@@ -21,17 +41,13 @@ body {
 
 #main-title {
   text-align: center;
-  top: 10%;
+  top: 5%;
   font-family: "Raleway", sans-serif;
   position: relative;
-  font-size: 7vw;
+  font-size: 6.5vw;
   line-height: 200px;
   color: lightblue;
   margin: 1000;
-}
-
-.color-emphasis-1 {
-  color: white;
 }
 
 .infoslide h3 {
@@ -39,8 +55,8 @@ body {
   font-size: 2vw;
   font-weight: 100;
   text-align: center;
-  line-height: 100px;
-  margin: 1000;
+  line-height: 60px;
+  margin: 500;
   color: lightblue;
 }
 
@@ -49,14 +65,14 @@ body {
   font-size: 1.5vw;
   text-align: center;
   color: white;
+  top: 10%;
 }
 
 /* scroll pil til vejvisning */
 .scroll-down.arrow span {
   position: absolute;
   display: inline-block;
-  top: 20px;
-  height: 25px;
+  height: 35px;
   width: 2px;
   left: calc(50% - 1px);
   animation: animateArrow 1.25s infinite linear;
@@ -73,7 +89,7 @@ body {
   }
 }
 .scroll-down.arrow span {
-  top: 100%;
+  top: 77%;
   animation-delay: 0s;
   bottom: 15%;
 }
@@ -86,7 +102,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgb(114, 114, 114);
+  background: rgb(59, 59, 59);
   border-radius: 3px;
 }
 .scroll-down.arrow span::before {
@@ -107,8 +123,8 @@ body {
 }
 
 /* ændrer skriftypen på aksen */
-.axis {
-  font-family: "Raleway", sans-serif !important;
+.yAxis {
+  font-size: medium;
 }
 
 .container {
@@ -148,6 +164,14 @@ body {
   line-height: 200px;
   color: orange;
   margin: 1000; */
+}
+
+.waterlvl_information {
+  font-family: "Times New Roman", Times, serif;
+  position: relative;
+  font-size: 1.1vw;
+  color: black;
+  margin: 20px;
 }
 
 .consequences {
@@ -200,21 +224,6 @@ body {
   font-size: 4vw;
   line-height: 40px;
   color: rgb(82, 157, 220);
-}
-
-/* Scroll behaviour */
-@media (min-height: 30em) {
-  main {
-    scroll-snap-type: y mandatory;
-    height: 100vh;
-    overflow-y: scroll;
-  }
-}
-
-@media (min-height: 30em) {
-  .section {
-    height: 100vh;
-  }
 }
 
 .not-fun-facts {
@@ -278,14 +287,14 @@ body {
 }
 
 .flip-card-front .title {
-  color: #7f7fff;
+  color: #5d8ac2;
   line-height: 60px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Raleway", sans-serif;
-  font-size: 2vw;
+  font-size: 3.5vw;
   font-weight: bold;
 }
 
@@ -293,13 +302,21 @@ body {
   background-color: white;
   color: black;
   transform: rotateY(180deg);
+  font-family: "Times New Roman", Times, serif;
   border-radius: 30px;
   line-height: 40px;
   font-size: 1.2vw;
 }
 
-.flip-card-back a {
+a {
   color: #7f7fff;
   line-height: 40px;
   text-align: left;
+  font-size: 0.7vw;
+}
+
+footer {
+  background-color: #5d8ac2;
+  color: lightblue;
+  text-align: center;
 }
