@@ -14,8 +14,8 @@
 
       //kalder waterlevels for at oprette den første svg
       waterlevels(2100);
-
-      // Funktion finder valuen fra id'et chosenYear (input felt med år),
+      
+// Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
       function getInputValue() {
         let years = document.getElementById("chosenYear").value;
@@ -25,10 +25,9 @@
           document.getElementById("water-rise-title").innerHTML =
             "Årstal ugyldigt";
         }
-        document.getElementById("year").innerHTML = "Året: " + years;
         update(years);
       }
-
+    
       // d3.select("#submit").on("click", function (event) {
       //let input = d3.select("#submit").property("value");
       // console.log(input);
@@ -57,34 +56,7 @@
           };
           // Funktion finder valuen fra id'et chosenYear (input felt med år),
           // og gemmer det i variablen year.
-      
-          function getInputValue() {
-            let years = document.getElementById("chosenYear").value; 
-            if (years > 1996 && years < 2101) {
-              document.getElementById("water-rise-title").innerHTML = "År " + years;
-            } else {
-              document.getElementById("water-rise-title").innerHTML =
-                "Årstal ugyldigt";
-            }
-        document.getElementById("year").innerHTML = "Året: " + years;
-        update(years);
-
-        // Opsætter en case: 
-         // switch (years) {
-           // case (years <=  1997 && years >= 2022): 
-             // const waterlvl_obs = newData.observations[0];
-              // document.getElementById('waterLevel_Observation').innerHTML = "Observation: " + waterlvl_obs; 
-              //onsole.log(waterlvl_obs);
-             // break; 
-            //case (years <= 2022 && years >= 2100): 
-              //const waterlvl_bestCase = newData.best_case[0];
-              //const waterlvl_worstCase = newData.worst_case[0];
-              //document.getElementById('best-case').innerHTML = "best case: " + waterlvl_bestCase;
-              //document.getElementById('worst-case').innerHTML = "worst case: " + waterlvl_worstCase;
-              //console.log(waterlvl_bestCase, waterlvl_worstCase)
-              //break;
-          //}
-      }
+        
           //laver y-skala udfra højde og paddings
           const yScale = d3
             .scaleLinear()
@@ -117,6 +89,8 @@
         });
       }
 
+
+
       //waterlevels bliver brugt til at kalde vores api med en years parameter
       function waterlevels(years) {
         d3.json(`/api/climate/${years}`, {
@@ -127,7 +101,10 @@
           //kalder draw(data) for at lave svg udfra api data
           draw(data);
         });
+
       }
+      // Funktion finder valuen fra id'et chosenYear (input felt med år),
+      // og gemmer det i variablen inputVal.
 
       //tegner vores svg og bliver kaldt af waterlevels
       function draw(data) {
@@ -198,7 +175,7 @@
           // where year = ID
           console.log(id);
         });
-
+      
       
 
       d3.json("/api/climate", {
@@ -382,15 +359,8 @@
             <h2>Here will a title be</h2>
             <article>
               <p id="year">År : </p>
-              <!--Evt. variable som referer til data fra året-->
-              <p class="waterlvl_observation">
-                <label id="waterLevel_Observation"> Observation</label>
-                
-                <p class="best-worse-case">
-                <label id="best-case"> Best Case: </label>
-                <label id="worst-case">Worst Case: </label>
-                </p>
-
+              <p class="waterlvl_information">
+    
               </p>
             </article>
             <!--figur til at illustere at scroll ned-->
