@@ -41,17 +41,13 @@ section {
 
 #main-title {
   text-align: center;
-  top: 10%;
+  top: 5%;
   font-family: "Raleway", sans-serif;
   position: relative;
-  font-size: 7vw;
+  font-size: 6.5vw;
   line-height: 200px;
   color: lightblue;
   margin: 1000;
-}
-
-.color-emphasis-1 {
-  color: white;
 }
 
 .infoslide h3 {
@@ -59,8 +55,8 @@ section {
   font-size: 2vw;
   font-weight: 100;
   text-align: center;
-  line-height: 100px;
-  margin: 1000;
+  line-height: 60px;
+  margin: 500;
   color: lightblue;
 }
 
@@ -69,14 +65,14 @@ section {
   font-size: 1.5vw;
   text-align: center;
   color: white;
+  top: 10%;
 }
 
 /* scroll pil til vejvisning */
 .scroll-down.arrow span {
   position: absolute;
   display: inline-block;
-  top: 20px;
-  height: 25px;
+  height: 35px;
   width: 2px;
   left: calc(50% - 1px);
   animation: animateArrow 1.25s infinite linear;
@@ -93,7 +89,7 @@ section {
   }
 }
 .scroll-down.arrow span {
-  top: 100%;
+  top: 77%;
   animation-delay: 0s;
   bottom: 15%;
 }
@@ -106,7 +102,7 @@ section {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgb(114, 114, 114);
+  background: rgb(59, 59, 59);
   border-radius: 3px;
 }
 .scroll-down.arrow span::before {
