@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <script src="scripts/d3.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/waves.css" />
     <title>Vandstigninger</title>
     <!-- <script>
       const w = 700;
@@ -15,7 +16,7 @@
       //kalder waterlevels for at oprette den første svg
       waterlevels(2100);
       
-// Funktion finder valuen fra id'et chosenYear (input felt med år),
+      // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
       function getInputValue() {
         let years = document.getElementById("chosenYear").value;
@@ -255,7 +256,12 @@
       }).then(function (response) {
         let data = response.data;
         console.log(data);
-        data.sort((a, b) => d3.descending(parseFloat(a.percent_at_risk), parseFloat(b.percent_at_risk)));
+        data.sort((a, b) =>
+          d3.descending(
+            parseFloat(a.percent_at_risk),
+            parseFloat(b.percent_at_risk)
+          )
+        );
 
         const w = 1000;
         const h = 550;
@@ -267,7 +273,7 @@
           .select("#svg2")
           .append("svg")
           .attr("width", w)
-          .attr("height", h+100);
+          .attr("height", h + 100);
 
         // laver skala for y-akse
         const yScale = d3
@@ -290,14 +296,18 @@
           .range([0, w - 44])
           .paddingInner(0.05);
 
-        const xAxis = d3.axisBottom().scale(xScale).ticks(d3.range(data.length)).tickSize(0);
+        const xAxis = d3
+          .axisBottom()
+          .scale(xScale)
+          .ticks(d3.range(data.length))
+          .tickSize(0);
         svg
           .append("g")
           .attr("class", "xAxis")
           .attr("transform", `translate(${sidePadding}, ${h})`)
           .call(xAxis)
           .style("font-size", "20px");
-          
+
         //tegner vores svg
         svg
           .selectAll("rect")
@@ -317,17 +327,20 @@
           .attr("fill", "green");
 
         svg.select(".xAxis").selectAll("text").remove();
-        svg.select(".xAxis").selectAll(".tick")
+        svg
+          .select(".xAxis")
+          .selectAll(".tick")
           .data(data)
           .append("svg:image")
-          
+
           .attr("width", 50)
           .attr("height", 50)
           .attr("x", -120)
           .attr("y", -50)
           .attr("xlink:href", `css/Arthropod.png`);
 
-        svg.selectAll("image")
+        svg
+          .selectAll("image")
           .data(data)
           .enter()
           .append("svg:image")
@@ -344,8 +357,12 @@
       <h1 id="main-title">
         Som tiden går, <span class="color-emphasis-1">stiger vandene</span>
       </h1>
-       <p>i 1997 begyndte forskere at måle vandstanden og siden da er det kun steget.</p>
-        <span class="color-emphasis-1">Hvilke konsekvenser tror du, at det har?</span>
+      <h3>
+        I 1997 begyndte forskere at måle vandstanden og siden da er det kun
+        steget.
+        <span class="color-emphasis-1"
+          >Hvilke konsekvenser tror du, at det har?</span
+        >
       </h3>
       <h4 class="scrollVidere">Scroll videre for at høre mere</h4>
       <div class="wave wave1"></div>
@@ -358,7 +375,6 @@
         <span></span>
       </a>
     </section>
-
     <section class="water-rise" id="waterRise">
       <h1 id="water-rise-title">Hvor meget vil vandet stige?</h1>
       <h2 id="water-rise-under-title">
@@ -385,35 +401,38 @@
         </div>
         <div class="col2">
           <div class="col2-container">
-            <h2>Here will a title be</h2>
-            <article>
-              <p id="year">År : </p>
-<<<<<<< HEAD
-              <p class="waterlvl_information">
-    
-=======
-              <p class="waterlvl_observation">
-                <label id="waterLevel_Observation"><p>Fra år 1997 til 2021 har man målt hvor meget havene stiger pr. år. 
-                  Derfor stiger de to kollonner i grafen med lige meget indtil 2021.
-                  Derefter er der blevet gjort to udregninger for fremtiden, et "best case" scenarie og et "worst case" scenarie.</p>
-                  <a href="https://ipcc-browser.ipcc-data.org/browser/dataset?id=3764">IPCC (Intergovernmental Panel on Climate Change)</a>
-                </label>
-                
-                <p class="best-worse-case">
-                <label id="best-case"> Best Case: </label>
-                <label id="worst-case">Worst Case: </label>
-                </p>
-
->>>>>>> 59c2e11 (hejdsa)
-              </p>
-            </article>
+            <h2>Hvorfor stiger vandene?</h2>
+            <p class="waterlvl_information">
+              Siden 1950 er jordens klima blevet markant varmere, bl.a. pga.
+              menneskets omfattende udledning af drivhusgasser. Som
+              temperaturene stiger, smelter gletsjere og indlandsis som dermed
+              bevæger sig ud i havet. Dette ses som den største enkeltårsag til
+              stigninger i havniveauet.
+            </p>
+            <p>
+              Fra 1997 til 2021 har forskere målt hvor meget havene stiger pr.
+              år. De har derefter gjort udregninger om fremtiden, i form af et
+              "best case" scenarie og et "worst case" scenarie. Prøv dig frem og
+              se hvor stor forskellen på de to scenarier er, jo længere frem i
+              tiden du kommer.
+            </p>
+            <a href="https://ipcc-browser.ipcc-data.org/browser/dataset?id=3764"
+              >IPCC (Intergovernmental Panel on Climate Change)</a
+            >
             <!--figur til at illustere at scroll ned-->
+            <a class="scroll-down arrow">
+              <label></label>
+              <span></span>
+            </a>
           </div>
         </div>
       </div>
     </section>
     <section class="animalRisk">
-      <h1 id="animalTitle">Animals at risk</h1>
+      <h1 id="animalTitle">Det ser måske ikke ud af meget...</h1>
+      <h1 id="animalTitle" style="color: black">
+        men flere dyrearter er i fare
+      </h1>
       <div class="container2">
         <div class="consequences">
           <div id="svg2" class="svg2"></div>
@@ -437,63 +456,124 @@
         <div class="flip-card-inner">
           <!-- forsiden af kortet -->
           <div class="flip-card-front">
-            <img src="css/1.png" style="width:100%;height:300px;">
-            <div class="title"><b>Fugle bliver hjemløse</b></div>
+            <img src="css/1.png" style="width: 100%; height: 300px" />
+            <div class="title">Fugle bliver hjemløse</div>
           </div>
           <!-- bagsiden af kortet -->
-          <div class="flip-card-back"><p>Over halvdelen af strandengene vil forsvinde I løbet af de næste år.</p>
-            <p>Det er især de dyr, der er tilknyttet strandengene, der kommer til at forsvinde. Det er vadefugle som engryle, brushaner, stor kobbersnepper, rødben osv. En stor del af de mange sjældne fugle, dyr og planter, som findes på strandengene langs de danske kyster, er alvorligt truet af udryddelse.<p>
-            <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
+          <div class="flip-card-back">
+            <p>
+              <b
+                >Over halvdelen af strandengene vil forsvinde I løbet af de
+                næste år.
+              </b>
+            </p>
+            <p>
+              Det er især de dyr, der er tilknyttet strandengene, der kommer til
+              at forsvinde. Det er vadefugle som engryle, brushaner, stor
+              kobbersnepper, rødben osv. En stor del af de mange sjældne fugle,
+              dyr og planter, som findes på strandengene langs de danske kyster,
+              er alvorligt truet af udryddelse.
+            </p>
+            <p>
+              <a
+                href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet"
+                >COWI.dk</a
+              >
+            </p>
           </div>
         </div>
       </div>
-      </br>
       <!-- dette gentages tre yderligere gange -->
       <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="css/2.png" style="width:100%;height:300px;">
-              <div class="title"><b>Kystens plantesamfund drukner</b></div>
-            </div>
-            <div class="flip-card-back">
-              <p>Plantesamfundene langs kysterne hører til de mest udsatte for klimaændringerne.</p>
-                <p> Stigende vandspejl og hyppigere oversvømmelser øger risikoen for at de "drukner". Det kan ramme strandenge og de smalle bælter med for eksempel kveller og strand-annelgræs, der findes langs kysterne. Kyster med lille tidevandsforskel forventes at blive mest berørte af stigningerne.</p> 
-              <a href="https://www.klimatilpasning.dk/sektorer/natur/kystnatur/">klimatilpasning.dk</a>
-            </div>
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="css/2.png" style="width: 100%; height: 300px" />
+            <div class="title"><b>Kystens plantesamfund drukner</b></div>
+          </div>
+          <div class="flip-card-back">
+            <p>
+              <b
+                >Plantesamfundene langs kysterne hører til de mest udsatte for
+                klimaændringerne.</b
+              >
+            </p>
+            <p>
+              Stigende vandspejl og hyppigere oversvømmelser øger risikoen for
+              at de "drukner". Det kan ramme strandenge og de smalle bælter med
+              for eksempel kveller og strand-annelgræs, der findes langs
+              kysterne. Kyster med lille tidevandsforskel forventes at blive
+              mest berørte af stigningerne.
+            </p>
+            <a href="https://www.klimatilpasning.dk/sektorer/natur/kystnatur/"
+              >klimatilpasning.dk</a
+            >
           </div>
         </div>
-      </br>
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="css/3.png" style="width:100%;height:300px;">
-              <div class="title"><b>Skildpadder sulter</b></div>
-            </div>
-            <div class="flip-card-back">
-              <p>Skildpadder der bor I Oceanien og Nordamerika står overfor de største trusler.</p>
-                <p>Når vandene stiger, stiger saltindholdet og det kan deres kroppe ikke behandle. Så de stopper helt med at spise og drikke indtil saltindholdet falder igen. I og med at vandene ikke falder igen efter nok vandstigning, og saltindholdet dermed ikke falder, så bliver skildpadderne ved med at sulte dem selv. </p> 
-              <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
-            </div>
-          </div>
-        </div>
-      </br>
+      </div>
       <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="css/4.png" style="width:100%;height:300px;">
-              <div class="title"><p>Flere stormfloder</p>
-                <p>større oversvømmelser</p></div>
-            </div>
-            <div class="flip-card-back">
-              <p>Ændringerne I vandstanden sammen med ændrende vindmønstre fører til øgede stormflodshøjder.</p>
-              <p>Dvs. at over halvdelen af eksempelvis Randers og Frederiksværk vil oversvømmes i 2115. Derudover er salt giftigt for langt de fleste organismer. Derfor vil gentagne oversvømmelser være en reel fare for flora og fauna i de ferske naturområder</p> 
-              <a href="https://realdania.dk/publikationer/faglige-publikationer/tilpasning-til-havvandsstigninger-rapport">Realdania.dk</a>
-              <a href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet">COWI.dk</a>
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="css/3.png" style="width: 100%; height: 300px" />
+            <div class="title" style="color: #93d7f7">
+              <b>Skildpadder sulter</b>
             </div>
           </div>
+          <div class="flip-card-back">
+            <p>
+              <b
+                >Skildpadder der bor I Oceanien og Nordamerika står overfor de
+                største trusler.</b
+              >
+            </p>
+            <p>
+              Når vandene stiger, stiger saltindholdet og det kan deres kroppe
+              ikke behandle. Så de stopper helt med at spise og drikke indtil
+              saltindholdet falder igen. I og med at vandene ikke falder igen
+              efter nok vandstigning, og saltindholdet dermed ikke falder, så
+              bliver skildpadderne ved med at sulte dem selv.
+            </p>
+            <a
+              href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet"
+              >COWI.dk</a
+            >
+          </div>
         </div>
-      </br>
-      </section>
-    <footer></footer>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="css/4.png" style="width: 100%; height: 300px" />
+            <div class="title" style="color: #93d7f7">
+              <br />Flere stormfloder,større oversvømmelser
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p>
+              <b
+                >Ændringerne I vandstanden, sammen med ændrende vindmønstre,
+                fører til øgede stormflodshøjder.
+              </b>
+            </p>
+            <p>
+              Dvs. at over halvdelen af eksempelvis Randers og Frederiksværk vil
+              oversvømmes i 2115. Derudover er salt giftigt for langt de fleste
+              organismer. Derfor vil gentagne oversvømmelser være en reel fare
+              for flora og fauna i de ferske naturområder
+            </p>
+            <a
+              href="https://realdania.dk/publikationer/faglige-publikationer/tilpasning-til-havvandsstigninger-rapport"
+              >Realdania.dk
+            </a>
+            <a
+              href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet"
+              >COWI.dk
+            </a>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <p>POWERED BY: HOLD1 @ 2022</p>
+      </footer>
+    </section>
   </body>
 </html>
