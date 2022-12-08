@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/waves.css" />
     <title>Vandstigninger</title>
-    <!-- <script>
+    <script>
       const w = 700;
       const h = 400;
       const bottomPadding = 7;
@@ -15,7 +15,7 @@
 
       //kalder waterlevels for at oprette den første svg
       waterlevels(2100);
-      
+
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
       function getInputValue() {
@@ -28,7 +28,7 @@
         }
         update(years);
       }
-    
+
       // d3.select("#submit").on("click", function (event) {
       //let input = d3.select("#submit").property("value");
       // console.log(input);
@@ -57,7 +57,7 @@
           };
           // Funktion finder valuen fra id'et chosenYear (input felt med år),
           // og gemmer det i variablen year.
-        
+
           //laver y-skala udfra højde og paddings
           const yScale = d3
             .scaleLinear()
@@ -176,8 +176,8 @@
           // where year = ID
           console.log(id);
         });
-      
-      
+
+
 
       d3.json("/api/climate", {
         method: "POST",
@@ -246,9 +246,8 @@
                 return y(d.temp_rise);
               })
           );
-      }); 
-    </script> -->
-
+      });
+    </script>
     <script>
       //animal data
       d3.json(`/api/animal`, {
@@ -360,9 +359,10 @@
       <h3>
         I 1997 begyndte forskere at måle vandstanden og siden da er det kun
         steget.
-        <span class="color-emphasis-1"
-          >Hvilke konsekvenser tror du, at det har?</span
-        >
+        <br />
+        <span class="color-emphasis-1">
+          Hvilke konsekvenser tror du, at det har?
+        </span>
       </h3>
       <h4 class="scrollVidere">Scroll videre for at høre mere</h4>
       <div class="wave wave1"></div>
@@ -462,9 +462,9 @@
           <!-- bagsiden af kortet -->
           <div class="flip-card-back">
             <p>
-              <b
-                >Over halvdelen af strandengene vil forsvinde I løbet af de
-                næste år.
+              <b>
+                Over halvdelen af strandengene vil forsvinde I løbet af de næste
+                år.
               </b>
             </p>
             <p>
@@ -477,8 +477,8 @@
             <p>
               <a
                 href="https://www.cowi.dk/om-cowi/nyheder-og-presse/ny-rapport-danmarks-kystnatur-alvorligt-truet"
-                >COWI.dk</a
-              >
+                >COWI.dk
+              </a>
             </p>
           </div>
         </div>
@@ -558,7 +558,7 @@
               Dvs. at over halvdelen af eksempelvis Randers og Frederiksværk vil
               oversvømmes i 2115. Derudover er salt giftigt for langt de fleste
               organismer. Derfor vil gentagne oversvømmelser være en reel fare
-              for flora og fauna i de ferske naturområder
+              for flora og fauna i de ferske naturområder.
             </p>
             <a
               href="https://realdania.dk/publikationer/faglige-publikationer/tilpasning-til-havvandsstigninger-rapport"

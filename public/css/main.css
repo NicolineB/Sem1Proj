@@ -11,6 +11,26 @@ body {
   font-family: "Raleway", sans-serif; /* ændrer i skriftypen for HELE bodyen */
 }
 
+/*
+@media (min-height: 30em) {
+  main {
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+}
+
+@media (min-height: 30em) {
+  section {
+    height: 100vh;
+  }
+}
+
+section {
+  scroll-snap-align: center;
+} */
+
 .infoslide {
   position: center;
   width: 100%;
@@ -278,14 +298,14 @@ body {
 }
 
 .flip-card-front .title {
-  color: #7f7fff;
+  color: #5d8ac2;
   line-height: 60px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Raleway", sans-serif;
-  font-size: 2vw;
+  font-size: 3.5vw;
   font-weight: bold;
 }
 
