@@ -127,7 +127,7 @@ section {
 }
 
 /* ændrer skriftypen på aksen */
-.axis {
+.yAxis {
   font-family: "Raleway", sans-serif !important;
 }
 
@@ -168,6 +168,14 @@ section {
   line-height: 200px;
   color: orange;
   margin: 1000; */
+}
+
+.waterlvl_information {
+  font-family: "Times New Roman", Times, serif;
+  position: relative;
+  font-size: 1.1vw;
+  color: black;
+  margin: 20px;
 }
 
 .consequences {
@@ -220,21 +228,6 @@ section {
   font-size: 4vw;
   line-height: 40px;
   color: rgb(82, 157, 220);
-}
-
-/* Scroll behaviour */
-@media (min-height: 30em) {
-  main {
-    scroll-snap-type: y mandatory;
-    height: 100vh;
-    overflow-y: scroll;
-  }
-}
-
-@media (min-height: 30em) {
-  .section {
-    height: 100vh;
-  }
 }
 
 .not-fun-facts {
@@ -322,4 +315,17 @@ section {
   color: #7f7fff;
   line-height: 40px;
   text-align: left;
+}
+
+a {
+  color: #7f7fff;
+  line-height: 40px;
+  text-align: left;
+  font-size: 0.7vw;
+}
+
+footer {
+  background-color: #5d8ac2;
+  color: lightblue;
+  text-align: center;
 }
