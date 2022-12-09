@@ -175,26 +175,6 @@
           .attr("opacity", 0.5);
       }
 
-      //smide labels på
-      svg
-        .selectAll("text.label") //al tekst med class "label"
-        .data(newData)
-        .enter()
-        .append("text")
-        .text(function (d) {
-          return d;
-        })
-        .attr("x", function (d, i) {
-          return i * (w / newData.length) + 5;
-        })
-        .attr("y", function (d) {
-          return h - yScale(d) + 15;
-        })
-        .attr("class", "label") //husk class på nye labels
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "11px")
-        .attr("fill", "white");
-
       // Knappen vælges via dens id 'klik'
       const submitClick = d3
         .selectAll("#submit")
@@ -283,7 +263,7 @@
           })
           .style("cursor", "pointer")
           .on("mouseover", function (d) {
-            d3.select(event.currentTarget).style("fill", "blue");
+            d3.select(event.currentTarget).style("fill", "orange");
           })
           .on("mouseout", function (d) {
             d3.select(event.currentTarget).style("fill", "#7f7fff");
@@ -331,7 +311,8 @@
             .attr("width", xScale.bandwidth())
             .attr("height", function (d) {
               return h - yScale(d.percent_remaining) - bottomPadding;
-            });
+            })
+            .attr("fill", "blue");
         }
 
         d3.select("#animalUpdate")
@@ -434,14 +415,8 @@
           <div id="svg2" class="svg2"></div>
         </div>
         <div class="consequences2">
-          <h2>Marinedyr må lide under konsekvenserne (?)</h2>
-          <p>
-            På grund af vandstigninger er flere og flere dyrearter i fare. Som
-            det ses på grafen til venstre, er især pattedyr (latin: mammalia)
-            som hvaler og delfiner i fare. Pga. vandstigninger har vi mistet
-            næsten 85% af deres arter.<br />
-            Prøv at trykke på de forskellige kollonner og se ...
-          </p>
+          <h2>Marinedyr vil lide under konsekvenserne (?)</h2>
+          <p>I 2100....</p>
           <article id="animalInfo"></article>
         </div>
       </div>
