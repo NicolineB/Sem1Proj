@@ -276,17 +276,17 @@
           .attr("height", function (d) {
             return h - yScale(100) - bottomPadding;
           })
-          .attr("fill", "green")
+          .attr("fill", "#7f7fff")
           .on("click", function (d, i) {
             infoBoks(i.species);
             console.log(i);
           })
           .style("cursor", "pointer")
           .on("mouseover", function (d) {
-            d3.select(event.currentTarget).style("fill", "red");
+            d3.select(event.currentTarget).style("fill", "blue");
           })
           .on("mouseout", function (d) {
-            d3.select(event.currentTarget).style("fill", "green");
+            d3.select(event.currentTarget).style("fill", "#7f7fff");
           });
 
         svg
@@ -434,10 +434,15 @@
           <div id="svg2" class="svg2"></div>
         </div>
         <div class="consequences2">
-          <h2>eventuel info?</h2>
-          <article id="animalInfo">
-            <p>eventuel info?</p>
-          </article>
+          <h2>Marinedyr må lide under konsekvenserne (?)</h2>
+          <p>
+            På grund af vandstigninger er flere og flere dyrearter i fare. Som
+            det ses på grafen til venstre, er især pattedyr (latin: mammalia)
+            som hvaler og delfiner i fare. Pga. vandstigninger har vi mistet
+            næsten 85% af deres arter.<br />
+            Prøv at trykke på de forskellige kollonner og se ...
+          </p>
+          <article id="animalInfo"></article>
         </div>
       </div>
     </section>
