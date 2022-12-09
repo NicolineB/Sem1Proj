@@ -340,7 +340,21 @@
           .on("click", function (d, i) {
             infoBoks(i.species);
             console.log(i);
+          })
+          .style("cursor", "pointer")
+          .on("mouseover", function (d) {
+            d3.select(event.currentTarget).style("fill", "red");
+          })
+          .on("mouseout", function (d) {
+            d3.select(event.currentTarget).style("fill", "green");
           });
+
+        svg
+          .append("g")
+          .attr("class", "xAxis")
+          .attr("transform", `translate(${sidePadding}, ${h - 7})`)
+          .call(xAxis)
+          .style("font-size", "20px");
 
         function infoBoks(input) {
           d3.select("#animalInfo").html(`<p>${input} står her</p>`);
@@ -384,11 +398,34 @@
           .on("click", function () {
             animalUpdate();
           });
+        d3.select("#animalUpdate")
+          .html('<input class="animalUpdate" type="button" value="Update"/>')
+          .on("click", function () {
+            animalUpdate();
+          });
+
+        document.getElementById("animalUpdate").style.color =
+          "white".style.background = "#7f7fff";
+        /* .style.border-radius = "20px"
+                .box-shadow = "#7f7fff 0 10px 20px -10px"
+
+                transition-duration: 0.4s;
+        color: white;
+        background: #7f7fff;
+        border-radius: 20px;
+        box-shadow: #7f7fff 0 10px 20px -10px;
+        cursor: pointer;
+        font-size: 1vw;
+        font-weight: 400;
+        font-family: "Raleway", sans-serif;
+        outline: 0 solid transparent;
+        padding: 8px 18px;
+        border: 0; */
       });
     </script>
   </head>
   <body>
-    <section class="infoslide" id="infoSlide">
+    <section class="front-page">
       <h1 id="main-title">
         Som tiden går, <span span style="color: white">stiger vandene</span>
       </h1>

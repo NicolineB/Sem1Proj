@@ -31,7 +31,8 @@ section {
   scroll-snap-align: center;
 } */
 
-.infoslide {
+/* CSS til forsiden (Section 1) */
+.front-page {
   position: center;
   width: 100%;
   height: 100vh;
@@ -50,7 +51,7 @@ section {
   margin: 1000;
 }
 
-.infoslide h3 {
+.front-page h3 {
   position: relative;
   font-size: 2vw;
   font-weight: 100;
@@ -60,7 +61,7 @@ section {
   color: lightblue;
 }
 
-.infoslide h4 {
+.front-page h4 {
   position: relative;
   font-size: 1.5vw;
   text-align: center;
@@ -68,7 +69,9 @@ section {
   top: 10%;
 }
 
-/* scroll pil til vejvisning */
+/* CSS til forsidens bølger ligger i waves.css  */
+
+/* scroll down pil til vejvisning */
 .scroll-down.arrow span {
   position: absolute;
   display: inline-block;
@@ -115,6 +118,37 @@ section {
   transform: rotate(45deg);
 }
 
+/* CSS til første visualisering (vandstigninger) (Section 2) */
+
+/* year overskrifter */
+.water-rise {
+  position: center;
+  width: 100%;
+  height: 100vh;
+  background: white;
+  overflow: hidden;
+}
+
+#water-rise-title {
+  text-align: center;
+  top: 5%;
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  font-size: 4vw;
+  color: rgb(82, 157, 220);
+  margin: 1000;
+}
+
+#water-rise-under-title {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  font-size: 2vw;
+  color: rgb(82, 157, 220);
+  margin: 1000;
+  font-weight: lighter;
+}
+
 #inputButton {
   transition-duration: 0.4s;
   color: white;
@@ -122,9 +156,19 @@ section {
   position: relative;
 }
 
-/* ændrer skriftypen på aksen */
-.yAxis {
-  font-size: medium;
+#submitButton {
+  transition-duration: 0.4s;
+  color: white;
+  background: #7f7fff;
+  border-radius: 20px;
+  box-shadow: #7f7fff 0 10px 20px -10px;
+  cursor: pointer;
+  font-size: 1vw;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  border: 0;
 }
 
 .container {
@@ -150,12 +194,45 @@ section {
   background: rgb(228, 238, 253);
 }
 
+.waterlvl_information {
+  font-family: "Times New Roman", Times, serif;
+  position: relative;
+  font-size: 1.1vw;
+  color: black;
+  margin: 20px;
+}
+
+/* CSS til anden visualisering (dyr i fare) (Section 3) */
+#animalTitle {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  position: relative;
+  font-size: 4vw;
+  line-height: 40px;
+  color: rgb(82, 157, 220);
+}
+
+/* #animalUpdate {
+  transition-duration: 0.4s;
+  color: white;
+  background: #7f7fff;
+  border-radius: 20px;
+  box-shadow: #7f7fff 0 10px 20px -10px;
+  cursor: pointer;
+  font-size: 1vw;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  border: 0;
+} */
+
 .container2 {
   display: flex;
   width: 100%;
   height: 100vh;
   background-image: linear-gradient(white, rgb(82, 157, 220));
-  padding: 50px 0px 0px 20px;
+  padding: 40px 0px 0px 0px;
   /* text-align: center;
   top: 10%;
   font-family: "Raleway", sans-serif;
@@ -166,12 +243,12 @@ section {
   margin: 1000; */
 }
 
-.waterlvl_information {
-  font-family: "Times New Roman", Times, serif;
-  position: relative;
-  font-size: 1.1vw;
-  color: black;
-  margin: 20px;
+/* ændrer skriftypen på y aksen */
+.yAxis {
+  font-size: medium;
+}
+.svg2 {
+  padding-left: 100px;
 }
 
 .svg2 {
@@ -185,51 +262,19 @@ section {
 }
 
 .consequences2 {
+<<<<<<< Updated upstream
   height: 550px;
   width: 25vw;
+=======
+  height: 540px;
+  width: 28vw;
+>>>>>>> Stashed changes
   text-align: center;
-  border: 10px black;
   background: rgb(228, 238, 253);
-  padding: 100, 70, 0, 0;
+  padding: 100, 100, 0, 0;
 }
 
-/* year overskrifter */
-.water-rise {
-  position: center;
-  width: 100%;
-  height: 100vh;
-  background: white;
-  overflow: hidden;
-}
-
-#water-rise-title {
-  text-align: center;
-  top: 5%;
-  font-family: "Raleway", sans-serif;
-  position: relative;
-  font-size: 4vw;
-  color: rgb(82, 157, 220);
-  margin: 1000;
-}
-#water-rise-under-title {
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  position: relative;
-  font-size: 2vw;
-  color: rgb(82, 157, 220);
-  margin: 1000;
-  font-weight: li;
-}
-
-#animalTitle {
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  position: relative;
-  font-size: 4vw;
-  line-height: 40px;
-  color: rgb(82, 157, 220);
-}
-
+/* CSS til ikke-så-sjove fakta (Sektion 4) */
 .not-fun-facts {
   position: center;
   width: 100%;
@@ -255,6 +300,7 @@ section {
   color: white;
 }
 
+/* "Kort" der "flipper" rundt, når man hover over dem, og viser flere fakta */
 .flip-card {
   background-color: transparent;
   width: 500px;
@@ -312,6 +358,7 @@ section {
   font-size: 1.2vw;
 }
 
+/* CSS til alle referencer, kilder, links */
 a {
   color: #7f7fff;
   line-height: 40px;
@@ -319,6 +366,7 @@ a {
   font-size: 0.7vw;
 }
 
+/* Vores afsluttende footer, med gruppenavn og årstal */
 footer {
   background-color: #5d8ac2;
   color: lightblue;
