@@ -29,12 +29,6 @@
         update(years);
       }
 
-      // d3.select("#submit").on("click", function (event) {
-      //let input = d3.select("#submit").property("value");
-      // console.log(input);
-      // waterlevels(input, "b");
-      // });
-
       //function til opdatering af svg - bliver kaldt af submit knappen
       //tager variabel 'years' og poster den som property til api/climate
       function update(years) {
@@ -263,7 +257,7 @@
           })
           .style("cursor", "pointer")
           .on("mouseover", function (d) {
-            d3.select(event.currentTarget).style("fill", "orange");
+            d3.select(event.currentTarget).style("fill", "blue");
           })
           .on("mouseout", function (d) {
             d3.select(event.currentTarget).style("fill", "#7f7fff");
@@ -311,8 +305,7 @@
             .attr("width", xScale.bandwidth())
             .attr("height", function (d) {
               return h - yScale(d.percent_remaining) - bottomPadding;
-            })
-            .attr("fill", "blue");
+            });
         }
 
         d3.select("#animalUpdate")
