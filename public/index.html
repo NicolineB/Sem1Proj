@@ -101,8 +101,6 @@
           draw(data);
         });
       }
-      // Funktion finder valuen fra id'et chosenYear (input felt med år),
-      // og gemmer det i variablen inputVal.
 
       //tegner vores svg og bliver kaldt af waterlevels
       function draw(data) {
@@ -112,14 +110,23 @@
         const svg = d3
           .select("#svg1")
           .append("svg")
-          .attr("width", w)
-          .attr("height", h);
+          .attr("width", w + 70)
+          .attr("height", h + 70);
 
         // laver skala for y-akse
         const yScale = d3
           .scaleLinear()
           .domain([2, 0])
           .range([topPadding, h - bottomPadding]);
+
+
+        // Tekst label for x akse - Best case
+        svg.append("text")      // text label for the y axis
+        .attr("x", 550)
+        .attr("y", 405)
+        .style("text-anchor", "middle")
+        .text("Best Case");
+
 
         // tegner en y-akse med tal
         const yAxis = d3.axisLeft().scale(yScale).ticks(8);
@@ -136,6 +143,14 @@
         } else if (data[0].years >= 2022) {
           newData = [data[0].best_case, data[0].worst_case];
         }
+
+        //hey
+        svg.append("text")      // text label for the x axis
+        .attr("x", 150)
+        .attr("y", 405)
+        .style("text-anchor", "middle")
+        .text("Worst Case");
+
 
         //laver x-akse udfra newData
         const xScale = d3
@@ -296,7 +311,8 @@
           .scale(xScale)
           .ticks(d3.range(data.length))
           .tickSize(0);
-        svg
+    
+          svg
           .append("g")
           .attr("class", "xAxis")
           .attr("transform", `translate(${sidePadding}, ${h})`)
