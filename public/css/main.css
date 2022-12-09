@@ -212,7 +212,7 @@ section {
   color: rgb(82, 157, 220);
 }
 
-/* #animalUpdate {
+#animalButton {
   transition-duration: 0.4s;
   color: white;
   background: #7f7fff;
@@ -225,7 +225,11 @@ section {
   outline: 0 solid transparent;
   padding: 8px 18px;
   border: 0;
-} */
+}
+
+#animalUpdate {
+  padding-left: 45%;
+}
 
 .container2 {
   display: flex;
@@ -233,14 +237,6 @@ section {
   height: 100vh;
   background-image: linear-gradient(white, rgb(82, 157, 220));
   padding: 40px 0px 0px 0px;
-  /* text-align: center;
-  top: 10%;
-  font-family: "Raleway", sans-serif;
-  position: relative;
-  font-size: 3vw;
-  line-height: 200px;
-  color: orange;
-  margin: 1000; */
 }
 
 /* ændrer skriftypen på y aksen */

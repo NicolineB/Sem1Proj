@@ -208,154 +208,138 @@
     </script>
 
     <script>
-          //animal data
-          d3.json(`/api/animal`, {
-            method: "POST",
-          }).then(function (response) {
-            let data = response.data;
-            console.log(data);
-            data.sort((a, b) =>
-              d3.descending(
-                parseFloat(a.percent_at_risk),
-                parseFloat(b.percent_at_risk)
-              )
-            );
+      //animal data
+      d3.json(`/api/animal`, {
+        method: "POST",
+      }).then(function (response) {
+        let data = response.data;
+        console.log(data);
+        data.sort((a, b) =>
+          d3.descending(
+            parseFloat(a.percent_at_risk),
+            parseFloat(b.percent_at_risk)
+          )
+        );
 
-            const w = 1000;
-            const h = 550;
-            const bottomPadding = 7;
-            const sidePadding = 40;
-            const topPadding = 20;
+        const w = 1000;
+        const h = 550;
+        const bottomPadding = 7;
+        const sidePadding = 40;
+        const topPadding = 20;
 
-            const svg = d3
-              .select("#svg2")
-              .append("svg")
-              .attr("width", w + 100)
-              .attr("height", h + 100);
+        const svg = d3
+          .select("#svg2")
+          .append("svg")
+          .attr("width", w + 100)
+          .attr("height", h + 100);
 
-            // laver skala for y-akse
-            const yScale = d3
-              .scaleLinear()
-              .domain([100, 0])
-              .range([topPadding, h - bottomPadding]);
+        // laver skala for y-akse
+        const yScale = d3
+          .scaleLinear()
+          .domain([100, 0])
+          .range([topPadding, h - bottomPadding]);
 
-            // tegner en y-akse med tal
-            const yAxis = d3.axisLeft().scale(yScale).ticks(10);
-            svg
-              .append("g")
-              .attr("class", "yAxis")
-              .attr("transform", `translate(${sidePadding}, 0)`)
-              .call(yAxis)
-              .style("font-size", "20px");
+        // tegner en y-akse med tal
+        const yAxis = d3.axisLeft().scale(yScale).ticks(10);
+        svg
+          .append("g")
+          .attr("class", "yAxis")
+          .attr("transform", `translate(${sidePadding}, 0)`)
+          .call(yAxis)
+          .style("font-size", "20px");
 
-            const xScale = d3
-              .scaleBand()
-              .domain(d3.range(data.length))
-              .range([0, w - 44])
-              .paddingInner(0.05);
+        const xScale = d3
+          .scaleBand()
+          .domain(d3.range(data.length))
+          .range([0, w - 44])
+          .paddingInner(0.05);
 
-            const xAxis = d3
-              .axisBottom()
-              .scale(xScale)
-              .ticks(d3.range(data.length))
-              .tickSize(0);
+        const xAxis = d3
+          .axisBottom()
+          .scale(xScale)
+          .ticks(d3.range(data.length))
+          .tickSize(0);
 
-            //tegner vores svg
-            svg
-              .selectAll("rect")
-              .data(data)
-              .enter()
-              .append("rect")
-              .attr("x", function (d, i) {
-                return xScale(i) + 44;
-              })
-              .attr("y", function (d) {
-                return yScale(100);
-              })
-              .attr("width", xScale.bandwidth())
-              .attr("height", function (d) {
-                return h - yScale(100) - bottomPadding;
-              })
-              .attr("fill", "green")
-              .on("click", function (d, i) {
-                infoBoks(i.species);
-                console.log(i);
-              })
-              .style("cursor", "pointer")
-              .on("mouseover", function (d) {
-                d3.select(event.currentTarget).style("fill", "red");
-              })
-              .on("mouseout", function (d) {
-                d3.select(event.currentTarget).style("fill", "green");
-              });
-
-            svg
-              .append("g")
-              .attr("class", "xAxis")
-              .attr("transform", `translate(${sidePadding}, ${h - 7})`)
-              .call(xAxis)
-              .style("font-size", "20px");
-
-            function infoBoks(input) {
-              d3.select("#animalInfo").html(`<p>${input} står her</p>`);
-            }
-            //tilføjer billeder til x-akse
-            svg.select(".xAxis").selectAll("text").remove();
-            svg
-              .select(".xAxis")
-              .selectAll(".tick")
-              .data(data)
-              .append("svg:image")
-              .attr("width", 50)
-              .attr("height", 50)
-              .attr("x", -20)
-              .attr("y", 0)
-              .attr("href", function (d) {
-                return d.img;
-              });
-
-            function animalUpdate() {
-              //opretter updateSelection og tilkobler dataen
-              const updateSelection = svg.selectAll("rect").data(data);
-
-              //bruger updateSelection til at opdatere vores svg
-              updateSelection
-                .transition()
-                .duration(2000)
-                .attr("x", function (d, i) {
-                  return xScale(i) + 41;
-                })
-                .attr("y", function (d) {
-                  return yScale(d.percent_remaining);
-                })
-                .attr("width", xScale.bandwidth())
-                .attr("height", function (d) {
-                  return h - yScale(d.percent_remaining) - bottomPadding;
-                });
-            }
-
-            d3.select("#animalUpdate")
-              .html('<input class="animalUpdate" type="button" value="Update"/>')
-              .on("click", function () {
-                animalUpdate();
-              });
-
-            animalButton = d3.select("#animalUpdate");
-            animalButton.
-
-            transition-duration: 0.4s;
-      color: white;
-      background: #7f7fff;
-      border-radius: 20px;
-      box-shadow: #7f7fff 0 10px 20px -10px;
-      cursor: pointer;
-      font-size: 1vw;
-      font-weight: 400;
-      font-family: "Raleway", sans-serif;
-      outline: 0 solid transparent;
-      padding: 8px 18px;
-      border: 0;
+        //tegner vores svg
+        svg
+          .selectAll("rect")
+          .data(data)
+          .enter()
+          .append("rect")
+          .attr("x", function (d, i) {
+            return xScale(i) + 44;
+          })
+          .attr("y", function (d) {
+            return yScale(100);
+          })
+          .attr("width", xScale.bandwidth())
+          .attr("height", function (d) {
+            return h - yScale(100) - bottomPadding;
+          })
+          .attr("fill", "green")
+          .on("click", function (d, i) {
+            infoBoks(i.species);
+            console.log(i);
+          })
+          .style("cursor", "pointer")
+          .on("mouseover", function (d) {
+            d3.select(event.currentTarget).style("fill", "red");
+          })
+          .on("mouseout", function (d) {
+            d3.select(event.currentTarget).style("fill", "green");
           });
+
+        svg
+          .append("g")
+          .attr("class", "xAxis")
+          .attr("transform", `translate(${sidePadding}, ${h - 7})`)
+          .call(xAxis)
+          .style("font-size", "20px");
+
+        function infoBoks(input) {
+          d3.select("#animalInfo").html(`<p>${input} står her</p>`);
+        }
+        //tilføjer billeder til x-akse
+        svg.select(".xAxis").selectAll("text").remove();
+        svg
+          .select(".xAxis")
+          .selectAll(".tick")
+          .data(data)
+          .append("svg:image")
+          .attr("width", 50)
+          .attr("height", 50)
+          .attr("x", -20)
+          .attr("y", 0)
+          .attr("href", function (d) {
+            return d.img;
+          });
+
+        function animalUpdate() {
+          //opretter updateSelection og tilkobler dataen
+          const updateSelection = svg.selectAll("rect").data(data);
+
+          //bruger updateSelection til at opdatere vores svg
+          updateSelection
+            .transition()
+            .duration(2000)
+            .attr("x", function (d, i) {
+              return xScale(i) + 41;
+            })
+            .attr("y", function (d) {
+              return yScale(d.percent_remaining);
+            })
+            .attr("width", xScale.bandwidth())
+            .attr("height", function (d) {
+              return h - yScale(d.percent_remaining) - bottomPadding;
+            });
+        }
+
+        d3.select("#animalUpdate")
+          .html('<input id="animalButton" type="button" value="Update"/>')
+          .on("click", function () {
+            animalUpdate();
+          });
+      });
     </script>
   </head>
   <body>
@@ -398,7 +382,7 @@
           />
           <!--Når button trykkes kører getInputValue funktionen-->
           <button id="submitButton" type="button" onclick="getInputValue();">
-            vælg år
+            Vælg år
           </button>
         </p>
       </form>
