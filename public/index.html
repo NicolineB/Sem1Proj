@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/waves.css" />
     <title>Vandstigninger</title>
-    <script>
+    <!-- <script>
       const w = 700;
       const h = 400;
       const bottomPadding = 7;
@@ -258,7 +258,7 @@
               })
           );
       });
-    </script>
+    </script> -->
 
     <script>
       //animal data
@@ -312,8 +312,8 @@
           .scale(xScale)
           .ticks(d3.range(data.length))
           .tickSize(0);
-    
-          svg
+
+        svg
           .append("g")
           .attr("class", "xAxis")
           .attr("transform", `translate(${sidePadding}, ${h})`)
@@ -343,8 +343,7 @@
           });
 
         function infoBoks(input) {
-          d3.select("#animalInfo")
-              .html(`<p>${input} står her</p>`);
+          d3.select("#animalInfo").html(`<p>${input} står her</p>`);
         }
         //tilføjer billeder til x-akse
         svg.select(".xAxis").selectAll("text").remove();
@@ -377,14 +376,14 @@
             })
             .attr("width", xScale.bandwidth())
             .attr("height", function (d) {
-              return h - yScale(d.percent_remaining) - bottomPadding
+              return h - yScale(d.percent_remaining) - bottomPadding;
             });
-        
-      }
-      d3.select('#animalButton')
-        .html('<input name="updateAnimal" type="button" value="Update" />')
-        .on('click', function() { animalUpdate(); });
-
+        }
+        d3.select("#animalButton")
+          .html('<input name="updateAnimal" type="button" value="Update" />')
+          .on("click", function () {
+            animalUpdate();
+          });
       });
     </script>
   </head>
@@ -480,8 +479,7 @@
           <h2>eventuel info?</h2>
           <article id="animalInfo">
             <p>eventuel info?</p>
-            <div id="animalButton">
-            </div>
+            <div id="animalButton"></div>
           </article>
         </div>
       </div>

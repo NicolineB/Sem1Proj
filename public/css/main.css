@@ -174,6 +174,10 @@ section {
   margin: 20px;
 }
 
+.svg2 {
+  padding-left: 150;
+}
+
 .consequences {
   height: 400;
   width: 70vw;
@@ -182,7 +186,7 @@ section {
 
 .consequences2 {
   height: 550px;
-  width: 30vw;
+  width: 25vw;
   text-align: center;
   border: 10px black;
   background: rgb(228, 238, 253);
