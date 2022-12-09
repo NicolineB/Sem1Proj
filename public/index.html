@@ -319,8 +319,16 @@
           .attr("height", function (d) {
             return h - yScale(100) - bottomPadding;
           })
-          .attr("fill", "green");
+          .attr("fill", "green")
+          .on("click", function (d, i) {
+            infoBoks(i.species);
+            console.log(i);
+          });
 
+        function infoBoks(input) {
+          d3.select("#animalInfo")
+              .html(`<p>${input} står her</p>`);
+        }
         //tilføjer billeder til x-akse
         svg.select(".xAxis").selectAll("text").remove();
         svg
@@ -352,8 +360,9 @@
             })
             .attr("width", xScale.bandwidth())
             .attr("height", function (d) {
-              return h - yScale(d.percent_remaining) - bottomPadding;
-        })
+              return h - yScale(d.percent_remaining) - bottomPadding
+            });
+        
       }
       d3.select('#animalButton')
         .html('<input name="updateAnimal" type="button" value="Update" />')
@@ -452,7 +461,7 @@
         </div>
         <div class="consequences2">
           <h2>eventuel info?</h2>
-          <article>
+          <article id="animalInfo">
             <p>eventuel info?</p>
             <div id="animalButton">
             </div>
