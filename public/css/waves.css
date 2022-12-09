@@ -1,5 +1,5 @@
 /* bølger */
-.infoslide .wave {
+.front-page .wave {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -10,7 +10,7 @@
 }
 
 /* bølge 1 */
-.infoslide .wave.wave1 {
+.front-page .wave.wave1 {
   animation: animate 30s linear infinite;
   z-index: 1000;
   opacity: 1;
@@ -28,7 +28,7 @@
 }
 
 /* bølge 2 */
-.infoslide .wave.wave2 {
+.front-page .wave.wave2 {
   animation: animate2 15s linear infinite;
   z-index: 999;
   opacity: 0.5;
@@ -46,7 +46,7 @@
 }
 
 /* bølge 3 */
-.infoslide .wave.wave3 {
+.front-page .wave.wave3 {
   animation: animate3 30s linear infinite;
   z-index: 998;
   opacity: 0.2;
@@ -64,7 +64,7 @@
 }
 
 /* bølge 4 */
-.infoslide .wave.wave4 {
+.front-page .wave.wave4 {
   animation: animate4 5s linear infinite;
   z-index: 997;
   opacity: 0.7;
