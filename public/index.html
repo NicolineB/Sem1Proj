@@ -120,14 +120,15 @@
           .range([topPadding, h - bottomPadding]);
 
 
+
+
         // Tekst label for x akse - Best case
-        svg.append("text")      // text label for the y axis
+        svg.append("text") 
         .attr("x", 550)
-        .attr("y", 405)
+        .attr("y", 407)
         .style("text-anchor", "middle")
         .text("Best Case");
-
-
+        
         // tegner en y-akse med tal
         const yAxis = d3.axisLeft().scale(yScale).ticks(8);
         svg
@@ -147,7 +148,7 @@
         //hey
         svg.append("text")      // text label for the x axis
         .attr("x", 150)
-        .attr("y", 405)
+        .attr("y", 407)
         .style("text-anchor", "middle")
         .text("Worst Case");
 
