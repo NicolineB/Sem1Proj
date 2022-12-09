@@ -14,7 +14,7 @@
       const topPadding = 20;
 
       //kalder waterlevels for at oprette den første svg for 1997
-      waterlevels(1997);
+      waterlevels(2100);
 
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
@@ -116,7 +116,7 @@
         // Tekst label for x akse - Best case
         svg
           .append("text")
-          .attr("x", 550)
+          .attr("x", 535)
           .attr("y", 407)
           .style("text-anchor", "middle")
           .text("Worst Case");
@@ -137,8 +137,8 @@
           newData = [data[0].best_case, data[0].worst_case];
         }
         svg
-          .append("text") // text label for the x axis
-          .attr("x", 150)
+          .append("text") // text label for x axen
+          .attr("x", 200)
           .attr("y", 407)
           .style("text-anchor", "middle")
           .text("Best Case");
@@ -167,6 +167,20 @@
           })
           .attr("fill", "blue")
           .attr("opacity", 0.5);
+        
+          //smide labels på
+          svg.selectAll("text.label") //al tekst med class "label"
+          .data(newData)
+          .enter()
+          .append("text")
+          .text(function(d) {return d;})
+          .attr("x", function (d, i) { return i * (w / newData.length) + 190;})
+          .attr("y", function(d) { return yScale(d) + newData.length - 5;})
+          .attr("class", "label") //husk class på nye labels
+          .attr("font-family", "Raleway")
+          .attr("font-size", "15px")
+          .style("text-anchor", "middle")
+          .attr("fill", "blue");
       }
 
       // Knappen vælges via dens id 'klik'
