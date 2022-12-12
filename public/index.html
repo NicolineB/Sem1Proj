@@ -306,7 +306,7 @@
           .attr("x", -20)
           .attr("y", 0)
           .attr("href", function (d) {
-            return d.img;
+            return `css/${d.species}.png`;
           });
 
         function animalUpdate() {
@@ -345,20 +345,9 @@
         d3.select("#animalUpdate")
           .html('<input id="animalButton" type="button" value="Update"/>')
           .on("click", function () {
-            animalUpdate();
+            animalUpdate().transition().duration(400).style("opacity", 0);
           });
       });
-      function fadeOut(opacity) {
-        d3.select("#animalUpdate").on("click");
-
-        return function (d, i) {
-          svg
-            .selectAll("#animalUpdate")
-            .transition()
-            .style("stroke-opacity", 100)
-            .style("fill-opacity", 100);
-        };
-      }
     </script>
   </head>
   <body>
