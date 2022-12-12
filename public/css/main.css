@@ -171,10 +171,6 @@ section {
   border: 0;
 }
 
-#animalButton {
-  padding-left: 40%;
-}
-
 .container {
   display: flex;
   padding: 0px 55px 0px 200px; /* padding top, right, bottom, left */
@@ -269,6 +265,10 @@ section {
   outline: 0 solid transparent;
   padding: 8px 18px;
   border: 0;
+}
+
+#animalUpdate {
+  padding-left: 40%;
 }
 
 /* CSS til ikke-så-sjove fakta (Sektion 4) */

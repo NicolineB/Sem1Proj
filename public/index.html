@@ -188,6 +188,16 @@
           .attr("font-size", "15px")
           .style("text-anchor", "middle")
           .attr("fill", "blue");
+
+        // Forsøg på titel (meter) på y-aksen
+        svg
+          .append("text")
+          .attr("class", "y label")
+          .attr("text-anchor", "middle")
+          .attr("y", 6)
+          .attr("dy", ".75em")
+          .attr("transform", "rotate(-90)")
+          .text("Meter");
       }
 
       // Knappen vælges via dens id 'klik'
@@ -367,8 +377,8 @@
         Vælg venligst årstal mellem 1997 og 2100 og tryk 'vælg år'.
       </h2>
       <form>
-        år:
         <p id="inputButton">
+          <p style="padding-left: 100px">År:</p>
           <input
             type="number"
             placeholder=" "
