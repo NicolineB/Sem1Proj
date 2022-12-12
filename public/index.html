@@ -62,7 +62,7 @@
           const xScale = d3
             .scaleBand()
             .domain(d3.range(newData.length))
-            .range([0, w]);
+            .range([0, w - sidePadding]);
 
           //opretter updateSelection og tilkobler dataen
           const updateSelection = svg.selectAll("rect").data(newData);
@@ -91,7 +91,7 @@
               return d;
             })
             .attr("x", function (d, i) {
-              return xScale(i) + sidePadding + w / 4;
+              return xScale(i) + 240;
             })
             .attr("y", function (d) {
               return yScale(d) + newData.length - 5;
@@ -164,7 +164,7 @@
         const xScale = d3
           .scaleBand()
           .domain(d3.range(newData.length))
-          .range([0, w - 50]);
+          .range([0, w - sidePadding]);
 
         //tegner vores svg
         svg
@@ -195,7 +195,7 @@
             return d;
           })
           .attr("x", function (d, i) {
-            return xScale(i) + sidePadding + w / 4;
+            return xScale(i) + 240;
           })
           .attr("y", function (d) {
             return yScale(d) + newData.length - 5;
@@ -477,10 +477,7 @@
         <div id="svg2" class="svg2"></div>
         <div class="consequences2">
           <h2>Havdyr vil lide under konsekvenserne</h2>
-          <p>
-            I 2100 er mange havdyrearter tilhørende forskellige familier i høj
-            risiko for at uddø, klik på søjlerne og læs mere
-          </p>
+          <p>Klik på søjlerne og læs mere</p>
           <article id="animalInfo"></article>
         </div>
       </div>
