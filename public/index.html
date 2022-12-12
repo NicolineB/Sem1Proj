@@ -252,7 +252,7 @@
           .attr("class", "yAxis")
           .attr("transform", `translate(${sidePadding}, 0)`)
           .call(yAxis)
-          .style("font-size", "20px");
+          .style("font-size", "17px");
 
         const xScale = d3
           .scaleBand()
@@ -355,8 +355,8 @@
           svg
             .selectAll("#animalUpdate")
             .transition()
-            .style("stroke-opacity", opacity)
-            .style("fill-opacity", opacity);
+            .style("stroke-opacity", 100)
+            .style("fill-opacity", 100);
         };
       }
     </script>
