@@ -171,7 +171,7 @@ section {
   border: 0;
 }
 
-.updateButton {
+#updateButton {
   padding-left: 40%;
 }
 
@@ -254,6 +254,21 @@ section {
   text-align: center;
   background: rgb(228, 238, 253);
   padding: 100, 100, 0, 0;
+}
+
+#animalButton {
+  transition-duration: 0.4s;
+  color: white;
+  background: #7f7fff;
+  border-radius: 20px;
+  box-shadow: #7f7fff 0 10px 20px -10px;
+  cursor: pointer;
+  font-size: 1vw;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  border: 0;
 }
 
 /* CSS til ikke-så-sjove fakta (Sektion 4) */

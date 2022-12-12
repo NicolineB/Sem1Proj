@@ -167,15 +167,22 @@
           })
           .attr("fill", "blue")
           .attr("opacity", 0.5);
-        
-          //smide labels på
-          svg.selectAll("text.label") //al tekst med class "label"
+
+        //smide labels på
+        svg
+          .selectAll("text.label") //al tekst med class "label"
           .data(newData)
           .enter()
           .append("text")
-          .text(function(d) {return d;})
-          .attr("x", function (d, i) { return i * (w / newData.length) + 190;})
-          .attr("y", function(d) { return yScale(d) + newData.length - 5;})
+          .text(function (d) {
+            return d;
+          })
+          .attr("x", function (d, i) {
+            return i * (w / newData.length) + 190;
+          })
+          .attr("y", function (d) {
+            return yScale(d) + newData.length - 5;
+          })
           .attr("class", "label") //husk class på nye labels
           .attr("font-family", "Raleway")
           .attr("font-size", "15px")
@@ -360,10 +367,11 @@
         Vælg venligst årstal mellem 1997 og 2100 og tryk 'vælg år'.
       </h2>
       <form>
+        år:
         <p id="inputButton">
           <input
             type="number"
-            placeholder="1997"
+            placeholder=" "
             min="1997"
             max="2100"
             id="chosenYear"
