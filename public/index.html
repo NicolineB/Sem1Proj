@@ -343,10 +343,11 @@
         }
 
         d3.select("#animalUpdate")
-          .html('<input id="animalButton" type="button" value="Update"/>')
+          .html(
+            '<input id="animalButton" type="button" value="Update" onclick="style.display = `none`"/>'
+          )
           .on("click", function () {
             animalUpdate();
-            d3.select("#animalButton").remove();
           });
       });
 
