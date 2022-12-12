@@ -14,7 +14,7 @@
       const topPadding = 20;
 
       //kalder waterlevels for at oprette den første svg for 1997
-      waterlevels(1997);
+      waterlevels(2100);
 
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
@@ -62,7 +62,7 @@
           const xScale = d3
             .scaleBand()
             .domain(d3.range(newData.length))
-            .range([0, w - 50]);
+            .range([0, w]);
 
           //opretter updateSelection og tilkobler dataen
           const updateSelection = svg.selectAll("rect").data(newData);
@@ -72,7 +72,7 @@
             .transition()
             .duration(2000)
             .attr("x", function (d, i) {
-              return xScale(i) + 41;
+              return xScale(i) + sidePadding;
             })
             .attr("y", function (d) {
               return yScale(d);
@@ -91,7 +91,7 @@
               return d;
             })
             .attr("x", function (d, i) {
-              return i * (w / newData.length) + 190;
+              return xScale(i) + sidePadding + w / 4;
             })
             .attr("y", function (d) {
               return yScale(d) + newData.length - 5;
@@ -173,7 +173,7 @@
           .enter()
           .append("rect")
           .attr("x", function (d, i) {
-            return xScale(i) + 41;
+            return xScale(i) + sidePadding;
           })
           .attr("y", function (d) {
             return yScale(d);
@@ -195,7 +195,7 @@
             return d;
           })
           .attr("x", function (d, i) {
-            return i * (w / newData.length) + 190;
+            return xScale(i) + sidePadding + w / 4;
           })
           .attr("y", function (d) {
             return yScale(d) + newData.length - 5;
@@ -470,14 +470,17 @@
     <section class="animalRisk">
       <h1 id="animalTitle">Det ser måske ikke ud af meget...</h1>
       <h1 id="animalTitle" style="color: black">
-        men flere dyrearter er i fare
+        men flere dyrearter er i stor fare
       </h1>
       <div id="animalUpdate"></div>
       <div class="container2">
         <div id="svg2" class="svg2"></div>
         <div class="consequences2">
-          <h2>Marinedyr vil lide under konsekvenserne (?)</h2>
-          <p>I 2100....</p>
+          <h2>Havdyr vil lide under konsekvenserne</h2>
+          <p>
+            I 2100 er mange havdyrearter tilhørende forskellige familier i høj
+            risiko for at uddø, klik på søjlerne og læs mere
+          </p>
           <article id="animalInfo"></article>
         </div>
       </div>
