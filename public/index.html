@@ -9,8 +9,8 @@
     <script>
       const w = 700;
       const h = 400;
-      const bottomPadding = 7;
-      const sidePadding = 40;
+      const bottomPadding = 30;
+      const sidePadding = 80;
       const topPadding = 20;
 
       //kalder waterlevels for at oprette den første svg for 1997
@@ -81,6 +81,21 @@
             .attr("height", function (d) {
               return h - yScale(d) - bottomPadding;
             });
+
+          svg
+            .selectAll("text.label") //al tekst med class "label"
+            .data(newData)
+            .transition()
+            .duration(2000)
+            .text(function (d) {
+              return d;
+            })
+            .attr("x", function (d, i) {
+              return i * (w / newData.length) + 190;
+            })
+            .attr("y", function (d) {
+              return yScale(d) + newData.length - 5;
+            });
         });
       }
 
@@ -117,8 +132,9 @@
         svg
           .append("text")
           .attr("x", 535)
-          .attr("y", 407)
+          .attr("y", 400)
           .style("text-anchor", "middle")
+          .attr("font-size", "25px")
           .text("Worst Case");
 
         // tegner en y-akse med tal
@@ -139,8 +155,9 @@
         svg
           .append("text") // text label for x axen
           .attr("x", 200)
-          .attr("y", 407)
+          .attr("y", 400)
           .style("text-anchor", "middle")
+          .attr("font-size", "25px")
           .text("Best Case");
 
         //laver x-akse udfra newData
@@ -194,10 +211,8 @@
           .append("text")
           .attr("class", "y label")
           .attr("text-anchor", "start")
-          .attr("y", 5)
-          .attr("x", 45)
-          .attr("dy", "1.3em")
-          .attr("transform", "rotate(0)")
+          .attr("transform", "translate(35,240)rotate(-90)")
+          .attr("font-size", "25px")
           .text("Meter");
       }
 
@@ -230,7 +245,7 @@
         const w = 1000;
         const h = 550;
         const bottomPadding = 7;
-        const sidePadding = 40;
+        const sidePadding = 80;
         const topPadding = 20;
 
         const svg = d3
@@ -247,17 +262,11 @@
 
         // tegner en y-akse med tal
         const yAxis = d3.axisLeft().scale(yScale).ticks(10);
-        svg
-          .append("g")
-          .attr("class", "yAxis")
-          .attr("transform", `translate(${sidePadding}, 0)`)
-          .call(yAxis)
-          .style("font-size", "17px");
 
         const xScale = d3
           .scaleBand()
           .domain(d3.range(data.length))
-          .range([0, w - 44])
+          .range([sidePadding, w - 44])
           .paddingInner(0.05);
 
         const xAxis = d3
@@ -266,6 +275,14 @@
           .ticks(d3.range(data.length))
           .tickSize(0);
 
+        svg
+          .append("text")
+          .attr("class", "y label2")
+          .attr("text-anchor", "start")
+          .attr("transform", "translate(35,300)rotate(-90)")
+          .attr("font-size", "25px")
+          .text("Procent");
+
         //tegner vores svg
         svg
           .selectAll("rect")
@@ -273,7 +290,7 @@
           .enter()
           .append("rect")
           .attr("x", function (d, i) {
-            return xScale(i) + 44;
+            return xScale(i);
           })
           .attr("y", function (d) {
             return yScale(100);
@@ -287,9 +304,16 @@
         svg
           .append("g")
           .attr("class", "xAxis")
-          .attr("transform", `translate(${sidePadding}, ${h - 7})`)
+          .attr("transform", `translate(0, ${h - 7})`)
           .call(xAxis)
           .style("font-size", "20px");
+
+        svg
+          .append("g")
+          .attr("class", "yAxis")
+          .attr("transform", `translate(${sidePadding}, 0)`)
+          .call(yAxis)
+          .style("font-size", "17px");
 
         function infoBoks(input) {
           d3.select("#animalInfo").html(`<p>${input} står her</p>`);
@@ -331,7 +355,7 @@
             .transition()
             .duration(2000)
             .attr("x", function (d, i) {
-              return xScale(i) + 41;
+              return xScale(i);
             })
             .attr("y", function (d) {
               return yScale(d.percent_remaining);
