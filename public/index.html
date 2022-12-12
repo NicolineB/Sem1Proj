@@ -94,6 +94,27 @@
           //kalder draw(data) for at lave svg udfra api data
           draw(data);
         });
+
+        //smide labels på
+        svg
+          .selectAll("text.label") //al tekst med class "label"
+          .data(newData)
+          .enter()
+          .append("text")
+          .text(function (d) {
+            return d;
+          })
+          .attr("x", function (d, i) {
+            return i * (w / newData.length) + 190;
+          })
+          .attr("y", function (d) {
+            return yScale(d) + newData.length - 5;
+          })
+          .attr("class", "label") //husk class på nye labels
+          .attr("font-family", "Raleway")
+          .attr("font-size", "15px")
+          .style("text-anchor", "middle")
+          .attr("fill", "blue");
       }
 
       //tegner vores svg og bliver kaldt af waterlevels
@@ -168,34 +189,12 @@
           .attr("fill", "blue")
           .attr("opacity", 0.5);
 
-        //smide labels på
+        //forsøg på at smide meter ind på y-akse
         svg
-          .selectAll("text.label") //al tekst med class "label"
-          .data(newData)
-          .enter()
           .append("text")
-          .text(function (d) {
-            return d;
-          })
-          .attr("x", function (d, i) {
-            return i * (w / newData.length) + 190;
-          })
-          .attr("y", function (d) {
-            return yScale(d) + newData.length - 5;
-          })
-          .attr("class", "label") //husk class på nye labels
-          .attr("font-family", "Raleway")
-          .attr("font-size", "15px")
+          .attr("x", 200)
+          .attr("y", 407)
           .style("text-anchor", "middle")
-          .attr("fill", "blue");
-
-        // Forsøg på titel (meter) på y-aksen
-        svg
-          .append("text")
-          .attr("class", "y label")
-          .attr("text-anchor", "middle")
-          .attr("y", 6)
-          .attr("dy", ".75em")
           .attr("transform", "rotate(-90)")
           .text("Meter");
       }
@@ -378,7 +377,6 @@
       </h2>
       <form>
         <p id="inputButton">
-          <p style="padding-left: 100px">År:</p>
           <input
             type="number"
             placeholder=" "
@@ -392,6 +390,7 @@
           </button>
         </p>
       </form>
+
       <!-- evt plus minus antal år her-->
       <!--To col / grid med to - visualisering col1, boks anden-->
       <div class="container">

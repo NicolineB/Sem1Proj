@@ -263,11 +263,8 @@ section {
   font-weight: 400;
   font-family: "Raleway", sans-serif;
   outline: 0 solid transparent;
-  padding: 8px 18px;
+  padding: 0px 18px 0px 200px;
   border: 0;
-}
-
-#animalUpdate {
   padding-left: 40%;
 }
 
