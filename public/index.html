@@ -345,8 +345,12 @@
         d3.select("#animalUpdate")
           .html('<input id="animalButton" type="button" value="Update"/>')
           .on("click", function () {
-            animalUpdate().transition().duration(400).style("opacity", 0);
-          });
+            animalUpdate();
+          })
+          .on("click")
+          .transition()
+          .duration(400)
+          .style("opacity", 0);
       });
     </script>
   </head>
