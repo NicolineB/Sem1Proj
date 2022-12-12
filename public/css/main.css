@@ -243,13 +243,11 @@ section {
 }
 
 .consequences2 {
-  height: 550px;
-  width: 25vw;
   height: 540px;
-  width: 28vw;
+  width: 22vw;
   text-align: center;
   background: rgb(228, 238, 253);
-  padding: 100, 100, 0, 0;
+  margin-left: -5%;
 }
 
 #animalButton {

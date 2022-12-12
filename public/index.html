@@ -346,12 +346,16 @@
           .html('<input id="animalButton" type="button" value="Update"/>')
           .on("click", function () {
             animalUpdate();
-          })
-          .on("click")
-          .transition()
-          .duration(400)
-          .style("opacity", 0);
+            document.getElementById("#animalButton").style.display = "none";
+          });
       });
+
+      /* var button = document.getElementById("#animalButton");
+      // var d3 = document.getElementById("d3");
+      function showLess() {
+        button.style.display = "inline-block";
+        // d3.style.display = "none";
+      } */
     </script>
   </head>
   <body>
@@ -446,11 +450,11 @@
       <div class="container2">
         <div class="consequences">
           <div id="svg2" class="svg2"></div>
-        </div>
-        <div class="consequences2">
-          <h2>Marinedyr vil lide under konsekvenserne (?)</h2>
-          <p>I 2100....</p>
-          <article id="animalInfo"></article>
+          <div class="consequences2">
+            <h2>Marinedyr vil lide under konsekvenserne (?)</h2>
+            <p>I 2100....</p>
+            <article id="animalInfo"></article>
+          </div>
         </div>
       </div>
     </section>
