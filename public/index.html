@@ -353,10 +353,7 @@
 
         return function (d, i) {
           svg
-            .selectAll("animalUpdate")
-            .filter(function (d) {
-              return d.source.index != i && d.target.index != i;
-            })
+            .selectAll("#animalUpdate")
             .transition()
             .style("stroke-opacity", opacity)
             .style("fill-opacity", opacity);
