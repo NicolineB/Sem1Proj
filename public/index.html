@@ -301,8 +301,8 @@
           .selectAll(".tick")
           .data(data)
           .append("svg:image")
-          .attr("width", 50)
-          .attr("height", 50)
+          .attr("width", 60)
+          .attr("height", 60)
           .attr("x", -20)
           .attr("y", 0)
           .attr("href", function (d) {
@@ -346,7 +346,7 @@
           .html('<input id="animalButton" type="button" value="Update"/>')
           .on("click", function () {
             animalUpdate();
-            document.getElementById("#animalButton").style.display = "none";
+            d3.select("#animalButton").remove();
           });
       });
 
@@ -448,13 +448,11 @@
       </h1>
       <div id="animalUpdate"></div>
       <div class="container2">
-        <div class="consequences">
-          <div id="svg2" class="svg2"></div>
-          <div class="consequences2">
-            <h2>Marinedyr vil lide under konsekvenserne (?)</h2>
-            <p>I 2100....</p>
-            <article id="animalInfo"></article>
-          </div>
+        <div id="svg2" class="svg2"></div>
+        <div class="consequences2">
+          <h2>Marinedyr vil lide under konsekvenserne (?)</h2>
+          <p>I 2100....</p>
+          <article id="animalInfo"></article>
         </div>
       </div>
     </section>
