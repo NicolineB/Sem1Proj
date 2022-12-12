@@ -265,6 +265,7 @@ section {
   outline: 0 solid transparent;
   padding: 0px 18px;
   border: 0;
+  height: 5vh;
 }
 
 #animalUpdate {
