@@ -263,10 +263,13 @@ section {
   font-weight: 400;
   font-family: "Raleway", sans-serif;
   outline: 0 solid transparent;
-  padding: 0px 18px 0px 200px;
+  padding: 0px 18px;
   border: 0;
-  padding-left: 40%;
+}
+
+#animalUpdate {
   position: center;
+  padding-left: 200px;
 }
 
 /* CSS til ikke-så-sjove fakta (Sektion 4) */
