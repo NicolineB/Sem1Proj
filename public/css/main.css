@@ -268,7 +268,8 @@ section {
 }
 
 #animalUpdate {
-  padding-left: 50vw;
+  padding-left: 45vw;
+  height: max-content;
 }
 
 /* CSS til ikke-så-sjove fakta (Sektion 4) */
