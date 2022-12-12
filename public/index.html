@@ -128,7 +128,7 @@
           .attr("class", "yAxis")
           .attr("transform", "translate(" + sidePadding + ",0)")
           .call(yAxis)
-          .style("font-size", "20px");
+          .style("font-size", "17px");
 
         //gemmer den relevante data i newData an på om det er før eller efter 2022
         if (data[0].years < 2022) {
@@ -282,18 +282,7 @@
           .attr("height", function (d) {
             return h - yScale(100) - bottomPadding;
           })
-          .attr("fill", "#7f7fff")
-          .on("click", function (d, i) {
-            infoBoks(i.species);
-            console.log(i);
-          })
-          .style("cursor", "pointer")
-          .on("mouseover", function (d) {
-            d3.select(event.currentTarget).style("fill", "blue");
-          })
-          .on("mouseout", function (d) {
-            d3.select(event.currentTarget).style("fill", "#7f7fff");
-          });
+          .attr("fill", "#7f7fff");
 
         svg
           .append("g")
@@ -322,7 +311,20 @@
 
         function animalUpdate() {
           //opretter updateSelection og tilkobler dataen
-          const updateSelection = svg.selectAll("rect").data(data);
+          const updateSelection = svg
+            .selectAll("rect")
+            .data(data)
+            .on("click", function (d, i) {
+              infoBoks(i.species);
+              console.log(i);
+            })
+            .style("cursor", "pointer")
+            .on("mouseover", function (d) {
+              d3.select(event.currentTarget).style("fill", "blue");
+            })
+            .on("mouseout", function (d) {
+              d3.select(event.currentTarget).style("fill", "#7f7fff");
+            });
 
           //bruger updateSelection til at opdatere vores svg
           updateSelection
@@ -346,6 +348,20 @@
             animalUpdate();
           });
       });
+      function fadeOut(opacity) {
+        d3.select("#animalUpdate").on("click");
+
+        return function (d, i) {
+          svg
+            .selectAll("animalUpdate")
+            .filter(function (d) {
+              return d.source.index != i && d.target.index != i;
+            })
+            .transition()
+            .style("stroke-opacity", opacity)
+            .style("fill-opacity", opacity);
+        };
+      }
     </script>
   </head>
   <body>
@@ -386,6 +402,7 @@
             max="2100"
             id="chosenYear"
           />
+
           <!--Når button trykkes kører getInputValue funktionen-->
           <button id="submitButton" type="button" onclick="getInputValue();">
             Vælg år
