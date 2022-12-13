@@ -369,3 +369,7 @@ footer {
   color: lightblue;
   text-align: center;
 }
+
+.inputNumber {
+  padding-left: 45vh;
+}

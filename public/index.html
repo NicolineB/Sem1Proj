@@ -82,7 +82,7 @@
               return h - yScale(d) - bottomPadding;
             });
 
-            let formatting = d3.format(".2f");
+          let formatting = d3.format(".2f");
 
           svg
             .selectAll("text.label") //al tekst med class "label"
@@ -157,7 +157,7 @@
         }
         svg
           .append("text") // text label for x axen
-          .attr("x", w/3)
+          .attr("x", w / 3)
           .attr("y", 400)
           .style("text-anchor", "middle")
           .attr("font-size", "25px")
@@ -417,7 +417,7 @@
       <h2 id="water-rise-under-title">
         Vælg venligst årstal mellem 1997 og 2100 og tryk 'vælg år'.
       </h2>
-      <form>
+      <form class="inputNumber">
         <select id="inputter">
           <option>Vælg et årstal</option>
         </select>
@@ -431,7 +431,7 @@
           />
 
           Når button trykkes kører getInputValue funktionen-->
-          <!-- <button id="submitButton" type="button" onclick="getInputValue();">
+        <!-- <button id="submitButton" type="button" onclick="getInputValue();">
             Vælg år
           </button>
         </p> -->
@@ -624,23 +624,23 @@
     </section>
     <script>
       var numbers = Array(104)
-            .fill()
-            .map((x, i) => i + 1997);
+        .fill()
+        .map((x, i) => i + 1997);
       var options = numbers.map(String);
       console.log(options);
       console.log(options.length);
-      
+
       var select = document.getElementById("inputter");
       for (var i = 0; i < options.length; i++) {
         select[select.length] = new Option(options[i], options[i]);
       }
-    
-      d3.select("#inputter").on("change", function(d) {
+
+      d3.select("#inputter").on("change", function (d) {
         // recover the option that has been chosen
-        var years = d3.select(this).property("value")
-        document.getElementById("water-rise-title").innerHTML = "År " + years
+        var years = d3.select(this).property("value");
+        document.getElementById("water-rise-title").innerHTML = "År " + years;
         // run the updateChart function with this selected option
-        update(years)
+        update(years);
       });
     </script>
   </body>
