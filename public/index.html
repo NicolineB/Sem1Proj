@@ -18,7 +18,7 @@
 
       // Funktion finder valuen fra id'et chosenYear (input felt med år),
       // og gemmer det i variablen inputVal.
-      function getInputValue() {
+      /* function getInputValue() {
         let years = document.getElementById("chosenYear").value;
         if (years > 1996 && years < 2101) {
           document.getElementById("water-rise-title").innerHTML = "År " + years;
@@ -27,7 +27,7 @@
             "Årstal ugyldigt";
         }
         update(years);
-      }
+      } */
 
       //function til opdatering af svg - bliver kaldt af submit knappen
       //tager variabel 'years' og poster den som property til api/climate
@@ -82,20 +82,23 @@
               return h - yScale(d) - bottomPadding;
             });
 
+            let formatting = d3.format(".2f");
+
           svg
             .selectAll("text.label") //al tekst med class "label"
             .data(newData)
             .transition()
             .duration(2000)
             .text(function (d) {
-              return d;
+              return formatting(d);
             })
             .attr("x", function (d, i) {
               return xScale(i) + 240;
             })
             .attr("y", function (d) {
               return yScale(d) + newData.length - 5;
-            });
+            })
+            .style("opacity", 1.0);
         });
       }
 
@@ -131,7 +134,7 @@
         // Tekst label for x akse - Best case
         svg
           .append("text")
-          .attr("x", 535)
+          .attr("x", 550)
           .attr("y", 400)
           .style("text-anchor", "middle")
           .attr("font-size", "25px")
@@ -154,7 +157,7 @@
         }
         svg
           .append("text") // text label for x axen
-          .attr("x", 200)
+          .attr("x", w/3)
           .attr("y", 400)
           .style("text-anchor", "middle")
           .attr("font-size", "25px")
@@ -185,6 +188,7 @@
           .attr("fill", "blue")
           .attr("opacity", 0.5);
 
+        let formatting = d3.format(".2f");
         //smide labels på
         svg
           .selectAll("text.label") //al tekst med class "label"
@@ -192,7 +196,7 @@
           .enter()
           .append("text")
           .text(function (d) {
-            return d;
+            return formatting(d);
           })
           .attr("x", function (d, i) {
             return xScale(i) + 240;
@@ -204,20 +208,21 @@
           .attr("font-family", "Raleway")
           .attr("font-size", "15px")
           .style("text-anchor", "middle")
-          .attr("fill", "blue");
+          .attr("fill", "blue")
+          .style("opacity", 0);
 
         //forsøg på at smide meter ind på y-akse
         svg
           .append("text")
           .attr("class", "y label")
           .attr("text-anchor", "start")
-          .attr("transform", "translate(35,240)rotate(-90)")
+          .attr("transform", "translate(35,230)rotate(-90)")
           .attr("font-size", "25px")
           .text("Meter");
       }
 
       // Knappen vælges via dens id 'klik'
-      const submitClick = d3
+      /* const submitClick = d3
         .selectAll("#submit")
         // Koden herunder køres kun ved tryk på knappen
         .on("click", function (e) {
@@ -225,7 +230,7 @@
           const id = e.target.id;
           // where year = ID
           console.log(id);
-        });
+        }); */
     </script>
 
     <script>
@@ -413,7 +418,10 @@
         Vælg venligst årstal mellem 1997 og 2100 og tryk 'vælg år'.
       </h2>
       <form>
-        <p id="inputButton">
+        <select id="inputter">
+          <option>Vælg et årstal</option>
+        </select>
+        <!-- <p id="inputButton">
           <input
             type="number"
             placeholder="Ex. 1997"
@@ -422,11 +430,11 @@
             id="chosenYear"
           />
 
-          <!--Når button trykkes kører getInputValue funktionen-->
-          <button id="submitButton" type="button" onclick="getInputValue();">
+          Når button trykkes kører getInputValue funktionen-->
+          <!-- <button id="submitButton" type="button" onclick="getInputValue();">
             Vælg år
           </button>
-        </p>
+        </p> -->
       </form>
 
       <!-- evt plus minus antal år her-->
@@ -614,5 +622,26 @@
         <p>POWERED BY: HOLD1 @ 2022</p>
       </footer>
     </section>
+    <script>
+      var numbers = Array(104)
+            .fill()
+            .map((x, i) => i + 1997);
+      var options = numbers.map(String);
+      console.log(options);
+      console.log(options.length);
+      
+      var select = document.getElementById("inputter");
+      for (var i = 0; i < options.length; i++) {
+        select[select.length] = new Option(options[i], options[i]);
+      }
+    
+      d3.select("#inputter").on("change", function(d) {
+        // recover the option that has been chosen
+        var years = d3.select(this).property("value")
+        document.getElementById("water-rise-title").innerHTML = "År " + years
+        // run the updateChart function with this selected option
+        update(years)
+      });
+    </script>
   </body>
 </html>
