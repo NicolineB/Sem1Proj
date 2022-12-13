@@ -21,6 +21,8 @@ body {
   overflow: hidden;
 }
 
+select:invalid { color: gray; }
+
 #main-title {
   text-align: center;
   top: 5%;
@@ -86,7 +88,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgb(59, 59, 59);
+  background: rgb(49, 49, 49);
   border-radius: 3px;
 }
 .scroll-down.arrow span::before {
@@ -124,32 +126,17 @@ body {
   text-align: center;
   position: relative;
   font-size: 2vw;
-  color: rgb(82, 157, 220);
+  color: #5d8ac2;
   margin: 1000;
   font-weight: lighter;
 }
 
-#inputButton {
+/* #inputButton {
   transition-duration: 0.4s;
   color: white;
   text-align: center;
   position: relative;
-}
-
-#submitButton {
-  transition-duration: 0.4s;
-  color: white;
-  background: #7f7fff;
-  border-radius: 20px;
-  box-shadow: #7f7fff 0 10px 20px -10px;
-  cursor: pointer;
-  font-size: 1vw;
-  font-weight: 400;
-  font-family: "Raleway", sans-serif;
-  outline: 0 solid transparent;
-  padding: 8px 18px;
-  border: 0;
-}
+} */
 
 .container {
   display: flex;
@@ -171,7 +158,8 @@ body {
   width: 30vw;
   text-align: center;
   border: 10px black;
-  background: rgb(228, 238, 253);
+  background: rgba(85, 157, 220, 0.1);
+  color: black;
   font-family: "Raleway", sans-serif;
 }
 
@@ -197,7 +185,7 @@ body {
   text-align: center;
   font-family: "Raleway", sans-serif;
   position: relative;
-  font-size: 2.5vw;
+  font-size: 2.7vw;
   line-height: 40px;
 }
 
@@ -207,6 +195,8 @@ body {
   height: 100vh;
   background-image: linear-gradient(white, rgb(82, 157, 220));
   padding: 40px 0px 0px 0px;
+  margin-right: 100px;
+  
 }
 
 /* ændrer skriftypen på y aksen */
@@ -217,27 +207,28 @@ body {
   padding-left: 70px;
 }
 
-.consequences {
+/* .consequences {
   height: 400;
   width: 70vw;
   text-align: center;
-}
+} */
 
 .consequences2 {
-  height: 480px;
+  height: 500px;
   width: 28vw;
   text-align: center;
-  background: rgb(228, 238, 253);
-  margin-left: -5%;
+  background: #E4EEFD;
+  margin-left: -8%;
+  margin-right: 3%;
   margin-top: 40px;
 }
 
 #animalButton {
   transition-duration: 0.4s;
   color: white;
-  background: #7f7fff;
+  background: #9B60FF ;
   border-radius: 20px;
-  box-shadow: #7f7fff 0 10px 20px -10px;
+  box-shadow: #9B60FF 0 10px 20px -10px;
   cursor: pointer;
   font-size: 1vw;
   font-weight: 400;
@@ -249,9 +240,9 @@ body {
 }
 
 .klikKnap {
-  font-size: 25px;
+  font-size: 20px;
   font-style: bold;
-  color: rgb(248, 114, 18);
+  color: #9B60FF;
 }
 
 #animalInfo {
@@ -284,7 +275,7 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 1.2vw;
   line-height: 50px;
-  color: white;
+  color: #f6f1ff;
 }
 
 /* "Kort" der "flipper" rundt, når man hover over dem, og viser flere fakta */
@@ -346,7 +337,7 @@ body {
 
 /* CSS til alle referencer, kilder, links */
 a {
-  color: #7f7fff;
+  color: #9B60FF;
   line-height: 40px;
   text-align: left;
   font-size: 0.7vw;

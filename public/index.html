@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/waves.css" />
     <title>Vandstigninger</title>
-    <script>
+    <!-- <script>
       const w = 700;
       const h = 400;
       const bottomPadding = 30;
@@ -14,20 +14,7 @@
       const topPadding = 20;
 
       //kalder waterlevels for at oprette den første svg for 1997
-      waterlevels(1997);
-
-      // Funktion finder valuen fra id'et chosenYear (input felt med år),
-      // og gemmer det i variablen inputVal.
-      /* function getInputValue() {
-        let years = document.getElementById("chosenYear").value;
-        if (years > 1996 && years < 2101) {
-          document.getElementById("water-rise-title").innerHTML = "År " + years;
-        } else {
-          document.getElementById("water-rise-title").innerHTML =
-            "Årstal ugyldigt";
-        }
-        update(years);
-      } */
+      waterlevels(2100);
 
       //function til opdatering af svg - bliver kaldt af submit knappen
       //tager variabel 'years' og poster den som property til api/climate
@@ -137,7 +124,7 @@
           .attr("x", 550)
           .attr("y", 400)
           .style("text-anchor", "middle")
-          .attr("font-size", "25px")
+          .attr("font-size", "23px")
           .attr("font-family", "Raleway")
           .text("Worst Case");
 
@@ -161,7 +148,7 @@
           .attr("x", w / 3)
           .attr("y", 400)
           .style("text-anchor", "middle")
-          .attr("font-size", "25px")
+          .attr("font-size", "23px")
           .attr("font-family", "Raleway")
           .text("Best Case");
 
@@ -187,10 +174,10 @@
           .attr("height", function (d) {
             return h - yScale(d) - bottomPadding;
           })
-          .attr("fill", "blue")
-          .attr("opacity", 0.5);
+          .attr("fill", "#9B60FF");
 
         let formatting = d3.format(".2f");
+        
         //smide labels på
         svg
           .selectAll("text.label") //al tekst med class "label"
@@ -210,8 +197,7 @@
           .attr("font-family", "Nunito")
           .attr("font-size", "15px")
           .style("text-anchor", "middle")
-          .attr("fill", "blue")
-          .style("opacity", 0);
+          .attr("fill", "black");
 
         //forsøg på at smide meter ind på y-akse
         svg
@@ -222,7 +208,7 @@
           .attr("font-size", "25px")
           .text("Meter");
       }
-    </script>
+    </script> -->
 
     <script>
       //animal data
@@ -295,7 +281,7 @@
           .attr("height", function (d) {
             return h - yScale(100) - bottomPadding;
           })
-          .attr("fill", "#7f7fff");
+          .attr("fill", "#9B60FF");
 
         svg
           .append("g")
@@ -340,10 +326,10 @@
             })
             .style("cursor", "pointer")
             .on("mouseover", function (d) {
-              d3.select(event.currentTarget).style("fill", "blue");
+              d3.select(event.currentTarget).style("fill", "#CBABFF");
             })
             .on("mouseout", function (d) {
-              d3.select(event.currentTarget).style("fill", "#7f7fff");
+              d3.select(event.currentTarget).style("fill", "#9B60FF");
             });
 
           //bruger updateSelection til at opdatere vores svg
@@ -364,7 +350,7 @@
 
         d3.select("#animalUpdate")
           .html(
-            '<input id="animalButton" type="button" value="Update" onclick="style.display = `none`"/>'
+            '<input id="animalButton" type="button" value="Klik her for at se svaret!" onclick="style.display = `none`"/>'
           )
           .on("click", function () {
             animalUpdate();
@@ -404,25 +390,10 @@
       </h2>
       <form class="inputNumber">
         <select id="inputter">
-          <option>Vælg et årstal</option>
+          <option value="" disabled selected hidden>Vælg et årstal</option>
         </select>
-        <!-- <p id="inputButton">
-          <input
-            type="number"
-            placeholder="Ex. 1997"
-            min="1997"
-            max="2100"
-            id="chosenYear"
-          />
-
-          Når button trykkes kører getInputValue funktionen-->
-        <!-- <button id="submitButton" type="button" onclick="getInputValue();">
-            Vælg år
-          </button>
-        </p> -->
       </form>
 
-      <!-- evt plus minus antal år her-->
       <!--To col / grid med to - visualisering col1, boks anden-->
       <div class="container">
         <div class="col1">
@@ -470,7 +441,7 @@
             Hvor lille en procentdel af de forskellige dyrearter tror du er
             tilbage om 80 år?
           </h2>
-          <p class="klikKnap">Klik på knappen for at se svaret!</p>
+          <div class="klikKnap"></div>
           <p id="animalUpdate"></p>
           <article id="animalInfo"></article>
         </div>
@@ -614,8 +585,8 @@
         <p>POWERED BY: HOLD1 @ 2022</p>
       </footer>
     </section>
-    <script>
-      // Skal komme efter sections for at virke
+<!--     <script>
+    // Skal komme efter sections for at virke
       var numbers = Array(104)
         .fill()
         .map((x, i) => i + 1997);
@@ -635,6 +606,6 @@
         // run the updateChart function with this selected option
         update(years);
       });
-    </script>
+    </script> -->
   </body>
 </html>
