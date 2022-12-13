@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Raleway:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500&display=swap");
 
 html,
 body {
@@ -8,7 +9,7 @@ body {
   background: white;
   position: relative;
   line-height: 1.6;
-  font-family: "Raleway", sans-serif; /* ændrer i skriftypen for HELE bodyen */
+  font-family: "Nunito", sans-serif; /* ændrer i skriftypen for HELE bodyen */
 }
 
 /* SCROLL 
@@ -195,7 +196,6 @@ section {
 }
 
 .waterlvl_information {
-  font-family: "Times New Roman", Times, serif;
   position: relative;
   font-size: 1.1vw;
   color: black;
@@ -244,7 +244,7 @@ section {
 
 .consequences2 {
   height: 540px;
-  width: 22vw;
+  width: 25vw;
   text-align: center;
   background: rgb(228, 238, 253);
   margin-left: -5%;
@@ -267,7 +267,6 @@ section {
 }
 
 #animalUpdate {
-  padding-left: 45vw;
   height: 0px;
 }
 
@@ -349,7 +348,6 @@ section {
   background-color: white;
   color: black;
   transform: rotateY(180deg);
-  font-family: "Times New Roman", Times, serif;
   border-radius: 30px;
   line-height: 40px;
   font-size: 1.2vw;

@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/waves.css" />
     <title>Vandstigninger</title>
-    <script>
+    <!-- <script>
       const w = 700;
       const h = 400;
       const bottomPadding = 30;
@@ -138,6 +138,7 @@
           .attr("y", 400)
           .style("text-anchor", "middle")
           .attr("font-size", "25px")
+          .attr("font-family", "Raleway")
           .text("Worst Case");
 
         // tegner en y-akse med tal
@@ -161,6 +162,7 @@
           .attr("y", 400)
           .style("text-anchor", "middle")
           .attr("font-size", "25px")
+          .attr("font-family", "Raleway")
           .text("Best Case");
 
         //laver x-akse udfra newData
@@ -205,7 +207,7 @@
             return yScale(d) + newData.length - 5;
           })
           .attr("class", "label") //husk class på nye labels
-          .attr("font-family", "Raleway")
+          .attr("font-family", "Nunito")
           .attr("font-size", "15px")
           .style("text-anchor", "middle")
           .attr("fill", "blue")
@@ -231,7 +233,7 @@
           // where year = ID
           console.log(id);
         }); */
-    </script>
+    </script> -->
 
     <script>
       //animal data
@@ -480,13 +482,18 @@
       <h1 id="animalTitle" style="color: black">
         men flere dyrearter er i stor fare
       </h1>
-      <div id="animalUpdate"></div>
+      <h3>
+        Hvor lille en procentdel af de forskellige dyrearter tror du er tilbage
+        om 80 år?
+      </h3>
+      <h3>Klik på knappen for at se svaret!</h3>
       <div class="container2">
         <div id="svg2" class="svg2"></div>
         <div class="consequences2">
           <h2>Havdyr vil lide under konsekvenserne</h2>
           <p>Klik på søjlerne og læs mere</p>
           <article id="animalInfo"></article>
+          <div id="animalUpdate"></div>
         </div>
       </div>
     </section>
