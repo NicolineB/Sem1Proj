@@ -14,7 +14,7 @@
       const topPadding = 20;
 
       //kalder waterlevels for at oprette den første svg for 1997
-      waterlevels(2100);
+      waterlevels(1997);
 
       //function til opdatering af svg - bliver kaldt af submit knappen
       //tager variabel 'years' og poster den som property til api/climate
@@ -174,7 +174,7 @@
           .attr("height", function (d) {
             return h - yScale(d) - bottomPadding;
           })
-          .attr("fill", "#9B60FF");
+          .attr("fill", "#CBABFF");
 
         let formatting = d3.format(".2f");
         
