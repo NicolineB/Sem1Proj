@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/waves.css" />
     <title>Vandstigninger</title>
-    <!-- <script>
+    <script>
       const w = 700;
       const h = 400;
       const bottomPadding = 30;
@@ -222,18 +222,7 @@
           .attr("font-size", "25px")
           .text("Meter");
       }
-
-      // Knappen vælges via dens id 'klik'
-      /* const submitClick = d3
-        .selectAll("#submit")
-        // Koden herunder køres kun ved tryk på knappen
-        .on("click", function (e) {
-          // Find hvilken knap der blev trykket på
-          const id = e.target.id;
-          // where year = ID
-          console.log(id);
-        }); */
-    </script> -->
+    </script>
 
     <script>
       //animal data
@@ -379,15 +368,9 @@
           )
           .on("click", function () {
             animalUpdate();
+            d3.select(".klikKnap").html("Klik på søjlerne og læs mere");
           });
       });
-
-      /* var button = document.getElementById("#animalButton");
-      // var d3 = document.getElementById("d3");
-      function showLess() {
-        button.style.display = "inline-block";
-        // d3.style.display = "none";
-      } */
     </script>
   </head>
   <body>
@@ -417,7 +400,7 @@
     <section class="water-rise" id="waterRise">
       <h1 id="water-rise-title">Hvor meget vil vandene stige?</h1>
       <h2 id="water-rise-under-title">
-        Vælg venligst årstal mellem 1997 og 2100 og tryk 'vælg år'.
+        Vælg venligst årstal mellem 1997 og 2100.
       </h2>
       <form class="inputNumber">
         <select id="inputter">
@@ -479,21 +462,17 @@
     </section>
     <section class="animalRisk">
       <h1 id="animalTitle">Det ser måske ikke ud af meget...</h1>
-      <h1 id="animalTitle" style="color: black">
-        men flere dyrearter er i stor fare
-      </h1>
-      <h3>
-        Hvor lille en procentdel af de forskellige dyrearter tror du er tilbage
-        om 80 år?
-      </h3>
-      <h3>Klik på knappen for at se svaret!</h3>
+      <h1 id="animalTitle2">men flere dyrearter er i stor fare</h1>
       <div class="container2">
         <div id="svg2" class="svg2"></div>
         <div class="consequences2">
-          <h2>Havdyr vil lide under konsekvenserne</h2>
-          <p>Klik på søjlerne og læs mere</p>
+          <h2 style="font-family: 'Raleway'">
+            Hvor lille en procentdel af de forskellige dyrearter tror du er
+            tilbage om 80 år?
+          </h2>
+          <p class="klikKnap">Klik på knappen for at se svaret!</p>
+          <p id="animalUpdate"></p>
           <article id="animalInfo"></article>
-          <div id="animalUpdate"></div>
         </div>
       </div>
     </section>
@@ -630,6 +609,7 @@
       </footer>
     </section>
     <script>
+      // Skal komme efter sections for at virke
       var numbers = Array(104)
         .fill()
         .map((x, i) => i + 1997);
