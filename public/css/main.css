@@ -221,13 +221,6 @@ select:invalid { color: gray; }
   margin-left: -8%;
   margin-right: 3%;
   margin-top: 40px;
-  position:relative;
-}
-
-.animalLink {
-  position:absolute;
-  bottom: 0;
-
 }
 
 #animalButton {
