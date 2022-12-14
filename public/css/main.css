@@ -255,6 +255,7 @@ select {
 }
 
 #animalInfo {
+  font-size: 1vw;
   margin: 5px;
 }
 
