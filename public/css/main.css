@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Raleway:wght@300&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,200;8..144,300;8..144,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,200;8..144,300;8..144,400&display=swap");
 
 html,
 body {
@@ -9,7 +9,7 @@ body {
   background: white;
   position: relative;
   line-height: 1.6;
-  font-family: 'Roboto Serif', serif; /* ændrer i skriftypen for HELE bodyen */
+  font-family: "Roboto Serif", serif; /* ændrer i skriftypen for HELE bodyen */
 }
 
 /* CSS til forsiden (Section 1) */
@@ -21,7 +21,9 @@ body {
   overflow: hidden;
 }
 
-select:invalid { color: gray; }
+select:invalid {
+  color: gray;
+}
 
 #main-title {
   text-align: center;
@@ -161,7 +163,12 @@ select:invalid { color: gray; }
   font-size: 1vw;
   color: black;
   margin: 20px;
-  font-family: 'Roboto Serif', serif;;
+  font-family: "Roboto Serif", serif;
+}
+
+.animalLink {
+  position: absolute;
+  bottom: 0;
 }
 
 /* CSS til anden visualisering (dyr i fare) (Section 3) */
@@ -189,7 +196,6 @@ select:invalid { color: gray; }
   background-image: linear-gradient(white, rgb(82, 157, 220));
   padding: 40px 0px 0px 0px;
   margin-right: 100px;
-  
 }
 
 /* ændrer skriftypen på y aksen */
@@ -207,10 +213,11 @@ select:invalid { color: gray; }
 } */
 
 .consequences2 {
+  position: relative;
   height: 500px;
   width: 28vw;
   text-align: center;
-  background: #E4EEFD;
+  background: #e4eefd;
   margin-left: -8%;
   margin-right: 3%;
   margin-top: 40px;
@@ -219,9 +226,9 @@ select:invalid { color: gray; }
 #animalButton {
   transition-duration: 0.4s;
   color: white;
-  background: #9B60FF ;
+  background: #9b60ff;
   border-radius: 20px;
-  box-shadow: #9B60FF 0 10px 20px -10px;
+  box-shadow: #9b60ff 0 10px 20px -10px;
   cursor: pointer;
   font-size: 1vw;
   font-weight: 400;
@@ -235,7 +242,7 @@ select:invalid { color: gray; }
 .klikKnap {
   font-size: 20px;
   font-style: bold;
-  color: #9B60FF;
+  color: #9b60ff;
 }
 
 #animalInfo {
@@ -330,7 +337,7 @@ select:invalid { color: gray; }
 
 /* CSS til alle referencer, kilder, links */
 a {
-  color: #9B60FF;
+  color: rgb(82, 157, 220);
   line-height: 40px;
   text-align: left;
   font-size: 0.7vw;
