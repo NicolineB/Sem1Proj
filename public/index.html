@@ -177,7 +177,7 @@
           .attr("fill", "#CBABFF");
 
         let formatting = d3.format(".2f");
-        
+
         //smide labels på
         svg
           .selectAll("text.label") //al tekst med class "label"
@@ -194,7 +194,7 @@
             return yScale(d) + newData.length - 5;
           })
           .attr("class", "label") //husk class på nye labels
-          .attr("font-family", "Roboto Serif")
+          .attr("font-family", "Nunito")
           .attr("font-size", "15px")
           .style("text-anchor", "middle")
           .attr("fill", "black");
@@ -206,7 +206,6 @@
           .attr("text-anchor", "start")
           .attr("transform", "translate(35,230)rotate(-90)")
           .attr("font-size", "25px")
-          .attr("font-family", "Raleway")
           .text("Meter");
       }
     </script>
@@ -445,6 +444,11 @@
           <div class="klikKnap"></div>
           <p id="animalUpdate"></p>
           <article id="animalInfo"></article>
+          <a
+            class="animalLink"
+            href="https://www.researchgate.net/publication/362854169_A_climate_risk_index_for_marine_life"
+            >Nature Climate Change(researchgate)</a
+          >
         </div>
       </div>
     </section>
@@ -587,7 +591,7 @@
       </footer>
     </section>
     <script>
-    // Skal komme efter sections for at virke
+      // Skal komme efter sections for at virke
       var numbers = Array(104)
         .fill()
         .map((x, i) => i + 1997);
