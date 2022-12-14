@@ -25,6 +25,12 @@ select:invalid {
   color: gray;
 }
 
+select {
+  width: 16%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 #main-title {
   text-align: center;
   top: 5%;
