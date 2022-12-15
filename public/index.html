@@ -16,7 +16,6 @@
       //kalder waterlevels for at oprette den første svg for 1997
       waterlevels(1997);
 
-      //function til opdatering af svg - bliver kaldt af submit knappen
       //tager variabel 'years' og poster den som property til api/climate
       function update(years) {
         d3.json(`/api/climate/${years}`, {
@@ -24,7 +23,6 @@
         }).then(function (response) {
           //gemmer dataen for det valgte år i 'data'
           let data = response.data;
-          console.log(data);
           let newData;
           const svg = d3.select("#svg1");
 
@@ -36,8 +34,6 @@
           } else if (data[0].years < 2022) {
             newData = [data[0].observations, data[0].observations];
           }
-          // Funktion finder valuen fra id'et chosenYear (input felt med år),
-          // og gemmer det i variablen year.
 
           //laver y-skala udfra højde og paddings
           const yScale = d3
@@ -217,7 +213,6 @@
         method: "POST",
       }).then(function (response) {
         let data = response.data;
-        console.log(data);
         data.sort((a, b) =>
           d3.descending(
             parseFloat(a.percent_at_risk),
@@ -298,6 +293,7 @@
           .call(yAxis)
           .style("font-size", "17px");
 
+        // funktion til opdatering af infoboks ved tryk på søjlerne
         function infoBoks(input) {
           d3.select("#animalInfo").html(`${input}`);
         }
@@ -316,14 +312,13 @@
             return `css/${d.species}.png`;
           });
 
+        // funktion til opdatering af søjlediagram, efter der er trykket på knappen
         function animalUpdate() {
-          //opretter updateSelection og tilkobler dataen
           const updateSelection = svg
             .selectAll("rect")
             .data(data)
             .on("click", function (d, i) {
               infoBoks(i.description);
-              console.log(i);
             })
             .style("cursor", "pointer")
             .on("mouseover", function (d) {
@@ -349,6 +344,7 @@
             });
         }
 
+        // Opretter knappen og sætter den ind i klikKnap classen
         d3.select("#animalUpdate")
           .html(
             '<input id="animalButton" type="button" value="Klik her for at se svaret!" onclick="style.display = `none`"/>'
@@ -384,7 +380,7 @@
       <div class="wave wave3"></div>
       <div class="wave wave4"></div>
     </section>
-    <section class="water-rise" id="waterRise">
+    <section class="water-rise">
       <h1 id="water-rise-title">Hvor meget vil vandene stige?</h1>
       <h2 id="water-rise-under-title">
         Vælg venligst årstal mellem 1997 og 2100.
@@ -395,7 +391,7 @@
         </select>
       </form>
 
-      <!--To col / grid med to - visualisering col1, boks anden-->
+      <!--To col / grid med to - visualisering col1, col2 med infoboks og andet-->
       <div class="container">
         <div class="col1">
           <div id="svg1" class="svg1"></div>
@@ -424,11 +420,6 @@
                 >IPCC (Intergovernmental Panel on Climate Change)</a
               >
             </div>
-            <!--figur til at illustere at scroll ned-->
-            <a class="scroll-down arrow">
-              <label></label>
-              <span></span>
-            </a>
           </div>
         </div>
       </div>
@@ -448,12 +439,13 @@
           <a
             class="animalLink"
             href="https://www.researchgate.net/publication/362854169_A_climate_risk_index_for_marine_life"
-            >Nature Climate Change(researchgate)</a
+            target="_blank"
+            >Researchgate.net</a
           >
         </div>
       </div>
     </section>
-    <!-- Ikke så sjove fakta sektion -->
+    <!-- not-so-fun-facts sektion -->
     <section class="not-fun-facts">
       <h1><b>Not-So-Fun Facts</b></h1>
       <h3>Træk musen henover billederne for at se mere</h3>
@@ -592,13 +584,12 @@
       </footer>
     </section>
     <script>
+      // Dropdown menu til at vælge årstal i første visualisering
       // Skal komme efter sections for at virke
       var numbers = Array(104)
         .fill()
         .map((x, i) => i + 1997);
       var options = numbers.map(String);
-      console.log(options);
-      console.log(options.length);
 
       var select = document.getElementById("inputter");
       for (var i = 0; i < options.length; i++) {
@@ -606,10 +597,8 @@
       }
 
       d3.select("#inputter").on("change", function (d) {
-        // recover the option that has been chosen
         var years = d3.select(this).property("value");
         document.getElementById("water-rise-title").innerHTML = "År " + years;
-        // run the updateChart function with this selected option
         update(years);
       });
     </script>
