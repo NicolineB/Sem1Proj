@@ -1,6 +1,6 @@
 const { Client } = require("pg");
 const express = require("express");
-const morgan = require("morgan"); // Some nice logging
+const morgan = require("morgan");
 
 const PORT = process.env.PORT || 8080;
 const DB_USER = process.env.DB_USER || "lzdkbzkl";
@@ -31,8 +31,6 @@ app.use(morgan("combined"));
 //Her defineres API'en for tabellen climate
 app.post("/api/climate/:years", async (req, res) => {
   const years = req.params.years;
-  console.log(years);
-  console.log("hejsa");
   const query1 = `SELECT * FROM climate WHERE years = ${years}`;
   try {
     let queryData = await client.query(query1);

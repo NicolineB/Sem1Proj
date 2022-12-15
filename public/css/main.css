@@ -151,7 +151,6 @@ select {
   height: 407.26px;
   width: fit-content;
   overflow: hidden;
-  /* background: paleturquoise; */
 }
 
 .col2 {
@@ -214,12 +213,6 @@ select {
 .svg2 {
   padding-left: 70px;
 }
-
-/* .consequences {
-  height: 400;
-  width: 70vw;
-  text-align: center;
-} */
 
 .consequences2 {
   position: relative;
